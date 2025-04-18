@@ -28,7 +28,9 @@ library(dplyr)
 #| label: import-data
 
 # We starting with the data from our Shiny project
-load("data/inaugural_speech_analysis.Rdata")
+load("raw-data/inaugural_speech_analysis.Rdata")
+load("raw-data/inaugural_speeches.Rdata")
+load("raw-data/president-names.Rdata")
 
 ```
 
