@@ -21,6 +21,7 @@ library(tidyverse)
 library(tidytext)
 library(dplyr)
 library(quanteda)
+library(quanteda.textstats)
 
 ```
 
@@ -38,5 +39,7 @@ load("raw-data/president-names.Rdata")
 ```{r}
 inaug_speeches_all_clean <- inaug_speeches_all_clean |>
   mutate(sentences = nsentence(text))
+
+readability_stats <- textstat_readability(inaug_speeches_all_clean$text, measure = "Flesch")
 
 ```
