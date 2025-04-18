@@ -20,6 +20,7 @@ options(scipen = 1, knitr.kable.NA = '')
 library(tidyverse)
 library(tidytext)
 library(dplyr)
+library(quanteda)
 
 ```
 
@@ -34,3 +35,8 @@ load("raw-data/president-names.Rdata")
 
 ```
 
+```{r}
+inaug_speeches_all_clean <- inaug_speeches_all_clean |>
+  mutate(sentences = nsentence(text))
+
+```
