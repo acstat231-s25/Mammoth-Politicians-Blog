@@ -21,8 +21,11 @@ library(tidyverse)
 library(tidytext)
 library(dplyr)
 library(quanteda)
+#summary statistics - flesch,kincaid,mean sentence.
 library(quanteda.textstats)
-
+#topic models
+library(topicmodels)
+library(ggrepel)
 ```
 
 
@@ -37,9 +40,81 @@ load("raw-data/president-names.Rdata")
 ```
 
 ```{r}
+#| Readability statistics (Flesch, Kincaid, meanSentence)
 inaug_speeches_all_clean <- inaug_speeches_all_clean |>
   mutate(sentences = nsentence(text))
 
 readability_stats <- textstat_readability(inaug_speeches_all_clean$text, measure = c("Flesch", "Flesch.Kincaid", "meanSentenceLength"))
+
+# check
+nrow(readability_stats)
+nrow(inaug_speeches_all_clean)
+
+# Merge readability stats with inaug_speeches_all_clean by row
+#bind_cols : binds rows in order of df 
+
+inaug_speeches_master <- bind_cols(inaug_speeches_all_clean, readability_stats)
+
+#check
+nrow(inaug_speeches_master)
+nrow(inaug_words_sentiment)
+
+#left_join uses variables (date, president) as the join key // automatic
+inaug_speeches_master <- left_join(inaug_speeches_master, inaug_words_sentiment)
+
+```
+
+
+```{r}
+#| Elbow Plot | Clustering Analysis
+
+
+```
+
+
+```{r}
+
+#| Plotting Flesch v.s. Sentiment
+
+ggplot(inaug_speeches_master, aes(y = Flesch, x = sentiment)) +
+  geom_point() +
+  #geom_text_repel(aes(label = president), size = 3, max.overlaps = 15) +
+  scale_x_continuous(breaks = scales:: breaks_width(25), minor_breaks = NULL) +
+  #scale_y_continuous(breaks = scales:: breaks_width(25), minor_breaks = NULL) +
+  labs(y = "Flesch Reading Level",
+       x = "Sentiment Score") +
+  theme_minimal()
+
+```
+
+```{r}
+
+#| Flesh-Kincaid over time
+ggplot(inaug_speeches_master, aes(x = date, y = Flesch.Kincaid)) +
+  geom_point() +
+  #geom_text_repel(aes(label = president), size = 3, max.overlaps = 15) +
+  scale_x_continuous(breaks = scales:: breaks_width(25), minor_breaks = NULL) +
+  #scale_y_continuous(breaks = scales:: breaks_width(25), minor_breaks = NULL) +
+  labs(title = "Inagural Speech Complexity over time",
+    y = "Flesch-Kincaid Grade Level",
+       x = "Year") +
+  theme_minimal()
+
+```
+
+
+
+```{r}
+#| Topic Modeling
+
+corp <- corpus(inaug_speeches_all_clean, text_field = "text")
+
+dfm <- dfm(corp, remove_punct = TRUE)
+dfm <- dfm_remove(dfm, stopwords("en"))
+dfm <- dfm_trim(dfm, min_termfreq = 5, min_docfreq = 2)
+
+dtm <- convert(dfm, to = "topicmodels")
+
+
 
 ```
