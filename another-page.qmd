@@ -24,7 +24,8 @@ library(ggplot2)
 
 
 ```{r}
-#| include: false
+#| label: fig-sentiment
+#| fig-cap: "AFINN Sentiment Scores of Inaugural Speeches"
 
 
 # Load data
