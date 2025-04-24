@@ -19,6 +19,7 @@ options(scipen = 1, knitr.kable.NA = "")
 # Load necessary packages
 library(tidyverse)
 library(ggplot2)
+library(plotly)
 
 ```
 
@@ -41,6 +42,25 @@ ggplot(inaug_words_sentiment, aes(x = date, y = sentiment_avg, fill = sentiment_
     y = "Average Sentiment"
   ) +
   theme_minimal()
+
+## OR plotly...
+
+p <- ggplot(inaug_words_sentiment, aes(
+  x = date, y = sentiment_avg,
+  text = paste("President:", president,
+               "<br>Year:", date,
+               "<br>Average Sentiment:", round(sentiment_avg, 3)),
+  fill = sentiment_avg)) +
+  geom_col(show.legend = FALSE) +
+  scale_fill_gradient2(low = "#d61106", mid = "#d6d6d6", high = "#05853c", midpoint = 0) + 
+  labs(
+    title = "AFINN Sentiment Scores of Inaugural Speeches",
+    x = "Year",
+    y = "Average Sentiment"
+  ) +
+  theme_minimal()
+
+ggplotly(p, tooltip = "text")
 
 ```
 

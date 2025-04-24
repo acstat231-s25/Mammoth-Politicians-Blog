@@ -19,7 +19,33 @@ options(scipen = 1, knitr.kable.NA = "")
 library(tidyverse)
 library(knitr)
 library(kableExtra)
+library(ggplot2)
 ```
+
+
+# Sentiment Analysis Over Time
+
+```{r}
+#| label: fig-sentiment
+#| fig-cap: "AFINN Sentiment Scores of Inaugural Speeches"
+
+
+# Load data
+load("raw-data/inaugural_speech_analysis.Rdata") 
+
+# Plot bar chart
+ggplot(inaug_words_sentiment, aes(x = date, y = sentiment_avg, fill = sentiment_avg)) +
+  geom_col(show.legend = FALSE) +
+  scale_fill_gradient2(low = "#d61106", mid = "#d6d6d6", high = "#05853c", midpoint = 0) + 
+  labs(
+    title = "AFINN Sentiment Scores of Inaugural Speeches",
+    x = "Year",
+    y = "Average Sentiment"
+  ) +
+  theme_minimal()
+
+```
+
 
 # Getting started
 
