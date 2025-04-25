@@ -128,14 +128,14 @@ ggplotly(fk, tooltip = "text")
 
 # President with the hardest inaugural speech (highest Flesch-Kincaid score)
 highpres<- inaug_speeches_master |>
-  filter(Flesch.Kincaid == max(Flesch.Kincaid, na.rm = TRUE)) |>
-  select(president, date, Flesch.Kincaid)
+   select(president, date, Flesch.Kincaid) |>
+  filter(Flesch.Kincaid == max(Flesch.Kincaid, na.rm = TRUE))
 highpres
 
 # President with the easiest inaugural speech (lowest Flesch-Kincaid score)
 lowpres <- inaug_speeches_master |>
-  filter(Flesch.Kincaid == min(Flesch.Kincaid, na.rm = TRUE)) |>
-  select(president, date, Flesch.Kincaid)
+  select(president, date, Flesch.Kincaid) |>
+  filter(Flesch.Kincaid == min(Flesch.Kincaid, na.rm = TRUE))
 lowpres
 
 
