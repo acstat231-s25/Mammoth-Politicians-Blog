@@ -40,7 +40,7 @@ load("raw-data/president-names.Rdata")
 ```
 
 ```{r}
-#| Readability statistics (Flesch, Kincaid, meanSentence)
+# Readability statistics (Flesch, Kincaid, meanSentence)
 inaug_speeches_all_clean <- inaug_speeches_all_clean |>
   mutate(sentences = nsentence(text))
 
@@ -62,19 +62,20 @@ nrow(inaug_words_sentiment)
 #left_join uses variables (date, president) as the join key // automatic
 inaug_speeches_master <- left_join(inaug_speeches_master, inaug_words_sentiment)
 
-```
-
-
-```{r}
-#| Elbow Plot | Clustering Analysis
-
 
 ```
 
 
 ```{r}
+#Elbow Plot | Clustering Analysis
 
-#| Plotting Flesch v.s. Sentiment
+
+```
+
+
+```{r}
+
+# Plotting Flesch v.s. Sentiment
 
 ggplot(inaug_speeches_master, aes(y = Flesch, x = sentiment)) +
   geom_point() +
@@ -89,7 +90,7 @@ ggplot(inaug_speeches_master, aes(y = Flesch, x = sentiment)) +
 
 ```{r}
 
-#| Flesh-Kincaid over time
+#Flesh-Kincaid over time
 ggplot(inaug_speeches_master, aes(x = date, y = Flesch.Kincaid)) +
   geom_point() +
   #geom_text_repel(aes(label = president), size = 3, max.overlaps = 15) +
@@ -105,7 +106,7 @@ ggplot(inaug_speeches_master, aes(x = date, y = Flesch.Kincaid)) +
 
 
 ```{r}
-#| Topic Modeling
+# Topic Modeling
 
 corp <- corpus(inaug_speeches_all_clean, text_field = "text")
 

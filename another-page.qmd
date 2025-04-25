@@ -62,6 +62,33 @@ p <- ggplot(inaug_words_sentiment, aes(
 
 ggplotly(p, tooltip = "text")
 
+
+## Plotting readability/Flesh-Kincaid over time plot with a bar chart
+
+ggplot(inaug_speeches_master, aes(x = date, y = Flesch.Kincaid, fill = Flesch.Kincaid)) +
+  geom_col(show.legend = FALSE) +
+  scale_fill_gradient2(low = "#d61106", mid = "#d6d6d6", high = "#05853c", midpoint = 0) + 
+  labs(
+    title = "Flesh-Kincaid score of Inaugural Speeches",
+    x = "Year",
+    y = "Flesh-Kincaid score"
+  ) +
+  theme_minimal()
+
+## Plotting mean sentence length over time plot with a bar chart
+
+ggplot(inaug_speeches_master, aes(x = date, y = meanSentenceLength, fill = meanSentenceLength)) +
+  geom_col(show.legend = FALSE) +
+  scale_fill_gradient2(low = "#d61106", mid = "#d6d6d6", high = "#05853c", midpoint = 0) + 
+  labs(
+    title = "Mean Sentence Length of Inaugural Speeches",
+    x = "Year",
+    y = "Mean Sentence Length"
+  ) +
+  theme_minimal()
+
+
+
 ```
 
 
