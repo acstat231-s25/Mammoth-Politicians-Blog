@@ -124,7 +124,7 @@ set.seed(100)
 
 msl_kmeans_results <- inaug_speeches_master |> 
   # Can only include numeric variables that we are clustering by
-  select(meanSentenceLength, sentiment) |> 
+  select(meanSentenceLength, sentiment_avg) |> 
   kmeans(centers = 6, nstart = 10) 
 
 # Check named elements of object
@@ -148,7 +148,7 @@ msl_cluster_centers <- msl_kmeans_results$centers |>
   mutate(cluster_2 = factor(row_number()))
 
 # Plot cluster assignments and centroids
-ggplot(msl_clustered, aes(x = sentiment, y = meanSentenceLength)) +
+ggplot(msl_clustered, aes(x = sentiment_avg, y = meanSentenceLength)) +
   geom_point(aes(color = cluster_2), alpha = 0.6)  + 
   geom_label(data = msl_cluster_centers, 
              aes(label = cluster_2), 
@@ -158,9 +158,10 @@ ggplot(msl_clustered, aes(x = sentiment, y = meanSentenceLength)) +
 
 
 
-MS_s <- ggplot(msl_clustered, aes(x = sentiment, y = meanSentenceLength)) +
+MS_s <- ggplot(msl_clustered, aes(x = meanSentenceLength, y = sentiment_avg)) +
   geom_point(aes(color = cluster_2, 
-                 text = paste("Sentiment:", sentiment,
+                 text = paste( "President", president,
+                              "<br>Sentiment:", sentiment_avg,
                               "<br>Mean Sentence Length:", meanSentenceLength,
                               "<br>Cluster:", cluster_2)), 
              alpha = 0.6) +
@@ -168,10 +169,10 @@ MS_s <- ggplot(msl_clustered, aes(x = sentiment, y = meanSentenceLength)) +
              aes(label = cluster_2, 
                  text = paste("Cluster Center:", cluster_2)), 
              size = 3) +
-  labs(y = "Mean Sentence Length",
-       x = "Sentiment Score",
+  labs(y = "Average Sentiment Score",
+       x = "Mean Sentence Length",
         title = "Inaugural Address Analysis",
-       subtitle = "Mean Sentence Length vs Sentiment Score",
+       caption = "Average Sentiment Score vs Mean Sentence Length",
        color = "Cluster") +
   theme_minimal()
 
@@ -179,6 +180,97 @@ ggplotly(MS_s, tooltip = "text")
 
 
 ```
+
+```{r}
+#| label: Mean Sentence Length-vs-Year
+ 
+msle <- ggplot(inaug_speeches_master, aes(x = date, y = meanSentenceLength,
+                                       text = paste("President:", 
+                                                    president,
+                                                    "<br>Year:", 
+                                                    date,
+                                                    "<br> Mean Sentence Length:",
+                                                    meanSentenceLength))
+            ) +
+  geom_point() +
+  geom_smooth( method = "loess", se = TRUE)+
+  scale_x_continuous(breaks = scales:: breaks_width(25), minor_breaks = NULL) +
+  labs(title = "Inagural Speech Complexity Over Time",
+    y = "Mean Sentence Length",
+       x = "Year") +
+  theme_minimal()
+
+ggplotly(msle, tooltip = "text")
+```
+
+
+```{r}
+
+sec_terms <- inaug_speeches_master |>
+  select(president, term, sentiment_avg) |>
+  pivot_wider(names_from = term, 
+              values_from = sentiment_avg, 
+              names_prefix = "") |>
+  rename(first_term = `1st Term`,
+         second_term = `2nd Term`,
+         third_term = `3rd Term`,
+         fourth_term = `4th Term`) |>
+  select(-third_term, -fourth_term) |>
+  rename(sent_first = `first_term`,
+         sent_second = `second_term`) |>
+  filter(!is.na(sent_second))
+
+
+sec_terms2 <- inaug_speeches_master |>
+  select(president, term, Flesch.Kincaid) |>
+  pivot_wider(names_from = term, 
+              values_from = Flesch.Kincaid, 
+              names_prefix = "") |>
+  rename(first_term = `1st Term`,
+         second_term = `2nd Term`,
+         third_term = `3rd Term`,
+         fourth_term = `4th Term`) |>
+  select(-third_term, -fourth_term) |>
+    rename(fk_first = `first_term`,
+         fk_second = `second_term`) |>
+  filter(!is.na(fk_second))
+
+# joining both datasets
+
+sec_terms_sent_fk <- left_join(sec_terms, sec_terms2, by = "president")
+
+```
+
+
+
+```{r}
+# Inaugural Address Complexity Change from First to Second Term for presidents that served two terms
+q <- ggplot(sec_terms_sent_fk, aes(x = fk_first, y = fk_second,
+                                   text = paste("President:", 
+                                                    president,
+                                                    "<br> 1st Term FK Score:",
+                                                    fk_first,
+                                                "<br> 2nd Term FK Score:",
+                                                fk_second))) +
+  geom_point() + 
+  labs(title = "Inaugural Address Complexity Change from First to Second Term",
+       x = "First Term Sentiment Avg",
+       y = "Second Term Sentiment Avg") +
+  theme_minimal()
+
+ggplotly(q, tooltip = "text")
+```
+
+
+
+
+
+
+
+
+
+
+
 
 
 
