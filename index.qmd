@@ -104,6 +104,9 @@ ggplot(top_biwords_era, aes(x = biword, y = total, fill = biword)) +
 # Mean Sentence length over time 
 
 ```{r}
+#| fig-cap: "Figure 4: This bar char displays the sentence mean in each president's inaugural speech over time"
+
+
 ms <- ggplot(inaug_speeches_master, aes(
   x = date, y = meanSentenceLength,
   text = paste("President:", president,
@@ -120,12 +123,19 @@ ms <- ggplot(inaug_speeches_master, aes(
   theme_minimal()
 
 ggplotly(ms, tooltip = "text")
+
 ```
+
+
+[summary of the figure]
 
 
 # Flesch-Kincaid Scores over time
 
 ```{r}
+#| fig-cap: "Figure 5: This bar char displays the complexity of presidents' inaugural speeches with their respective Flesch-Kincaid scores over time"
+
+
 fk <- ggplot(inaug_speeches_master, aes(
   x = date, y = Flesch.Kincaid,
   text = paste("President:", president,
@@ -135,7 +145,7 @@ fk <- ggplot(inaug_speeches_master, aes(
   geom_col(show.legend = FALSE) +
   scale_fill_gradient2(low = "#d61106", mid = "#d6d6d6", high = "#05853c", midpoint = 0) + 
   labs(
-    title = "Flesch-Kincaid score of Inaugural Speeches",
+    title = "Flesch-Kincaid Score of Inaugural Speeches",
     x = "Year",
     y = "Flesch-Kincaid Score"
   ) +
@@ -144,9 +154,7 @@ fk <- ggplot(inaug_speeches_master, aes(
 ggplotly(fk, tooltip = "text")
 ```
 
-
-
-Figure @fig-freq-era shows the most frequently used words in U.S. presidential inaugural speeches across five historical eras. ...
+[summary of the figure]
 
 # Readability Analysis
 
