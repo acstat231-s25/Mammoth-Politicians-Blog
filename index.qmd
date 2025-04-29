@@ -5,7 +5,10 @@ author:
 - "Rachel Hubley"
 - "Sheryl Solorzano"
 - "Josh Balderas"
-abstract: "A brief abstract summarizing your project is required here. This abstract, along with the first image or figure in your blog, will be used as a preview to your blog on the course's landing page for all the blogs."
+abstract: "This blog focuses on analyzing U.S. presidents' inaugural speeches to determine their complexity in terms of readability. By comparing the readability score with Flesch kincaid formula across different inaugural speeches of presidents that serve between 1789 and 2009, we aim to observe whether inaugural speeches have become easier or harder to understand, and how their emotional tone has changed over time."
+
+
+#A brief abstract summarizing your project is required here. This abstract, along with the first image or figure in your blog, will be used as a preview to your blog on the course's landing page for all the blogs."
 ---
 
 ```{r}
