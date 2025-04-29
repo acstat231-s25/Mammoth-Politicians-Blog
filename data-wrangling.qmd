@@ -21,11 +21,14 @@ library(tidyverse)
 library(tidytext)
 library(dplyr)
 library(quanteda)
+library(purrr)
+library(broom)
 #summary statistics - flesch,kincaid,mean sentence.
 library(quanteda.textstats)
 #topic models
 library(topicmodels)
 library(ggrepel)
+
 ```
 
 
@@ -40,7 +43,8 @@ load("raw-data/president-names.Rdata")
 ```
 
 ```{r}
-# Readability statistics (Flesch, Kincaid, meanSentence)
+#| Readability statistics (Flesch, Kincaid, meanSentence)
+
 inaug_speeches_all_clean <- inaug_speeches_all_clean |>
   mutate(sentences = nsentence(text))
 
@@ -63,40 +67,114 @@ nrow(inaug_words_sentiment)
 inaug_speeches_master <- left_join(inaug_speeches_master, inaug_words_sentiment)
 
 
-```
-
-
-```{r}
-#Elbow Plot | Clustering Analysis
 
 
 ```
 
 
 ```{r}
+#| Clustering
 
-# Plotting Flesch v.s. Sentiment
+
+### Flesch-Kincaid vs Sentiment ###
+flesch_sentiment <- inaug_speeches_master |>
+  select(Flesch, sentiment)
+
+#set seed for reproducibility
+set.seed(420)
+
+# Optimal # of clustering is 4-6. VERIFIED.
+flesch_sentiment_kmeans4 <- flesch_sentiment |>
+  kmeans(centers = 6, nstart = 20)
+
+#add cluster results to original data
+inaug_speeches_master <- inaug_speeches_master |>
+  mutate(flesch_sentiment_cluster = flesch_sentiment_kmeans4$cluster)
+
+
+
+
+### Flesch-Kincaid vs Sentiment ###
+fleschKin_sentiment <- inaug_speeches_master |>
+  select(Flesch.Kincaid, sentiment)
+
+# Optimal # of clustering is 4-6. VERIFIED
+fleschKin_sentiment_kmeans4 <- fleschKin_sentiment |>
+  kmeans(centers = 6, nstart = 20)
+
+#add cluster results to original data
+inaug_speeches_master <- inaug_speeches_master |>
+  mutate(flesch_kin_sentiment_cluster = fleschKin_sentiment_kmeans4$cluster)
+
+```
+
+```{r}
+#| Elbow ploting
+
+# URGENT NOTE: This elbow plot is used for multiple different charts. JUST SWAP OUT THE DATA SET AND CHANGE THE TITLE.
+elbow_plot <- tibble(k = 1:10) |>
+  mutate( 
+    kmeans_results = purrr::map(k, ~kmeans(flesch_sentiment, centers = .x, nstart=20)),
+    glanced = purrr::map(kmeans_results, glance)) |>
+    unnest(cols = c(glanced))
+
+
+# construct elbow plot
+ggplot(elbow_plot, aes(x = k, y = tot.withinss)) +
+geom_point() +
+geom_line() +
+scale_x_continuous(breaks = 1:10) +
+labs(
+  x = "Number of clusters (k)",
+  y = "Total within-cluster sum of squares",
+  title = "Optimal Clustering: Flesch-Kincaid vs. Sentiment")
+```
+
+
+```{r}
+#| Plotting Flesch v.s. Sentiment
 
 ggplot(inaug_speeches_master, aes(y = Flesch, x = sentiment)) +
-  geom_point() +
-  #geom_text_repel(aes(label = president), size = 3, max.overlaps = 15) +
+  scale_color_manual(values = c("red", "blue", "green", "purple", "orange", "pink")) +
+  geom_point(aes(color = factor(flesch_sentiment_cluster))) +
   scale_x_continuous(breaks = scales:: breaks_width(25), minor_breaks = NULL) +
-  #scale_y_continuous(breaks = scales:: breaks_width(25), minor_breaks = NULL) +
   labs(y = "Flesch Reading Level",
-       x = "Sentiment Score") +
+       x = "Sentiment Score",
+       title = "Inaugural Address Analysis",
+       subtitle = "Flesch Reading Level vs Sentiment Score",
+       color = "Cluster") +
   theme_minimal()
 
 ```
 
 ```{r}
+#| Ploting Flesch-Kincaid vs Sentiment
 
-#Flesh-Kincaid over time
+ggplot(inaug_speeches_master, aes(y = Flesch.Kincaid, x = sentiment)) +
+  scale_color_manual(values = c("red", "blue", "green", "purple", "orange", "pink")) +
+  geom_point(aes(color = factor(flesch_kin_sentiment_cluster))) +
+  scale_x_continuous(breaks = scales:: breaks_width(25), minor_breaks = NULL) +
+  labs(y = "Flesch-Kincaid Grade Level",
+       x = "Sentiment Score",
+        title = "Inaguaral Address Analysis",
+       subtitle = "Flesch-Kincaid Grade Level vs Sentiment Score",
+       color = "Cluster") +
+  theme_minimal()
+
+
+```
+
+
+```{r}
+#| Flesh-Kincaid over time
+
 ggplot(inaug_speeches_master, aes(x = date, y = Flesch.Kincaid)) +
   geom_point() +
-  #geom_text_repel(aes(label = president), size = 3, max.overlaps = 15) +
+  geom_smooth( method = "loess", se = TRUE)+
   scale_x_continuous(breaks = scales:: breaks_width(25), minor_breaks = NULL) +
-  #scale_y_continuous(breaks = scales:: breaks_width(25), minor_breaks = NULL) +
-  labs(title = "Inagural Speech Complexity over time",
+  geom_vline(xintercept = 1925, linetype = "dashed", color = "red") +
+  geom_vline(xintercept = 1949, linetype = "dashed", color = "blue") +
+  labs(title = "Inagural Speech Complexity Over Time",
     y = "Flesch-Kincaid Grade Level",
        x = "Year") +
   theme_minimal()
@@ -106,7 +184,7 @@ ggplot(inaug_speeches_master, aes(x = date, y = Flesch.Kincaid)) +
 
 
 ```{r}
-# Topic Modeling
+#| Topic Modeling
 
 corp <- corpus(inaug_speeches_all_clean, text_field = "text")
 
@@ -119,3 +197,4 @@ dtm <- convert(dfm, to = "topicmodels")
 
 
 ```
+
