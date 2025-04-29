@@ -254,13 +254,30 @@ q <- ggplot(sec_terms_sent_fk, aes(x = fk_first, y = fk_second,
                                                 fk_second))) +
   geom_point() + 
   labs(title = "Inaugural Address Complexity Change from First to Second Term",
+       x = "First Term Flesch-Kincaid Score",
+       y = "Second Term Flesch-Kincaid Score") +
+  theme_minimal()
+
+ggplotly(q, tooltip = "text")
+```
+
+```{r}
+# Inaugural Address Complexity Change from First to Second Term for presidents that served two terms
+q <- ggplot(sec_terms_sent_fk, aes(x = sent_first, y = sent_second,
+                                   text = paste("President:", 
+                                                    president,
+                                                    "<br> 1st Term Sentiment Score:",
+                                                    sent_first,
+                                                "<br> 2nd Term Sentiment Score:",
+                                                sent_second))) +
+  geom_point() + 
+  labs(title = "Inaugural Address Sentiment Change from First to Second Term",
        x = "First Term Sentiment Avg",
        y = "Second Term Sentiment Avg") +
   theme_minimal()
 
 ggplotly(q, tooltip = "text")
 ```
-
 
 
 
