@@ -86,6 +86,15 @@ ggplotly(fk, tooltip = "text")
  lowpres
  
  pres_inaug <- full_join(highpres, lowpres)
+ 
+ # table displaying the presidents with the highest and lowest Flesch-Kincaid score 
+   pres_inaug |>
+  kable(booktabs = TRUE, 
+        digits = 2,
+        col.names = c("", 
+                      "", 
+                      "" )) |>
+  kable_styling()
 
 ```
 
