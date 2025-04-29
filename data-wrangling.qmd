@@ -132,7 +132,7 @@ labs(
 
 
 ```{r}
-#| label: Plotting-Fleschv.s.Sentiment
+#| label: Plotting-Flesch vs.Sentiment
 
 ggplot(inaug_speeches_master, aes(y = Flesch, x = sentiment)) +
   scale_color_manual(values = c("red", "blue", "green", "purple", "orange", "pink")) +
@@ -178,23 +178,6 @@ ggplot(inaug_speeches_master, aes(x = date, y = Flesch.Kincaid)) +
     y = "Flesch-Kincaid Grade Level",
        x = "Year") +
   theme_minimal()
-
-```
-
-
-
-```{r}
-#| label: Topic-Modeling
-
-corp <- corpus(inaug_speeches_all_clean, text_field = "text")
-
-dfm <- dfm(corp, remove_punct = TRUE)
-dfm <- dfm_remove(dfm, stopwords("en"))
-dfm <- dfm_trim(dfm, min_termfreq = 5, min_docfreq = 2)
-
-dtm <- convert(dfm, to = "topicmodels")
-
-
 
 ```
 
