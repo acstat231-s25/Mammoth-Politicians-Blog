@@ -87,7 +87,7 @@ inaug_words_freqs_by_pres <- inaug_words_freqs_by_pres |>
 # Get top 8 words per era
 top_words_era <- inaug_words_freqs_by_pres |> 
   group_by(era, word) |> 
-  summarise(total = sum(n), .groups = "drop") |> 
+  summarize(total = sum(n), .groups = "drop") |> 
   group_by(era) |> 
   slice_max(total, n = 8)
 
@@ -98,11 +98,10 @@ ggplot(top_words_era, aes(x = fct_reorder(word, total), y = total, fill = word))
   facet_wrap(~ era, scales = "free_y") +
   labs(x = NULL, y = "Word Count") +
   theme_minimal() +
-  theme(strip.text = element_text(face = "bold", size = 10),
-        axis.text = element_text(size = 9),
-        plot.title = element_text(size = 14, face = "bold", hjust = 0.5),
-        plot.caption = element_text(size = 9, hjust = 0.5))
-
+  theme(strip.text = element_text(face = "bold", size = 18),
+        axis.text = element_text(size = 14),
+        plot.title = element_text(size = 18, face = "bold", hjust = 0.5),
+        plot.caption = element_text(size = 10, hjust = 0.5))
 
 ```
 
