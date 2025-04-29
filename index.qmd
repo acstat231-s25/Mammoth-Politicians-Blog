@@ -5,12 +5,14 @@ author:
 - "Rachel Hubley"
 - "Sheryl Solorzano"
 - "Josh Balderas"
+abstract: "This blog focuses on analyzing the inaugural speeches of U.S. presidents to determine how the language used in the U.S. Presidential inaugural addresses and the complexity of inaugural speeches in terms of readability have changed over time. By calculating the readability score with the Flesh-Kincaid formula across different inaugural speeches of presidents that serve between 1789 and 2009, we aim to observe whether inaugural speeches have become easier or harder to understand. Also, we aim to observe how presidential inaugural speeches change in terms of emotional tone over time."
 
-abstract: "This blog focuses on analyzing U.S. presidents' inaugural speeches to determine their complexity in terms of readability. By comparing the readability score with Flesch kincaid formula across different inaugural speeches of presidents that serve between 1789 and 2009, we aim to observe whether inaugural speeches have become easier or harder to understand, and how their emotional tone has changed over time."
+#the language used in the U.S. Presidential inaugural addresses of presidents who served between 1789 and 2009. Users can analyze word frequencies, biword frequencies, and sentiment trends over time to gain insight into presidential speeches.
+
 
 
 #A brief abstract summarizing your project is required here. This abstract, along with the first image or figure in your blog, will be used as a preview to your blog on the course's landing page for all the blogs."
-
+---
 
 ```{r}
 #| label: setup
@@ -24,10 +26,6 @@ library(tidyverse)
 library(knitr)
 library(kableExtra)
 library(ggplot2)
-library(plotly)
-
-# Load data
-load("raw-data/inaugural_speech_analysis.Rdata") 
 ```
 
 
@@ -37,13 +35,12 @@ load("raw-data/inaugural_speech_analysis.Rdata")
 #| label: fig-sentiment
 #| fig-cap: "AFINN Sentiment Scores of Inaugural Speeches"
 
-# Plotly bar chart
-p <- ggplot(inaug_words_sentiment, aes(
-  x = date, y = sentiment_avg,
-  text = paste("President:", president,
-               "<br>Year:", date,
-               "<br>Average Sentiment:", round(sentiment_avg, 3)),
-  fill = sentiment_avg)) +
+
+# Load data
+load("raw-data/inaugural_speech_analysis.Rdata") 
+
+# Plot bar chart
+ggplot(inaug_words_sentiment, aes(x = date, y = sentiment_avg, fill = sentiment_avg)) +
   geom_col(show.legend = FALSE) +
   scale_fill_gradient2(low = "#d61106", mid = "#d6d6d6", high = "#05853c", midpoint = 0) + 
   labs(
@@ -53,56 +50,7 @@ p <- ggplot(inaug_words_sentiment, aes(
   ) +
   theme_minimal()
 
-ggplotly(p, tooltip = "text")
-
 ```
-
-
-# Word Frequency by Era
-
-```{r}
-#| label: fig-freq-era
-#| fig-cap: "Top Words in Inaugural Speeches by Era"
-#| layout-ncol: 2
-#| fig-width: 12
-#| fig-height: 8
-#| out-width: 100%
-#| fig-align: center
-
-
-# Add historical eras
-inaug_words_freqs_by_pres <- inaug_words_freqs_by_pres |> 
-  mutate(era = case_when(
-    date <= 1829 ~ "1789–1829\nEarly Republic",
-  date <= 1869 ~ "1830–1869\nAntebellum & Civil War",
-  date <= 1919 ~ "1870–1919\nReconstruction to WWI",
-  date <= 1969 ~ "1920–1969\nInterwar to Civil Rights",
-  TRUE         ~ "1970–2009\nPost-Watergate to Obama"
-  ))
-
-# Get top 8 words per era
-top_words_era <- inaug_words_freqs_by_pres |> 
-  group_by(era, word) |> 
-  summarise(total = sum(n), .groups = "drop") |> 
-  group_by(era) |> 
-  slice_max(total, n = 8)
-
-# Create faceted bar chart
-ggplot(top_words_era, aes(x = fct_reorder(word, total), y = total, fill = word)) +
-  geom_col(show.legend = FALSE) +
-  coord_flip() +
-  facet_wrap(~ era, scales = "free_y") +
-  labs(x = NULL, y = "Word Count") +
-  theme_minimal() +
-  theme(strip.text = element_text(face = "bold", size = 10),
-        axis.text = element_text(size = 9),
-        plot.title = element_text(size = 14, face = "bold", hjust = 0.5),
-        plot.caption = element_text(size = 9, hjust = 0.5))
-
-
-```
-
-Figure @fig-freq-era shows the most frequently used words in U.S. presidential inaugural speeches across five historical eras. ...
 
 
 # Getting started
