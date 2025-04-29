@@ -142,6 +142,8 @@ In this project, we calculate these scores for presidential inaugural speeches t
 
 To better understand the relationship between writing style and emotional tone in the presidential inaugural addresses, we compare the Flesch Reading Ease scores with sentiment scores calculated for each speech.
 
+The Flesch score measures how easy a text is to read, while the sentiment score captures the overall positivity or negativity of the language. By analyzing these two metrics together, we can apply clustering techniques to group speeches with similar readability and sentiment profiles. These clusters help us identify distinct subgroups of inaugural addresses --- for example, groups of speeches that are both highly readable and optimistic, or more complex and somber --- offering new insights into how presidents have tailored their language to the moment in history.
+
 ```{r}
 #| label: Plotting-Flesch_Sentiment
 #| fig-cap: "Top Words in Inaugural Speeches by Era"
@@ -166,9 +168,19 @@ ggplot(inaug_speeches_master, aes(y = Flesch, x = sentiment)) +
 
 @Plotting-Flesch_Sentiment
 
-The Flesch score measures how easy a text is to read, while the sentiment score captures the overall positivity or negativity of the language. By analyzing these two metrics together, we can apply clustering techniques to group speeches with similar readability and sentiment profiles. These clusters help us identify distinct subgroups of inaugural addresses --- for example, groups of speeches that are both highly readable and optimistic, or more complex and somber --- offering new insights into how presidents have tailored their language to the moment in history.
+Using the clustering analysis, some light interpretation can be made from the groupings.
 
-\[Analysis\]
+-   **Cluster 1**: Presidents have average sentiment score with low readability.
+
+-   **Cluster 2**: Presidents have higher sentiment score with low readability.
+
+-   **Cluster 3**: Presidents have higher sentiment score with high readability.
+
+-   **Cluster 4**: Presidents have low sentiment scores with high readability.
+
+-   **Cluster 5**: Presidents on the lower end of the sentiment score spectrum. Readability ranges from standard to easy.
+
+-   **Cluster 6**: Presidents in this cluster have the highest sentiment score spectrum. Readability ranges from 30-40.
 
 ### FKGL vs. Sentiment
 
