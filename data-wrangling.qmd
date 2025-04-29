@@ -258,6 +258,46 @@ ggplot(inaug_speeches_master, aes(x = date, y = Flesch.Kincaid)) +
 ```
 
 
+
+```{r}
+# Top 5 presidents with the hardest inaugural speech (highest Flesch-Kincaid score)
+ 
+ top5_highpress <- inaug_speeches_master |>
+  arrange(desc(Flesch.Kincaid)) |>
+  select(president, date, Flesch.Kincaid) |>
+  slice_head(n = 5)
+top5_highpress
+ 
+ 
+# Top 5 Presidents with the easiest inaugural speech (lowest Flesch-Kincaid score)
+ top5_lowpress <- inaug_speeches_master |>
+  arrange(Flesch.Kincaid) |>
+  select(president, date, Flesch.Kincaid) |>
+  slice_head(n = 5)
+top5_lowpress
+ 
+ # table displaying the top 5 presidents with the highest Flesch-Kincaid score 
+ top5_lowpress |>
+  kable(booktabs = TRUE, 
+        digits = 2,
+        col.names = c("President", "Year", "Flesch-Kincaid Score")) |>
+  kable_styling()
+
+ 
+  # table displaying the top 5 presidents with the lowest Flesch-Kincaid scores 
+  top5_highpress |>
+  kable(booktabs = TRUE, 
+        digits = 2,
+        col.names = c("President", "Year", "Flesch-Kincaid Score")) |>
+  kable_styling()
+  
+```
+
+
+
+
+
+
 ```{r}
 
 #| label: save-datasets
@@ -265,6 +305,11 @@ ggplot(inaug_speeches_master, aes(x = date, y = Flesch.Kincaid)) +
 save(inaug_speeches_master,
      file = "data/inaugural_speeches_master.Rdata")
 
+save(top5_highpress,
+     file = "data/top5_highpress.Rdata")
+
+save(top5_lowpress,
+     file = "data/top5_lowpress.Rdata")
 
 
 ```

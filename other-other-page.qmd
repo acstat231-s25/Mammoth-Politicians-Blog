@@ -89,6 +89,8 @@ top5_highpress
   slice_head(n = 5)
 top5_lowpress
 
+top5_press <- full_join(top5_highpress, top5_lowpress)
+
  
  # table displaying the top 5 presidents with the highest Flesch-Kincaid score 
 
@@ -106,8 +108,6 @@ top5_lowpress
         digits = 2,
         col.names = c("President", "Year", "Flesch-Kincaid Score")) |>
   kable_styling()
-  
-  
   
   
 ```

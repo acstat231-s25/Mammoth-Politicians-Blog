@@ -90,6 +90,7 @@ ggplot(top_biwords_era, aes(x = biword, y = total, fill = biword)) +
 # Mean Sentence Length over time 
 
 ```{r}
+#| label: Mean Sentence Length over time
 #| fig-cap: "Figure 4: This bar char displays the sentence mean in each president's inaugural speech over time"
 
 
@@ -119,6 +120,7 @@ ggplotly(ms, tooltip = "text")
 # Flesch-Kincaid Scores over Time
 
 ```{r}
+#| label: Flesch-Kincaid Scores over time
 #| fig-cap: "Figure 5: This bar char displays the complexity of presidents' inaugural speeches with their respective Flesch-Kincaid scores over time"
 
 
@@ -141,6 +143,32 @@ ggplotly(fk, tooltip = "text")
 ```
 
 [summary of the figure]
+
+
+```{r}
+#| label: Top 5 presidents with highest/lowest scores
+
+# Loading the data
+load("data/top5_lowpress.Rdata")
+load("data/top5_highpress.Rdata")
+
+
+# table displaying the top 5 presidents with the highest Flesch-Kincaid score 
+ top5_lowpress |>
+  kable(booktabs = TRUE, 
+        digits = 2,
+        col.names = c("President", "Year", "Flesch-Kincaid Score")) |>
+  kable_styling()
+
+# table displaying the top 5 presidents with the lowest Flesch-Kincaid scores 
+  top5_highpress |>
+  kable(booktabs = TRUE, 
+        digits = 2,
+        col.names = c("President", "Year", "Flesch-Kincaid Score")) |>
+  kable_styling()
+  
+```
+
 
 # Readability Analysis
 
