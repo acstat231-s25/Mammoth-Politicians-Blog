@@ -29,40 +29,6 @@ library(plotly)
 #| fig-cap: "AFINN Sentiment Scores of Inaugural Speeches"
 
 
-# Load data
-load("raw-data/inaugural_speech_analysis.Rdata") 
-
-# Plot bar chart
-ggplot(inaug_words_sentiment, aes(x = date, y = sentiment_avg, fill = sentiment_avg)) +
-  geom_col(show.legend = FALSE) +
-  scale_fill_gradient2(low = "#d61106", mid = "#d6d6d6", high = "#05853c", midpoint = 0) + 
-  labs(
-    title = "AFINN Sentiment Scores of Inaugural Speeches",
-    x = "Year",
-    y = "Average Sentiment"
-  ) +
-  theme_minimal()
-
-## OR plotly...
-
-p <- ggplot(inaug_words_sentiment, aes(
-  x = date, y = sentiment_avg,
-  text = paste("President:", president,
-               "<br>Year:", date,
-               "<br>Average Sentiment:", round(sentiment_avg, 3)),
-  fill = sentiment_avg)) +
-  geom_col(show.legend = FALSE) +
-  scale_fill_gradient2(low = "#d61106", mid = "#d6d6d6", high = "#05853c", midpoint = 0) + 
-  labs(
-    title = "AFINN Sentiment Scores of Inaugural Speeches",
-    x = "Year",
-    y = "Average Sentiment"
-  ) +
-  theme_minimal()
-
-ggplotly(p, tooltip = "text")
-
-
 ## Plotting mean sentence length over time plot with a bar chart
 
 ggplot(inaug_speeches_master, aes(x = date, y = meanSentenceLength, fill = meanSentenceLength)) +
