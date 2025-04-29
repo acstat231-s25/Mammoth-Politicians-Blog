@@ -245,3 +245,14 @@ ggplot(inaug_speeches_master, aes(x = date, y = Flesch.Kincaid)) +
 
 ```
 
+
+```{r}
+
+#| label: save-datasets
+
+save(inaug_speeches_master,
+     file = "data/inaugural_speeches_master.Rdata")
+
+
+
+```

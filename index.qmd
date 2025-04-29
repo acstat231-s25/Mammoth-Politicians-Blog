@@ -34,7 +34,8 @@ library(plotly)
 
 
 # Load data
-load("data/inaug_words_sentiment.Rdata") 
+load("data/inaug_words_sentiment.Rdata")
+load("data/inaugural_speeches_master.Rdata")
 
 # Plot bar chart
 p <- ggplot(inaug_words_sentiment, aes(
@@ -188,14 +189,18 @@ The Flesch score measures how easy a text is to read, while the sentiment score 
 
 ```{r}
 #| label: Plotting-Flesch_Sentiment
-#| fig-cap: "Top Words in Inaugural Speeches by Era"
-#| layout-ncol: 1
-#| fig-width: 18
-#| fig-height: 10
-#| out-width: 100%
-#| fig-align: center
 
-ggplot(inaug_speeches_master, aes(y = Flesch, x = sentiment)) +
+p <- ggplot(inaug_speeches_master, aes(y = Flesch, 
+                                       x = sentiment, 
+                                       text = paste("President:", 
+                                                    president,
+                                                    "<br>Year:", 
+                                                    date,
+                                                    "<br>Sentiment Score:", 
+                                                    sentiment,
+                                                    "<br>Flesch Score:",
+                                                    Flesch))
+            ) +
   scale_color_manual(values = c("red", "blue", "green", "purple", "orange", "pink")) +
   geom_point(aes(color = factor(flesch_sentiment_cluster))) +
   scale_x_continuous(breaks = scales:: breaks_width(25), minor_breaks = NULL) +
@@ -206,9 +211,11 @@ ggplot(inaug_speeches_master, aes(y = Flesch, x = sentiment)) +
        color = "Cluster") +
   theme_minimal()
 
+ggplotly(p, tooltip = "text")
+
+
 ```
 
-@Plotting-Flesch_Sentiment
 
 Using the clustering analysis, some light interpretation can be made from the groupings.
 
@@ -237,7 +244,15 @@ In addition to examining readability through the Flesch score, we also analyze t
 #| out-width: 100%
 #| fig-align: center
 
-ggplot(inaug_speeches_master, aes(y = Flesch.Kincaid, x = sentiment)) +
+g <- ggplot(inaug_speeches_master, aes(y = Flesch.Kincaid, x = sentiment,
+                                        text = paste("President:", 
+                                                    president,
+                                                    "<br>Year:", 
+                                                    date,
+                                                    "<br>Sentiment Score:", 
+                                                    sentiment,
+                                                    "<br>FK Score:",
+                                                    Flesch.Kincaid))) +
   scale_color_manual(values = c("red", "blue", "green", "purple", "orange", "pink")) +
   geom_point(aes(color = factor(flesch_kin_sentiment_cluster))) +
   scale_x_continuous(breaks = scales:: breaks_width(25), minor_breaks = NULL) +
@@ -248,7 +263,7 @@ ggplot(inaug_speeches_master, aes(y = Flesch.Kincaid, x = sentiment)) +
        color = "Cluster") +
   theme_minimal()
 
-
+ggplotly(p, tooltip = "text")
 ```
 
 \[Analysis\]
