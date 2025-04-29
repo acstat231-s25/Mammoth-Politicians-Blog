@@ -5,7 +5,7 @@ author:
 - "Rachel Hubley"
 - "Sheryl Solorzano"
 - "Josh Balderas"
-abstract: "This blog focuses on analyzing the inaugural speeches of U.S. presidents to determine how the language used in the U.S. Presidential inaugural addresses and the complexity of inaugural speeches in terms of readability have changed over time. By calculating the readability score with the Flesh-Kincaid formula across different inaugural speeches of presidents that serve between 1789 and 2009, we aim to observe whether inaugural speeches have become easier or harder to understand. Also, we aim to observe how presidential inaugural speeches change in terms of emotional tone over time."
+abstract: "This blog focuses on analyzing the inaugural speeches of U.S. presidents to determine how the language used in the U.S. Presidential inaugural addresses and the complexity of inaugural speeches in terms of readability have changed over time. By calculating the readability score with the Flesh-Kincaid formula across different inaugural speeches of presidents that serve between 1789 and 2009, we aim to observe whether inaugural speeches have become easier or harder to understand. Also, we aim to observe how presidential inaugural speeches have changed in terms of emotional tone over time."
 
 #A brief abstract summarizing your project is required here. This abstract, along with the first image or figure in your blog, will be used as a preview to your blog on the course's landing page for all the blogs."
 ---
@@ -87,7 +87,7 @@ ggplot(top_biwords_era, aes(x = biword, y = total, fill = biword)) +
 ```
 
 
-# Mean Sentence length over time 
+# Mean Sentence Length over time 
 
 ```{r}
 #| fig-cap: "Figure 4: This bar char displays the sentence mean in each president's inaugural speech over time"
@@ -116,7 +116,7 @@ ggplotly(ms, tooltip = "text")
 [summary of the figure]
 
 
-# Flesch-Kincaid Scores over time
+# Flesch-Kincaid Scores over Time
 
 ```{r}
 #| fig-cap: "Figure 5: This bar char displays the complexity of presidents' inaugural speeches with their respective Flesch-Kincaid scores over time"

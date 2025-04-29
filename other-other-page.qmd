@@ -99,4 +99,79 @@ ggplotly(fk, tooltip = "text")
 ```
 
 
+```{r}
+# Mean Sentence Length vs. Sentiment
+
+#| label: Plotting-Flesch-Kincaid-vs-Sentiment
+
+
+# Make sure to set seed for reproducibility!
+set.seed(100)
+
+msl_kmeans_results <- inaug_speeches_master |> 
+  # Can only include numeric variables that we are clustering by
+  select(meanSentenceLength, sentiment) |> 
+  kmeans(centers = 8, nstart = 10) 
+
+# Check named elements of object
+names(msl_kmeans_results)
+
+# Centroids
+msl_kmeans_results$centers
+
+# Cluster sizes
+msl_kmeans_results$size
+
+
+# Join cluster assignments with original dataset (requires the broom package)
+msl_clustered <- msl_kmeans_results |> 
+  augment(inaug_speeches_master) |> 
+  mutate(cluster_2 = factor(.cluster))
+
+# Make dataframe out of estimated cluster centroids
+msl_cluster_centers <- msl_kmeans_results$centers |>
+  as_tibble() |> 
+  mutate(cluster_2 = factor(row_number()))
+
+# Plot cluster assignments and centroids
+ggplot(msl_clustered, aes(x = sentiment, y = meanSentenceLength)) +
+  geom_point(aes(color = cluster_2), alpha = 0.6)  + 
+  geom_label(data = msl_cluster_centers, 
+             aes(label = cluster_2), 
+             size = 3) + 
+  theme_classic() +
+  theme(legend.position = "none") 
+
+
+
+MS_s <- ggplot(msl_clustered, aes(x = sentiment, y = meanSentenceLength)) +
+  geom_point(aes(color = cluster_2, 
+                 text = paste("Sentiment:", sentiment,
+                              "<br>Mean Sentence Length:", meanSentenceLength,
+                              "<br>Cluster:", cluster_2)), 
+             alpha = 0.6) +
+  geom_label(data = msl_cluster_centers, 
+             aes(label = cluster_2, 
+                 text = paste("Cluster Center:", cluster_2)), 
+             size = 3) +
+  labs(y = "Mean Sentence Length",
+       x = "Sentiment Score",
+        title = "Inaugural Address Analysis",
+       subtitle = "Mean Sentence Length vs Sentiment Score",
+       color = "Cluster") +
+  theme_minimal()
+
+ggplotly(MS_s, tooltip = "text")
+
+
+```
+
+
+
+```{r}
+# Sentiment Change Over Time by decades
+
+```
+
+
 
