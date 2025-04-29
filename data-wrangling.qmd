@@ -51,14 +51,16 @@ load("raw-data/president-names.Rdata")
 save(inaug_words_sentiment, 
      file = "data/inaug_words_sentiment.Rdata")
 
+# One word frequency by era
+
 # Add historical eras
 inaug_words_freqs_by_pres <- inaug_words_freqs_by_pres |> 
   mutate(era = case_when(
     date <= 1829 ~ "1789–1829\nEarly Republic",
-  date <= 1869 ~ "1830–1869\nAntebellum & Civil War",
-  date <= 1919 ~ "1870–1919\nReconstruction to WWI",
-  date <= 1969 ~ "1920–1969\nInterwar to Civil Rights",
-  TRUE         ~ "1970–2009\nPost-Watergate to Obama"
+    date <= 1869 ~ "1830–1869\nAntebellum & Civil War",
+    date <= 1919 ~ "1870–1919\nReconstruction to WWI",
+    date <= 1969 ~ "1920–1969\nInterwar to Civil Rights",
+    TRUE         ~ "1970–2009\nPost-Watergate to Obama"
   ))
 
 # Get top 8 words per era
@@ -70,6 +72,33 @@ top_words_era <- inaug_words_freqs_by_pres |>
 
 save(top_words_era, 
      file = "data/top_words_era.Rdata")
+
+
+# Biword frequency by era
+# Add historical eras
+bigram_count <- bigram_count |> 
+  mutate(era = case_when(
+    date <= 1829 ~ "1789–1829\nEarly Republic",
+    date <= 1869 ~ "1830–1869\nAntebellum & Civil War",
+    date <= 1919 ~ "1870–1919\nReconstruction to WWI",
+    date <= 1969 ~ "1920–1969\nInterwar to Civil Rights",
+    TRUE         ~ "1970–2009\nPost-Watergate to Obama"
+  ))
+
+# Get top 8 words per era
+top_biwords_era <- bigram_count |> 
+  group_by(era, word1, word2) |> 
+  summarize(total = sum(n), .groups = "drop") |> 
+  group_by(era) |> 
+  slice_max(total, n = 8)
+
+top_biwords_era <- top_biwords_era |> 
+  mutate(biword = paste(word1, word2, sep = " ")) |> 
+  group_by(era) |> 
+  mutate(biword = fct_reorder(biword, total))
+
+save(top_biwords_era, 
+     file = "data/top_biwords_era.Rdata")
 
 ```
 

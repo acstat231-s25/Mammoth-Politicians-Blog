@@ -81,6 +81,22 @@ ggplot(top_words_era, aes(x = fct_reorder(word, total), y = total, fill = word))
         plot.title = element_text(size = 18, face = "bold", hjust = 0.5),
         plot.caption = element_text(size = 10, hjust = 0.5))
 
+
+load("data/top_biwords_era.Rdata")
+
+ggplot(top_biwords_era, aes(x = biword, y = total, fill = biword)) +
+  geom_col(show.legend = FALSE) +
+  coord_flip() +
+  facet_wrap(~ era, scales = "free_y") +
+  labs(x = NULL, y = "Bigram Count") +
+  theme_minimal() +
+  theme(
+    strip.text = element_text(face = "bold", size = 18),
+    axis.text = element_text(size = 14),
+    plot.title = element_text(size = 18, face = "bold", hjust = 0.5),
+    plot.caption = element_text(size = 10, hjust = 0.5)
+  )
+
 ```
 
 
