@@ -67,9 +67,9 @@ ggplotly(p, tooltip = "text")
 ```{r}
 #| label: fig-freq-era
 #| fig-cap: "Top Words in Inaugural Speeches by Era"
-#| layout-ncol: 2
-#| fig-width: 12
-#| fig-height: 8
+#| layout-ncol: 1
+#| fig-width: 18
+#| fig-height: 10
 #| out-width: 100%
 #| fig-align: center
 

@@ -43,7 +43,7 @@ load("raw-data/president-names.Rdata")
 ```
 
 ```{r}
-#| Readability statistics (Flesch, Kincaid, meanSentence)
+#| label: readability-stats(Flesch,Kincaid,meanSentence)
 
 inaug_speeches_all_clean <- inaug_speeches_all_clean |>
   mutate(sentences = nsentence(text))
@@ -73,7 +73,7 @@ inaug_speeches_master <- left_join(inaug_speeches_master, inaug_words_sentiment)
 
 
 ```{r}
-#| Clustering
+#| label: clustering
 
 
 ### Flesch-Kincaid vs Sentiment ###
@@ -109,7 +109,7 @@ inaug_speeches_master <- inaug_speeches_master |>
 ```
 
 ```{r}
-#| Elbow ploting
+#| label: elbow-plot
 
 # URGENT NOTE: This elbow plot is used for multiple different charts. JUST SWAP OUT THE DATA SET AND CHANGE THE TITLE.
 elbow_plot <- tibble(k = 1:10) |>
@@ -132,7 +132,7 @@ labs(
 
 
 ```{r}
-#| Plotting Flesch v.s. Sentiment
+#| label: Plotting-Fleschv.s.Sentiment
 
 ggplot(inaug_speeches_master, aes(y = Flesch, x = sentiment)) +
   scale_color_manual(values = c("red", "blue", "green", "purple", "orange", "pink")) +
@@ -148,7 +148,7 @@ ggplot(inaug_speeches_master, aes(y = Flesch, x = sentiment)) +
 ```
 
 ```{r}
-#| Ploting Flesch-Kincaid vs Sentiment
+#| label: Plotting-Flesch-Kincaid-vs-Sentiment
 
 ggplot(inaug_speeches_master, aes(y = Flesch.Kincaid, x = sentiment)) +
   scale_color_manual(values = c("red", "blue", "green", "purple", "orange", "pink")) +
@@ -166,7 +166,7 @@ ggplot(inaug_speeches_master, aes(y = Flesch.Kincaid, x = sentiment)) +
 
 
 ```{r}
-#| Flesh-Kincaid over time
+#| label: Flesh-Kincaid-over-time
 
 ggplot(inaug_speeches_master, aes(x = date, y = Flesch.Kincaid)) +
   geom_point() +
@@ -184,7 +184,7 @@ ggplot(inaug_speeches_master, aes(x = date, y = Flesch.Kincaid)) +
 
 
 ```{r}
-#| Topic Modeling
+#| label: Topic-Modeling
 
 corp <- corpus(inaug_speeches_all_clean, text_field = "text")
 
