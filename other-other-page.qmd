@@ -73,29 +73,43 @@ ggplotly(fk, tooltip = "text")
 
 
 
-# President with the hardest inaugural speech (highest Flesch-Kincaid score)
- highpres<- inaug_speeches_master |>
-   filter(Flesch.Kincaid == max(Flesch.Kincaid, na.rm = TRUE)) |>
-   select(president, date, Flesch.Kincaid)
- highpres
+# Top 5 presidents with the hardest inaugural speech (highest Flesch-Kincaid score)
  
-# President with the easiest inaugural speech (lowest Flesch-Kincaid score)
- lowpres <- inaug_speeches_master |>
-   filter(Flesch.Kincaid == min(Flesch.Kincaid, na.rm = TRUE)) |>
-   select(president, date, Flesch.Kincaid)
- lowpres
+ top5_highpress <- inaug_speeches_master |>
+  arrange(desc(Flesch.Kincaid)) |>
+  select(president, date, Flesch.Kincaid) |>
+  slice_head(n = 5)
+top5_highpress
  
- pres_inaug <- full_join(highpres, lowpres)
  
- # table displaying the presidents with the highest and lowest Flesch-Kincaid score 
-  pres_inaug |>
+# Top 5 Presidents with the easiest inaugural speech (lowest Flesch-Kincaid score)
+ top5_lowpress <- inaug_speeches_master |>
+  arrange(Flesch.Kincaid) |>
+  select(president, date, Flesch.Kincaid) |>
+  slice_head(n = 5)
+top5_lowpress
+
+ 
+ # table displaying the top 5 presidents with the highest Flesch-Kincaid score 
+
+ top5_lowpress |>
   kable(booktabs = TRUE, 
         digits = 2,
-        col.names = c("", 
-                      "", 
-                      "" )) |>
+        col.names = c("President", "Year", "Flesch-Kincaid Score")) |>
   kable_styling()
 
+ 
+  # table displaying the top 5 presidents with the lowest Flesch-Kincaid scores 
+ 
+  top5_highpress |>
+  kable(booktabs = TRUE, 
+        digits = 2,
+        col.names = c("President", "Year", "Flesch-Kincaid Score")) |>
+  kable_styling()
+  
+  
+  
+  
 ```
 
 
@@ -111,7 +125,7 @@ set.seed(100)
 msl_kmeans_results <- inaug_speeches_master |> 
   # Can only include numeric variables that we are clustering by
   select(meanSentenceLength, sentiment) |> 
-  kmeans(centers = 8, nstart = 10) 
+  kmeans(centers = 6, nstart = 10) 
 
 # Check named elements of object
 names(msl_kmeans_results)
@@ -166,12 +180,6 @@ ggplotly(MS_s, tooltip = "text")
 
 ```
 
-
-
-```{r}
-# Sentiment Change Over Time by decades
-
-```
 
 
 
