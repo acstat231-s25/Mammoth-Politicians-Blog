@@ -237,14 +237,9 @@ In addition to examining readability through the Flesch score, we also analyze t
 
 ```{r}
 #| label: Plotting-Flesch-Kincaid-vs-Sentiment
-#| fig-cap: "Top Words in Inaugural Speeches by Era"
-#| layout-ncol: 1
-#| fig-width: 18
-#| fig-height: 10
-#| out-width: 100%
-#| fig-align: center
 
-g <- ggplot(inaug_speeches_master, aes(y = Flesch.Kincaid, x = sentiment,
+
+p <- ggplot(inaug_speeches_master, aes(y = Flesch.Kincaid, x = sentiment,
                                         text = paste("President:", 
                                                     president,
                                                     "<br>Year:", 
@@ -274,23 +269,25 @@ We also examine the relationship between the Flesch-Kincaid Grade Level (FKGL) a
 
 ```{r}
 #| label: Flesh-Kincaid-over-time
-#| fig-cap: "Top Words in Inaugural Speeches by Era"
-#| layout-ncol: 1
-#| fig-width: 18
-#| fig-height: 10
-#| out-width: 100%
-#| fig-align: center
 
-ggplot(inaug_speeches_master, aes(x = date, y = Flesch.Kincaid)) +
+
+p <- ggplot(inaug_speeches_master, aes(x = date, y = Flesch.Kincaid,
+                                       text = paste("President:", 
+                                                    president,
+                                                    "<br>Year:", 
+                                                    date,
+                                                    "<br>FK Score:",
+                                                    Flesch.Kincaid))
+            ) +
   geom_point() +
   geom_smooth( method = "loess", se = TRUE)+
   scale_x_continuous(breaks = scales:: breaks_width(25), minor_breaks = NULL) +
-  geom_vline(xintercept = 1925, linetype = "dashed", color = "red") +
-  geom_vline(xintercept = 1949, linetype = "dashed", color = "blue") +
   labs(title = "Inagural Speech Complexity Over Time",
     y = "Flesch-Kincaid Grade Level",
        x = "Year") +
   theme_minimal()
+
+ggplotly(p, tooltip = "text")
 
 ```
 
