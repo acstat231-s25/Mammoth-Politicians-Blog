@@ -7,10 +7,6 @@ author:
 - "Josh Balderas"
 abstract: "This blog focuses on analyzing the inaugural speeches of U.S. presidents to determine how the language used in the U.S. Presidential inaugural addresses and the complexity of inaugural speeches in terms of readability have changed over time. By calculating the readability score with the Flesh-Kincaid formula across different inaugural speeches of presidents that serve between 1789 and 2009, we aim to observe whether inaugural speeches have become easier or harder to understand. Also, we aim to observe how presidential inaugural speeches change in terms of emotional tone over time."
 
-#the language used in the U.S. Presidential inaugural addresses of presidents who served between 1789 and 2009. Users can analyze word frequencies, biword frequencies, and sentiment trends over time to gain insight into presidential speeches.
-
-
-
 #A brief abstract summarizing your project is required here. This abstract, along with the first image or figure in your blog, will be used as a preview to your blog on the course's landing page for all the blogs."
 ---
 
@@ -103,13 +99,59 @@ ggplot(top_words_era, aes(x = fct_reorder(word, total), y = total, fill = word))
 
 ```
 
+
+# Mean Sentence length over time 
+
+```{r}
+ms <- ggplot(inaug_speeches_master, aes(
+  x = date, y = meanSentenceLength,
+  text = paste("President:", president,
+               "<br>Year:", date,
+               "<br>Mean Sentence Length:", round(meanSentenceLength, 3)),
+  fill = meanSentenceLength)) +
+  geom_col(show.legend = FALSE) +
+  scale_fill_gradient2(low = "#d61106", mid = "#d6d6d6", high = "#05853c", midpoint = 0) + 
+  labs(
+    title = "Mean Sentence Length of Inaugural Speeches",
+    x = "Year",
+    y = "Mean Sentence Length"
+  ) +
+  theme_minimal()
+
+ggplotly(ms, tooltip = "text")
+```
+
+
+# Flesch-Kincaid Scores over time
+
+```{r}
+fk <- ggplot(inaug_speeches_master, aes(
+  x = date, y = Flesch.Kincaid,
+  text = paste("President:", president,
+               "<br>Year:", date,
+               "<br>Flesch.Kincaid:", round(Flesch.Kincaid, 3)),
+  fill = Flesch.Kincaid)) +
+  geom_col(show.legend = FALSE) +
+  scale_fill_gradient2(low = "#d61106", mid = "#d6d6d6", high = "#05853c", midpoint = 0) + 
+  labs(
+    title = "Flesch-Kincaid score of Inaugural Speeches",
+    x = "Year",
+    y = "Flesch-Kincaid Score"
+  ) +
+  theme_minimal()
+
+ggplotly(fk, tooltip = "text")
+```
+
+
+
 Figure @fig-freq-era shows the most frequently used words in U.S. presidential inaugural speeches across five historical eras. ...
 
 # Readability Analysis
 
 ## Introduction
 
-Readability analysis helps us understand how easy (or difficult) a text is to read.Two common measures are the Flesch Reading Ease (FRE) and Flesch-Kincaid Grade Level (FKGL)
+Readability analysis helps us understand how easy (or difficult) a text is to read. Two common measures are the Flesch Reading Ease (FRE) and Flesch-Kincaid Grade Level (FKGL)
 
 ## Flesch Reading Ease (FRE)
 
