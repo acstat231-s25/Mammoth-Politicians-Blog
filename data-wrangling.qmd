@@ -64,6 +64,7 @@ top_words_era <- inaug_words_freqs_by_pres |>
 
 save(top_words_era, 
      file = "data/top_words_era.Rdata")
+
 ```
 
 
