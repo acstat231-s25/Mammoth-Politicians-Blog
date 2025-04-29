@@ -61,26 +61,12 @@ ggplotly(p, tooltip = "text")
 
 ```{r}
 #| label: fig-freq-era
-#| fig-cap: "Top Words in Inaugural Speeches by Era"
+#| fig-cap: "Top Biwords in Inaugural Speeches by Era"
 #| layout-ncol: 1
 #| fig-width: 18
 #| fig-height: 10
 #| out-width: 100%
 #| fig-align: center
-
-load("data/top_words_era.Rdata")
-
-# Create faceted bar chart
-ggplot(top_words_era, aes(x = fct_reorder(word, total), y = total, fill = word)) +
-  geom_col(show.legend = FALSE) +
-  coord_flip() +
-  facet_wrap(~ era, scales = "free_y") +
-  labs(x = NULL, y = "Word Count") +
-  theme_minimal() +
-  theme(strip.text = element_text(face = "bold", size = 18),
-        axis.text = element_text(size = 14),
-        plot.title = element_text(size = 18, face = "bold", hjust = 0.5),
-        plot.caption = element_text(size = 10, hjust = 0.5))
 
 
 load("data/top_biwords_era.Rdata")
