@@ -43,6 +43,17 @@ load("raw-data/president-names.Rdata")
 ```
 
 ```{r}
+#| label: freq-era-wrangling
+
+
+
+```
+
+
+
+
+
+```{r}
 #| label: readability-stats(Flesch,Kincaid,meanSentence)
 
 inaug_speeches_all_clean <- inaug_speeches_all_clean |>
