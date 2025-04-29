@@ -38,7 +38,7 @@ library(plotly)
 
 
 # Load data
-load("raw-data/inaugural_speech_analysis.Rdata") 
+load("data/inaug_words_sentiment.Rdata") 
 
 # Plot bar chart
 p <- ggplot(inaug_words_sentiment, aes(

@@ -42,8 +42,14 @@ load("raw-data/president-names.Rdata")
 
 ```
 
+
 ```{r}
-#| label: freq-era-wrangling
+#| label: sentiment-freq-era-wrangling
+
+
+# Simply save dataset needed for sentiment
+save(inaug_words_sentiment, 
+     file = "data/inaug_words_sentiment.Rdata")
 
 # Add historical eras
 inaug_words_freqs_by_pres <- inaug_words_freqs_by_pres |> 
