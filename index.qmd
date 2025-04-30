@@ -57,6 +57,7 @@ This interactive bar chart displays the average AFINN sentiment score of each U.
 
 While sentiment has remained mostly positive throughout history, we observe notably lower average sentiment during the mid-19th century, especially surrounding the Civil War era under Abraham Lincoln. A brief dip also appears in the early 20th century. More recently, sentiment peaked with George H. W. Bush’s 1989 inaugural address, which had the highest score in the dataset. Since then, average sentiment scores have gradually declined across subsequent presidencies, suggesting a rhetorical shift toward more neutral or somber tones in modern speeches.
 
+The first figure uses an interactive plotly chart to allow readers to explore sentiment scores by hovering over each bar [@plotly]. The color gradient, from blue to gray to red, was created using scale_fill_gradient2() in ggplot2 [@ggplot2gradient].
 
 # Normalized Bigram Frequency by Era
 
@@ -147,6 +148,8 @@ A key trend revealed here is how certain bigrams like “federal government” a
 - Finally, in the Post-Watergate to Obama era (1970–2009), we see phrases like “nuclear weapons” and “god bless,” suggesting a shift toward national security concerns, as well with moral and religious appeals in presidential rhetoric. This era shows a mix of national security concerns and attempts to bring people together using faith during times of global and domestic uncertainty.
 
 These changes underscore how presidential language not only reflects shared values, but also adapts to shifting historical and political priorities.
+
+Because each panel shows a different historical era, bars needed to be reordered within each facet. This was accomplished using reorder_within() from the tidytext package, following the solution described by Julia Silge [@reorderwithin]. Facet label formatting was adapted using advice from Kassambara [@facetlabels], and the scales = "free_y" setting was enabled to allow y-axes to scale independently [@free_scales].
 
 
 # Mean Sentence Length over time 
