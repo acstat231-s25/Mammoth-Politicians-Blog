@@ -96,7 +96,6 @@ bigram_count <- bigram_count |>
   ))
 
 
-
 # Get top 8 words per era
 top_biwords_era <- bigram_count |> 
   group_by(era, word1, word2) |> 
