@@ -145,11 +145,11 @@ ggplotly(fk, tooltip = "text")
 
 
 ```{r}
-#| label: Top 5 presidents with highest/lowest scores
+#| label: Top 5 presidents with lowest scores
+#| Fig-cap: "...."
 
 # Loading the data
 load("data/top5_lowpress.Rdata")
-load("data/top5_highpress.Rdata")
 
 
 # table displaying the top 5 presidents with the highest Flesch-Kincaid score 
@@ -158,6 +158,18 @@ load("data/top5_highpress.Rdata")
         digits = 2,
         col.names = c("President", "Year", "Flesch-Kincaid Score")) |>
   kable_styling()
+ 
+  
+```
+
+{summary} George Bush is the president with the lowest Flesch-Kincaid score.
+
+
+```{r}
+#| label: Top 5 presidents with highest scores
+#| Fig-cap: "..."
+# Loading the data
+load("data/top5_highpress.Rdata")
 
 # table displaying the top 5 presidents with the lowest Flesch-Kincaid scores 
   top5_highpress |>
@@ -165,30 +177,25 @@ load("data/top5_highpress.Rdata")
         digits = 2,
         col.names = c("President", "Year", "Flesch-Kincaid Score")) |>
   kable_styling()
-  
 ```
+
+
+[summary] John Adams is the president with the highest Flesch-Kincaic score.
+
+
+
+
+
+
+# Sentiment Scores and Flesch-Kincaid Scores Change among Presidents that Served Two Terms
+
+## First Term Sentiment Score vs. Second Term Sentiment Score
+
 ```{r}
 #| Fig-cap: "..."
 
 #loading the data
 load("data/sec_terms_sent_fk.Rdata")
-
-# Inaugural Address Complexity Change from First to Second Term for presidents that served two terms
-q <- ggplot(sec_terms_sent_fk, aes(x = fk_first, y = fk_second,
-                                   text = paste("President:", 
-                                                    president,
-                                                    "<br> 1st Term FK Score:",
-                                                    fk_first,
-                                                "<br> 2nd Term FK Score:",
-                                                fk_second))) +
-  geom_point(aes(color = president, size = 0.1)) + 
-  labs(title = "Inaugural Address Complexity Change from First to Second Term",
-       x = "First Term Flesch-Kincaid Score",
-       y = "Second Term Flesch-Kincaid Score") +
-  theme_minimal()
-
-ggplotly(q, tooltip = "text") |>
-  layout(showlegend = FALSE)
 
 
 # Inaugural Address Complexity Change from First to Second Term for presidents that served two terms
@@ -208,9 +215,33 @@ q <- ggplot(sec_terms_sent_fk, aes(x = sent_first, y = sent_second,
 # Removing the legend 
 ggplotly(q, tooltip = "text") |>
   layout(showlegend = FALSE)
+
 ```
 
+## First Term Flesch-Kincaid Score vs. Second Term Flesch-Kincaid Score
 
+```{r}
+# Inaugural Address Complexity Change from First to Second Term for presidents that served two terms
+q <- ggplot(sec_terms_sent_fk, aes(x = fk_first, y = fk_second,
+                                   text = paste("President:", 
+                                                    president,
+                                                    "<br> 1st Term FK Score:",
+                                                    fk_first,
+                                                "<br> 2nd Term FK Score:",
+                                                fk_second))) +
+  geom_point(aes(color = president, size = 0.1)) + 
+  labs(title = "Inaugural Address Complexity Change from First to Second Term",
+       x = "First Term Flesch-Kincaid Score",
+       y = "Second Term Flesch-Kincaid Score") +
+  theme_minimal()
+
+# Removing the legend
+ggplotly(q, tooltip = "text") |>
+  layout(showlegend = FALSE)
+
+```
+
+## Difference Score
 
 ```{r}
 # loading the data
@@ -235,13 +266,15 @@ sec_terms_diff <- sec_terms_sent_fk |>
 ```
 
 Sentiment Score difference:
- - **Postive Difference Value**: The second-term inaugural speech was more postive than the first term that preseident served
+
+ - **Positive Difference Value**: The second-term inaugural speech was more postive than the first term that preseident served
  - **Negative Difference Value**: The second-term inaugural speech was less postive or more negative than the first term speech of that president
  - **Zero or close to Zero Difference Value**: The sentiment/tone remained pretty consistent 
  
  
- Flesch-Kincaid Score Difference
- - **Postive Difference Value**: The second-term inaugural speech was more complex than the first term that preseident served
+ Flesch-Kincaid Score Difference:
+ 
+ - **Positive Difference Value**: The second-term inaugural speech was more complex than the first term that preseident served
  - **Negative Difference Value**: The second-term inaugural speech was simpler and easier to understand than the first term speech of that president
  - **Zero or close to Zero Difference Value**: The complexity of the inaugural speech remained pretty consistent
  

@@ -60,7 +60,7 @@
     "href": "index.html#including-images-or-gifs",
     "title": "Sentiment Analysis of Inaugural Speeches",
     "section": "Including images or gifs",
-    "text": "Including images or gifs\nI would strongly recommend using knitr’s include_graphics() functions within code chunks to include images or gifs within your blog. This makes it easier to modify figures, add captions and links, and visually find the code for figures quickly if you need to modify something about the output. There is also markdown syntax to display or embed images, but I would typically not recommend it.\n\n\n\n\n\nImage courtesy of giphy.com\n\n\n\n\nEither approach will take either a filepath to a stored file or a URL to an image or gif. Width can be specified as a percentage of the width of the page (0% to 100%; my preferred approach) or as a fixed number of units (e.g. 400px, 3in, 10cm).\nI can’t imagine a scenario where students should or would include videos within their blog, but Quarto provides guidance on embedding videos, as well.\n\n\n\n\n\n\nNote\n\n\n\nThe first figure of your blog will be used as the display image on our course’s landing page!"
+    "text": "Including images or gifs\nI would strongly recommend using knitr’s include_graphics() functions within code chunks to include images or gifs within your blog. This makes it easier to modify figures, add captions and links, and visually find the code for figures quickly if you need to modify something about the output. There is also markdown syntax to display or embed images, but I would typically not recommend it.\n\n\n\n\n\n\n\n\n\nImage courtesy of giphy.com\n\n\n\n\nEither approach will take either a filepath to a stored file or a URL to an image or gif. Width can be specified as a percentage of the width of the page (0% to 100%; my preferred approach) or as a fixed number of units (e.g. 400px, 3in, 10cm).\nI can’t imagine a scenario where students should or would include videos within their blog, but Quarto provides guidance on embedding videos, as well.\n\n\n\n\n\n\nNote\n\n\n\nThe first figure of your blog will be used as the display image on our course’s landing page!"
   },
   {
     "objectID": "index.html#panel-tabsets",
@@ -74,14 +74,14 @@
     "href": "index.html#panel-layouts-for-content",
     "title": "Sentiment Analysis of Inaugural Speeches",
     "section": "Panel layouts for content",
-    "text": "Panel layouts for content\nUse the following format to have more control over the panel layout of various components.\nThe syntax “[ [1], [1,1] ]” indicates that we have three pieces of content that we want to spread across two rows. The first piece of content will be in its own row, and then the next two components will be split across two columns of equal width in a second row.\n\n\n\nRow 1 with only one output\nSome content\n\n\n\n\nFirst column of row 2\nSome other content\n\n\nSecond column of row 2\nSome additional content.\n\n\n\nThe values provided within each row specify the relative widths of the content within that row. For example “[1,2,1]” would create a row with 3 columns where the first and third columns are the same width and the middle column is twice as wide."
+    "text": "Panel layouts for content\nUse the following format to have more control over the panel layout of various components.\nThe syntax “[ [1], [1,1] ]” indicates that we have three pieces of content that we want to spread across two rows. The first piece of content will be in its own row, and then the next two components will be split across two columns of equal width in a second row.\n\n\n\n\n\n\nRow 1 with only one output\nSome content\n\n\n\n\nFirst column of row 2\nSome other content\n\n\nSecond column of row 2\nSome additional content.\n\n\n\nThe values provided within each row specify the relative widths of the content within that row. For example “[1,2,1]” would create a row with 3 columns where the first and third columns are the same width and the middle column is twice as wide."
   },
   {
     "objectID": "index.html#layouts-for-tables-and-visualizations-produced-by-code-chunks",
     "href": "index.html#layouts-for-tables-and-visualizations-produced-by-code-chunks",
     "title": "Sentiment Analysis of Inaugural Speeches",
     "section": "Layouts for tables and visualizations produced by code chunks",
-    "text": "Layouts for tables and visualizations produced by code chunks\nFor details on how to layout subfigures from multiple graphs produced by the same code chunk, see the examples in the Knitr tabs of the sections on figure layouts, subcaptions, and custom layouts.\nThe same syntax shown across the linked examples can be used to create subtables by replacing fig-cap and fig-subcap with tbl-cap and tbl-subcap.\nTwo examples in Table 1 and Figure 3 below are borrowed and slightly modified from the linked sections.\n\n\nTable 1: Two tables side-by-side\n\n\n\n\n(a) First three rows of cars dataset\n\n\nspeed\ndist\n\n\n\n\n4\n2\n\n\n4\n10\n\n\n7\n4\n\n\n\n\n\n\n(b) First three rows of pressure dataset\n\n\ntemperature\npressure\n\n\n\n\n0\n0.0002\n\n\n20\n0.0012\n\n\n40\n0.0060\n\n\n\n\n\n\n\n\n\n\n\n\n\n(a) cars\n\n\n\n\n \n\n\n\n\n\n(b) pressure\n\n\n\n\n\n\n\n\n\n(c) mtcars\n\n\n\n\nFigure 3: Three figures in a complex layout"
+    "text": "Layouts for tables and visualizations produced by code chunks\nFor details on how to layout subfigures from multiple graphs produced by the same code chunk, see the examples in the Knitr tabs of the sections on figure layouts, subcaptions, and custom layouts.\nThe same syntax shown across the linked examples can be used to create subtables by replacing fig-cap and fig-subcap with tbl-cap and tbl-subcap.\nTwo examples in Table 1 and Figure 3 below are borrowed and slightly modified from the linked sections.\n\n\n\nTable 1: Two tables side-by-side\n\n\n\n\n\n\n\n(a) First three rows of cars dataset\n\n\n\n\n\nspeed\ndist\n\n\n\n\n4\n2\n\n\n4\n10\n\n\n7\n4\n\n\n\n\n\n\n\n\n\n\n\n(b) First three rows of pressure dataset\n\n\n\n\n\ntemperature\npressure\n\n\n\n\n0\n0.0002\n\n\n20\n0.0012\n\n\n40\n0.0060\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n(a) cars\n\n\n\n\n\n \n\n\n\n\n\n\n\n\n(b) pressure\n\n\n\n\n\n\n\n\n\n\n\n\n\n(c) mtcars\n\n\n\n\n\n\n\nFigure 3: Three figures in a complex layout"
   },
   {
     "objectID": "yet-another-page.html",
@@ -130,6 +130,48 @@
     "href": "index.html#understanding-the-relationship-between-flesch-reading-ease-fre-flesch-kincaid-grading-level-fkgl",
     "title": "Sentiment Analysis of Inaugural Speeches",
     "section": "Understanding the relationship between: Flesch Reading Ease (FRE) & Flesch-Kincaid Grading Level (FKGL)",
-    "text": "Understanding the relationship between: Flesch Reading Ease (FRE) & Flesch-Kincaid Grading Level (FKGL)\nTo get a better understanding of the relationship between the Flesch Reading Ease (FRE) and the Flesch-Kincaid Grade Level (FKGL), it is helpful to plot them together on a scatterplot.\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\nThe Flesch Reading Ease (FRE) and the Flesch-Kincaid Grade Level (FKGL) have an inverse relationship because they are based on similar textual features—sentence length and word complexity—but use opposing scales to express readability.\n\\[\n\\text{FRE} = 206.835 - 1.015 \\times \\left( \\frac{\\text{Total Words}}{\\text{Total Sentences}} \\right) - 84.6 \\times \\left( \\frac{\\text{Total Syllables}}{\\text{Total Words}} \\right)\n\\] \\[\n\\text{FKGL} = 0.39 \\times \\left( \\frac{\\text{Total Words}}{\\text{Total Sentences}} \\right) + 11.8 \\times \\left( \\frac{\\text{Total Syllables}}{\\text{Total Words}} \\right) - 15.59\n\\] As sentence length and syllables per word increase, FRE scores decrease (the text becomes harder to read), while FKGL scores increase (the grade level rises). This opposing behavior is why they have an inverse relationship: when one goes up, the other tends to go down."
+    "text": "Understanding the relationship between: Flesch Reading Ease (FRE) & Flesch-Kincaid Grading Level (FKGL)\nTo get a better understanding of the relationship between the Flesch Reading Ease (FRE) and the Flesch-Kincaid Grade Level (FKGL), it is helpful to plot them together on a scatterplot.\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\nThe Flesch Reading Ease (FRE) and the Flesch-Kincaid Grade Level (FKGL) have an inverse relationship because they are based on similar textual features—sentence length and word complexity—but use opposing scales to express readability.\n\\[\n\\text{FRE} = 206.835 - 1.015 \\times \\left( \\frac{\\text{Total Words}}{\\text{Total Sentences}} \\right) - 84.6 \\times \\left( \\frac{\\text{Total Syllables}}{\\text{Total Words}} \\right)\n\\] \\[\n\\text{FKGL} = 0.39 \\times \\left( \\frac{\\text{Total Words}}{\\text{Total Sentences}} \\right) + 11.8 \\times \\left( \\frac{\\text{Total Syllables}}{\\text{Total Words}} \\right) - 15.59\n\\] As sentence length and syllables per word increase, FRE scores decrease (the text becomes harder to read), while FKGL scores increase (the grade level rises). This opposing behavior is why they have an inverse relationship: when one goes up, the other tends to go down."
+  },
+  {
+    "objectID": "index.html#sentiment-difference",
+    "href": "index.html#sentiment-difference",
+    "title": "Sentiment Analysis of Inaugural Speeches",
+    "section": "Sentiment Difference",
+    "text": "Sentiment Difference"
+  },
+  {
+    "objectID": "index.html#flesch-kincaid-score-difference",
+    "href": "index.html#flesch-kincaid-score-difference",
+    "title": "Sentiment Analysis of Inaugural Speeches",
+    "section": "Flesch-Kincaid Score Difference",
+    "text": "Flesch-Kincaid Score Difference\n\n\n\n\n\n\n\n\n\n\n\nPresident\nSentiment Score Difference\nFlesch-Kincaid Score Difference\n\n\n\n\nGeorge Washington\n-0.74\n-11.28\n\n\nThomas Jefferson\n-0.10\n4.93\n\n\nJames Madison\n-0.99\n-7.53\n\n\nJames Monroe\n-0.39\n2.03\n\n\nAndrew Jackson\n-0.23\n-2.43\n\n\nAbraham Lincoln\n0.06\n-1.88\n\n\nUlysses S. Grant\n-0.38\n1.03\n\n\nGrover Cleveland\n-0.36\n-0.82\n\n\nWilliam McKinley\n-0.19\n-3.13\n\n\nWoodrow Wilson\n0.65\n0.12\n\n\nFranklin D. Roosevelt\n0.09\n-1.01\n\n\nDwight D. Eisenhower\n0.02\n-2.25\n\n\nRichard Milhous Nixon\n0.15\n3.06\n\n\nRonald Reagan\n-0.04\n0.64\n\n\nWilliam Clinton\n0.33\n0.45\n\n\nGeorge W. Bush\n0.09\n1.29\n\n\n\n\n\n\n\nSentiment Score difference:\n\nPositive Difference Value: The second-term inaugural speech was more postive than the first term that preseident served\nNegative Difference Value: The second-term inaugural speech was less postive or more negative than the first term speech of that president\nZero or close to Zero Difference Value: The sentiment/tone remained pretty consistent\n\nFlesch-Kincaid Score Difference:\n\nPositive Difference Value: The second-term inaugural speech was more complex than the first term that preseident served\nNegative Difference Value: The second-term inaugural speech was simpler and easier to understand than the first term speech of that president\nZero or close to Zero Difference Value: The complexity of the inaugural speech remained pretty consistent"
+  },
+  {
+    "objectID": "index.html#first-term-sentiment-score-vs.-second-sentiment-score",
+    "href": "index.html#first-term-sentiment-score-vs.-second-sentiment-score",
+    "title": "Sentiment Analysis of Inaugural Speeches",
+    "section": "First Term Sentiment Score vs. Second Sentiment Score",
+    "text": "First Term Sentiment Score vs. Second Sentiment Score"
+  },
+  {
+    "objectID": "index.html#first-term-flesch-kincaid-score-vs.-second-term-flesch-kincaid-score",
+    "href": "index.html#first-term-flesch-kincaid-score-vs.-second-term-flesch-kincaid-score",
+    "title": "Sentiment Analysis of Inaugural Speeches",
+    "section": "First Term Flesch-Kincaid Score vs. Second Term Flesch-Kincaid Score",
+    "text": "First Term Flesch-Kincaid Score vs. Second Term Flesch-Kincaid Score"
+  },
+  {
+    "objectID": "index.html#difference-score",
+    "href": "index.html#difference-score",
+    "title": "Sentiment Analysis of Inaugural Speeches",
+    "section": "Difference Score",
+    "text": "Difference Score\n\n\n\n\n\nPresident\nSentiment Score Difference\nFlesch-Kincaid Score Difference\n\n\n\n\nGeorge Washington\n-0.74\n-11.28\n\n\nThomas Jefferson\n-0.10\n4.93\n\n\nJames Madison\n-0.99\n-7.53\n\n\nJames Monroe\n-0.39\n2.03\n\n\nAndrew Jackson\n-0.23\n-2.43\n\n\nAbraham Lincoln\n0.06\n-1.88\n\n\nUlysses S. Grant\n-0.38\n1.03\n\n\nGrover Cleveland\n-0.36\n-0.82\n\n\nWilliam McKinley\n-0.19\n-3.13\n\n\nWoodrow Wilson\n0.65\n0.12\n\n\nFranklin D. Roosevelt\n0.09\n-1.01\n\n\nDwight D. Eisenhower\n0.02\n-2.25\n\n\nRichard Milhous Nixon\n0.15\n3.06\n\n\nRonald Reagan\n-0.04\n0.64\n\n\nWilliam Clinton\n0.33\n0.45\n\n\nGeorge W. Bush\n0.09\n1.29\n\n\n\n\n\n\n\nSentiment Score difference:\n\nPositive Difference Value: The second-term inaugural speech was more postive than the first term that preseident served\nNegative Difference Value: The second-term inaugural speech was less postive or more negative than the first term speech of that president\nZero or close to Zero Difference Value: The sentiment/tone remained pretty consistent\n\nFlesch-Kincaid Score Difference:\n\nPositive Difference Value: The second-term inaugural speech was more complex than the first term that preseident served\nNegative Difference Value: The second-term inaugural speech was simpler and easier to understand than the first term speech of that president\nZero or close to Zero Difference Value: The complexity of the inaugural speech remained pretty consistent"
+  },
+  {
+    "objectID": "index.html#first-term-sentiment-score-vs.-second-term-sentiment-score",
+    "href": "index.html#first-term-sentiment-score-vs.-second-term-sentiment-score",
+    "title": "Sentiment Analysis of Inaugural Speeches",
+    "section": "First Term Sentiment Score vs. Second Term Sentiment Score",
+    "text": "First Term Sentiment Score vs. Second Term Sentiment Score"
   }
 ]
