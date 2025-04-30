@@ -205,7 +205,7 @@ ggplotly(msle, tooltip = "text")
 
 
 ```{r}
-
+# pivoting the data to obtain the presidents that served two terms
 sec_terms <- inaug_speeches_master |>
   select(president, term, sentiment_avg) |>
   pivot_wider(names_from = term, 

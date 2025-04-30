@@ -168,7 +168,84 @@ load("data/top5_highpress.Rdata")
   kable_styling()
   
 ```
+```{r}
+#| Fig-cap: "..."
 
+#loading the data
+load("data/sec_terms_sent_fk.Rdata")
+
+# Inaugural Address Complexity Change from First to Second Term for presidents that served two terms
+q <- ggplot(sec_terms_sent_fk, aes(x = fk_first, y = fk_second,
+                                   text = paste("President:", 
+                                                    president,
+                                                    "<br> 1st Term FK Score:",
+                                                    fk_first,
+                                                "<br> 2nd Term FK Score:",
+                                                fk_second))) +
+  geom_point(aes(color = president, size = 0.1)) + 
+  labs(title = "Inaugural Address Complexity Change from First to Second Term",
+       x = "First Term Flesch-Kincaid Score",
+       y = "Second Term Flesch-Kincaid Score") +
+  theme_minimal()
+
+ggplotly(q, tooltip = "text") |>
+  layout(showlegend = FALSE)
+
+
+# Inaugural Address Complexity Change from First to Second Term for presidents that served two terms
+q <- ggplot(sec_terms_sent_fk, aes(x = sent_first, y = sent_second,
+                                   text = paste("President:", 
+                                                    president,
+                                                    "<br> 1st Term Sentiment Score:",
+                                                    round(sent_first, 3),
+                                                "<br> 2nd Term Sentiment Score:",
+                                                round(sent_second, 3) ) )) +
+  geom_point(aes(color = president, size = 0.1)) + 
+  labs(title = "Inaugural Address Sentiment Change from First to Second Term",
+       x = "First Term Sentiment Avg",
+       y = "Second Term Sentiment Avg") +
+  theme_minimal()
+
+# Removing the legend 
+ggplotly(q, tooltip = "text") |>
+  layout(showlegend = FALSE)
+```
+
+
+
+```{r}
+# loading the data
+load("data/sec_terms_diff.Rdata")
+
+# calculating the differences from the first term to the second term of presidents in terms of both sentiment score and flesch-kincaid scores
+
+sec_terms_diff <- sec_terms_sent_fk |> 
+  mutate(
+    sentiment_diff = sent_second - sent_first,
+    fk_diff = fk_second - fk_first
+  ) |>
+  select(president, sentiment_diff, fk_diff)
+
+ 
+ # table displaying the calculated difference in sentiment scores and Flesch-Kincaid Scores
+  sec_terms_diff |>
+  kable(booktabs = TRUE, 
+        digits = 2,
+        col.names = c("President", "Sentiment Score Difference", "Flesch-Kincaid Score Difference")) |>
+  kable_styling()
+```
+
+Sentiment Score difference:
+ - **Postive Difference Value**: The second-term inaugural speech was more postive than the first term that preseident served
+ - **Negative Difference Value**: The second-term inaugural speech was less postive or more negative than the first term speech of that president
+ - **Zero or close to Zero Difference Value**: The sentiment/tone remained pretty consistent 
+ 
+ 
+ Flesch-Kincaid Score Difference
+ - **Postive Difference Value**: The second-term inaugural speech was more complex than the first term that preseident served
+ - **Negative Difference Value**: The second-term inaugural speech was simpler and easier to understand than the first term speech of that president
+ - **Zero or close to Zero Difference Value**: The complexity of the inaugural speech remained pretty consistent
+ 
 
 # Readability Analysis
 

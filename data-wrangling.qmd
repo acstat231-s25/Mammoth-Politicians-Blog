@@ -295,6 +295,61 @@ top5_lowpress
 
 
 
+```{r}
+# pivoting the data to obtain the presidents that served two terms
+sec_terms <- inaug_speeches_master |>
+  select(president, term, sentiment_avg) |>
+  pivot_wider(names_from = term, 
+              values_from = sentiment_avg, 
+              names_prefix = "") |>
+  rename(first_term = `1st Term`,
+         second_term = `2nd Term`,
+         third_term = `3rd Term`,
+         fourth_term = `4th Term`) |>
+  select(-third_term, -fourth_term) |>
+  rename(sent_first = `first_term`,
+         sent_second = `second_term`) |>
+  filter(!is.na(sent_second))
+
+
+sec_terms2 <- inaug_speeches_master |>
+  select(president, term, Flesch.Kincaid) |>
+  pivot_wider(names_from = term, 
+              values_from = Flesch.Kincaid, 
+              names_prefix = "") |>
+  rename(first_term = `1st Term`,
+         second_term = `2nd Term`,
+         third_term = `3rd Term`,
+         fourth_term = `4th Term`) |>
+  select(-third_term, -fourth_term) |>
+    rename(fk_first = `first_term`,
+         fk_second = `second_term`) |>
+  filter(!is.na(fk_second))
+
+# joining both datasets
+
+sec_terms_sent_fk <- left_join(sec_terms, sec_terms2, by = "president")
+
+```
+
+```{r}
+# calculating the differences from the first term to the second term of presidents in terms of both sentiment score and flesch-kincaid scores
+
+sec_terms_diff <- sec_terms_sent_fk |> 
+  mutate(
+    sentiment_diff = sent_second - sent_first,
+    fk_diff = fk_second - fk_first
+  ) |>
+  select(president, sentiment_diff, fk_diff)
+
+ 
+ # table displaying the calculated difference in sentiment scores and Flesch-Kincaid Scores
+  sec_terms_diff |>
+  kable(booktabs = TRUE, 
+        digits = 2,
+        col.names = c("President", "Sentiment Score Difference", "Flesch-Kincaid Score Difference")) |>
+  kable_styling()
+```
 
 
 
@@ -311,5 +366,10 @@ save(top5_highpress,
 save(top5_lowpress,
      file = "data/top5_lowpress.Rdata")
 
+save(sec_terms_sent_fk,
+     file = "data/sec_terms_sent_fk.Rdata")
+
+save(sec_terms_diff,
+     file = "data/sec_terms_diff.Rdata")
 
 ```
