@@ -22,6 +22,7 @@ library(knitr)
 library(kableExtra)
 library(ggplot2)
 library(plotly)
+library(tidytext)
 
 ```
 
@@ -56,11 +57,11 @@ ggplotly(p, tooltip = "text")
 
 ```
 
-# Word Frequency by Era
+# Normalized Bigram Frequency by Era
 
 ```{r}
 #| label: fig-freq-era
-#| fig-cap: "Top Biwords in Inaugural Speeches by Era"
+#| fig-cap: "Top Biwords in Inaugural Speeches by Era. Red bars indicate bigrams appearing in multiple eras."
 #| layout-ncol: 1
 #| fig-width: 18
 #| fig-height: 10
@@ -69,15 +70,57 @@ ggplotly(p, tooltip = "text")
 
 
 load("data/top_biwords_era.Rdata")
+  
+# ggplot(top_biwords_era, aes(x = reorder_within(biword, total, era), y = total)) +
+#   geom_col(fill = "steelblue", show.legend = FALSE) +
+#   coord_flip() +
+#   facet_wrap(~ era, scales = "free_y") +
+#   scale_x_reordered() +
+#   scale_y_continuous(breaks = 0:12) 
+#   labs(y = "Bigram Count") +
+#   theme_void() +
+#   theme(
+#     strip.text = element_text(face = "bold", size = 18),
+#     axis.text = element_text(size = 14),
+#     plot.title = element_text(size = 18, face = "bold", hjust = 0.5),
+#     plot.caption = element_text(size = 10, hjust = 0.5)
+#   )
 
-ggplot(top_biwords_era, aes(x = biword, y = total, fill = biword)) +
+
+# ggplot(top_biwords_era, aes(x = biword, y = total, fill = color)) +
+#   geom_col(show.legend = FALSE) +
+#   coord_flip() +
+#   facet_wrap(~ era, scales = "free_y") +
+#   scale_x_reordered() +  
+#   scale_y_continuous(breaks = 0:12) +
+#   scale_fill_identity() +            
+#   labs(
+#     x = NULL,
+#     y = "Bigram Count"
+#   ) +
+#   theme_minimal() +
+#   theme(
+#     strip.text = element_text(face = "bold", size = 18),
+#     axis.text = element_text(size = 14),
+#     plot.title = element_text(size = 18, face = "bold", hjust = 0.5),
+#     plot.caption = element_text(size = 10, hjust = 0.5)
+#   )
+
+
+ggplot(top_biwords_era, aes(x = biword, y = prop, fill = color)) +
   geom_col(show.legend = FALSE) +
   coord_flip() +
   facet_wrap(~ era, scales = "free_y") +
-  labs(x = NULL, y = "Bigram Count") +
+  scale_x_reordered() +
+  scale_fill_identity() +
+  labs(
+    y = "Proportion of All Bigrams",
+    x = NULL
+  ) +
   theme_minimal() +
   theme(
     strip.text = element_text(face = "bold", size = 18),
+    axis.title.x = element_text(size = 20),
     axis.text = element_text(size = 14),
     plot.title = element_text(size = 18, face = "bold", hjust = 0.5),
     plot.caption = element_text(size = 10, hjust = 0.5)

@@ -96,20 +96,44 @@ bigram_count <- bigram_count |>
   ))
 
 
-# Get top 8 words per era
+
+# 1. Get top 8 biwords per era with total count > 2
 top_biwords_era <- bigram_count |> 
   group_by(era, word1, word2) |> 
   summarize(total = sum(n), .groups = "drop") |> 
+  filter(total > 2) |> 
   group_by(era) |> 
-  slice_max(total, n = 8)
+  slice_max(total, n = 8, with_ties = FALSE) |> 
+  ungroup() |> 
+  mutate(
+    clean_biword = paste(word1, word2),
+    biword = reorder_within(clean_biword, total, era)
+  )
+
+# 2. Mark biwords that appear in more than one era
+repeated_biwords <- top_biwords_era |> 
+  count(clean_biword) |> 
+  filter(n > 1) |> 
+  pull(clean_biword)
 
 top_biwords_era <- top_biwords_era |> 
-  mutate(biword = paste(word1, word2, sep = " ")) |> 
+  mutate(
+    shared = clean_biword %in% repeated_biwords,
+    color = ifelse(shared, "#B22234", "steelblue")
+  )
+
+# 3. Normalize counts by total bigrams per era
+total_bigrams_per_era <- bigram_count |> 
   group_by(era) |> 
-  mutate(biword = fct_reorder(biword, total))
+  summarize(era_total = sum(n), .groups = "drop")
+
+top_biwords_era <- top_biwords_era |> 
+  left_join(total_bigrams_per_era, by = "era") |> 
+  mutate(prop = total / era_total)
 
 save(top_biwords_era, 
      file = "data/top_biwords_era.Rdata")
+
 
 ```
 
