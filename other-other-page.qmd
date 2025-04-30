@@ -205,7 +205,7 @@ ggplotly(msle, tooltip = "text")
 
 
 ```{r}
-
+# pivoting the data to obtain the presidents that served two terms
 sec_terms <- inaug_speeches_master |>
   select(president, term, sentiment_avg) |>
   pivot_wider(names_from = term, 
@@ -252,13 +252,14 @@ q <- ggplot(sec_terms_sent_fk, aes(x = fk_first, y = fk_second,
                                                     fk_first,
                                                 "<br> 2nd Term FK Score:",
                                                 fk_second))) +
-  geom_point() + 
+  geom_point(aes(color = president, size = 0.1)) + 
   labs(title = "Inaugural Address Complexity Change from First to Second Term",
        x = "First Term Flesch-Kincaid Score",
        y = "Second Term Flesch-Kincaid Score") +
   theme_minimal()
 
-ggplotly(q, tooltip = "text")
+ggplotly(q, tooltip = "text") |>
+  layout(showlegend = FALSE)
 ```
 
 ```{r}
@@ -267,18 +268,40 @@ q <- ggplot(sec_terms_sent_fk, aes(x = sent_first, y = sent_second,
                                    text = paste("President:", 
                                                     president,
                                                     "<br> 1st Term Sentiment Score:",
-                                                    sent_first,
+                                                    round(sent_first, 3),
                                                 "<br> 2nd Term Sentiment Score:",
-                                                sent_second))) +
-  geom_point() + 
+                                                round(sent_second, 3) ) )) +
+  geom_point(aes(color = president, size = 0.1)) + 
   labs(title = "Inaugural Address Sentiment Change from First to Second Term",
        x = "First Term Sentiment Avg",
        y = "Second Term Sentiment Avg") +
   theme_minimal()
 
-ggplotly(q, tooltip = "text")
+# Removing the legend 
+ggplotly(q, tooltip = "text") |>
+  layout(showlegend = FALSE)
+
+
 ```
 
+```{r}
+# calculating the differences from the first term to the second term of presidents in terms of both sentiment score and flesch-kincaid scores
+
+sec_terms_diff <- sec_terms_sent_fk |> 
+  mutate(
+    sentiment_diff = sent_second - sent_first,
+    fk_diff = fk_second - fk_first
+  ) |>
+  select(president, sentiment_diff, fk_diff)
+
+ 
+ # table displaying the calculated difference in sentiment scores and Flesch-Kincaid Scores
+  sec_terms_diff |>
+  kable(booktabs = TRUE, 
+        digits = 2,
+        col.names = c("President", "Sentiment Score Difference", "Flesch-Kincaid Score Difference")) |>
+  kable_styling()
+```
 
 
 

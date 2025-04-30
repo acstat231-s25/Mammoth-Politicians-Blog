@@ -7,7 +7,6 @@ author:
 - "Josh Balderas"
 abstract: "This blog focuses on analyzing the inaugural speeches of U.S. presidents to determine how the language used in the U.S. Presidential inaugural addresses and the complexity of inaugural speeches in terms of readability have changed over time. By calculating the readability score with the Flesh-Kincaid formula across different inaugural speeches of presidents that serve between 1789 and 2009, we aim to observe whether inaugural speeches have become easier or harder to understand. Also, we aim to observe how presidential inaugural speeches have changed in terms of emotional tone over time."
 
-#A brief abstract summarizing your project is required here. This abstract, along with the first image or figure in your blog, will be used as a preview to your blog on the course's landing page for all the blogs."
 ---
 
 ```{r}
@@ -146,11 +145,11 @@ ggplotly(fk, tooltip = "text")
 
 
 ```{r}
-#| label: Top 5 presidents with highest/lowest scores
+#| label: Top 5 presidents with lowest scores
+#| Fig-cap: "...."
 
 # Loading the data
 load("data/top5_lowpress.Rdata")
-load("data/top5_highpress.Rdata")
 
 
 # table displaying the top 5 presidents with the highest Flesch-Kincaid score 
@@ -159,6 +158,18 @@ load("data/top5_highpress.Rdata")
         digits = 2,
         col.names = c("President", "Year", "Flesch-Kincaid Score")) |>
   kable_styling()
+ 
+  
+```
+
+{summary} George Bush is the president with the lowest Flesch-Kincaid score.
+
+
+```{r}
+#| label: Top 5 presidents with highest scores
+#| Fig-cap: "..."
+# Loading the data
+load("data/top5_highpress.Rdata")
 
 # table displaying the top 5 presidents with the lowest Flesch-Kincaid scores 
   top5_highpress |>
@@ -166,9 +177,107 @@ load("data/top5_highpress.Rdata")
         digits = 2,
         col.names = c("President", "Year", "Flesch-Kincaid Score")) |>
   kable_styling()
-  
 ```
 
+
+[summary] John Adams is the president with the highest Flesch-Kincaic score.
+
+
+
+
+
+
+# Sentiment Scores and Flesch-Kincaid Scores Change among Presidents that Served Two Terms
+
+## First Term Sentiment Score vs. Second Term Sentiment Score
+
+```{r}
+#| Fig-cap: "..."
+
+#loading the data
+load("data/sec_terms_sent_fk.Rdata")
+
+
+# Inaugural Address Complexity Change from First to Second Term for presidents that served two terms
+q <- ggplot(sec_terms_sent_fk, aes(x = sent_first, y = sent_second,
+                                   text = paste("President:", 
+                                                    president,
+                                                    "<br> 1st Term Sentiment Score:",
+                                                    round(sent_first, 3),
+                                                "<br> 2nd Term Sentiment Score:",
+                                                round(sent_second, 3) ) )) +
+  geom_point(aes(color = president, size = 0.1)) + 
+  labs(title = "Inaugural Address Sentiment Change from First to Second Term",
+       x = "First Term Sentiment Avg",
+       y = "Second Term Sentiment Avg") +
+  theme_minimal()
+
+# Removing the legend 
+ggplotly(q, tooltip = "text") |>
+  layout(showlegend = FALSE)
+
+```
+
+## First Term Flesch-Kincaid Score vs. Second Term Flesch-Kincaid Score
+
+```{r}
+# Inaugural Address Complexity Change from First to Second Term for presidents that served two terms
+q <- ggplot(sec_terms_sent_fk, aes(x = fk_first, y = fk_second,
+                                   text = paste("President:", 
+                                                    president,
+                                                    "<br> 1st Term FK Score:",
+                                                    fk_first,
+                                                "<br> 2nd Term FK Score:",
+                                                fk_second))) +
+  geom_point(aes(color = president, size = 0.1)) + 
+  labs(title = "Inaugural Address Complexity Change from First to Second Term",
+       x = "First Term Flesch-Kincaid Score",
+       y = "Second Term Flesch-Kincaid Score") +
+  theme_minimal()
+
+# Removing the legend
+ggplotly(q, tooltip = "text") |>
+  layout(showlegend = FALSE)
+
+```
+
+## Difference Score
+
+```{r}
+# loading the data
+load("data/sec_terms_diff.Rdata")
+
+# calculating the differences from the first term to the second term of presidents in terms of both sentiment score and flesch-kincaid scores
+
+sec_terms_diff <- sec_terms_sent_fk |> 
+  mutate(
+    sentiment_diff = sent_second - sent_first,
+    fk_diff = fk_second - fk_first
+  ) |>
+  select(president, sentiment_diff, fk_diff)
+
+ 
+ # table displaying the calculated difference in sentiment scores and Flesch-Kincaid Scores
+  sec_terms_diff |>
+  kable(booktabs = TRUE, 
+        digits = 2,
+        col.names = c("President", "Sentiment Score Difference", "Flesch-Kincaid Score Difference")) |>
+  kable_styling()
+```
+
+Sentiment Score difference:
+
+ - **Positive Difference Value**: The second-term inaugural speech was more postive than the first term that preseident served
+ - **Negative Difference Value**: The second-term inaugural speech was less postive or more negative than the first term speech of that president
+ - **Zero or close to Zero Difference Value**: The sentiment/tone remained pretty consistent 
+ 
+ 
+ Flesch-Kincaid Score Difference:
+ 
+ - **Positive Difference Value**: The second-term inaugural speech was more complex than the first term that preseident served
+ - **Negative Difference Value**: The second-term inaugural speech was simpler and easier to understand than the first term speech of that president
+ - **Zero or close to Zero Difference Value**: The complexity of the inaugural speech remained pretty consistent
+ 
 
 # Readability Analysis
 
@@ -184,24 +293,15 @@ $$
 
 This score rates text on a 0 to 100 scale. A higher score means the text is easier to read.
 
--   **90--100**: Very easy (like a comic book)\
--   **60--70**: Standard (like everyday news articles)\
--   **0--30**: Very difficult (like academic papers)
+- **100 - 90**: 5th Grade
+- **90 - 80**: 6th Grade 
+- **80 - 70**: 7th Grade 
+- **70 - 60**: 8th & 9th Grade 
+- **60 - 50**: 10th to 12th Grade 
+- **50 - 30**: College
+- **30 - 10**: College Graduate
+- **10 - 0**: Professional
 
-## Flesch-Kincaid Grade Level (FKGL)
-
-$$
-\text{FKGL} = 0.39 \times \left( \frac{\text{Total Words}}{\text{Total Sentences}} \right) + 11.8 \times \left( \frac{\text{Total Syllables}}{\text{Total Words}} \right) - 15.59
-$$
-
-This score estimates the U.S. school grade level needed to understand the text.
-
--   A score of **8.0** means the average 8th grader should be able to understand it.
--   A score of **12.0** suggests it matches a high school senior's reading level.
-
-In this project, we calculate these scores for presidential inaugural speeches to see how the complexity of presidential language has changed over time.
-
-## Text Analysis
 
 ### FRE vs. Sentiment
 
@@ -211,7 +311,7 @@ The Flesch score measures how easy a text is to read, while the sentiment score 
 
 ```{r}
 #| label: Plotting-Flesch_Sentiment
-
+#| fig-cap: "Figure [?]: This chart displays Flesch reading ease and sentiment scores of president speech values."
 p <- ggplot(inaug_speeches_master, aes(y = Flesch, 
                                        x = sentiment, 
                                        text = paste("President:", 
@@ -235,7 +335,6 @@ p <- ggplot(inaug_speeches_master, aes(y = Flesch,
 
 ggplotly(p, tooltip = "text")
 
-
 ```
 
 
@@ -253,13 +352,27 @@ Using the clustering analysis, some light interpretation can be made from the gr
 
 -   **Cluster 6**: Presidents in this cluster have the highest sentiment score spectrum. Readability ranges from 30-40.
 
+
+## Flesch-Kincaid Grade Level (FKGL)
+
+$$
+\text{FKGL} = 0.39 \times \left( \frac{\text{Total Words}}{\text{Total Sentences}} \right) + 11.8 \times \left( \frac{\text{Total Syllables}}{\text{Total Words}} \right) - 15.59
+$$
+
+This score estimates the U.S. school grade level needed to understand the text and corresponds with a U.S. grade level. Due to this formulas construction, the score does not have an upper bound. 
+
+For example:
+
+-   A score of **8.0** means the average 8th grader should be able to understand it.
+-   A score of **12.0** suggests it matches a high school senior's reading level.
+
 ### FKGL vs. Sentiment
 
 In addition to examining readability through the Flesch score, we also analyze the Flesch-Kincaid Grade Level (FKGL) in relation to sentiment scores for each inaugural address. The FKGL estimates the U.S. school grade level required to understand a speech, providing a direct measure of textual complexity. By comparing FKGL to sentiment scores, we explore how the sophistication of presidential language interacts with the emotional tone conveyed. Using clustering methods to group speeches based on their grade level and sentiment characteristic offering a nuanced view of how different presidents have communicated their visions to the nation.
 
 ```{r}
 #| label: Plotting-Flesch-Kincaid-vs-Sentiment
-
+#| fig-cap: "Figure [?]: This chart displays Flesch-Kincaid and sentiment scores of president speech values."
 
 p <- ggplot(inaug_speeches_master, aes(y = Flesch.Kincaid, x = sentiment,
                                         text = paste("President:", 
@@ -283,7 +396,9 @@ p <- ggplot(inaug_speeches_master, aes(y = Flesch.Kincaid, x = sentiment,
 ggplotly(p, tooltip = "text")
 ```
 
-\[Analysis\]
+In this example, clustering analysis using Flesch-Kincaid vs Sentiment values does not yeild any meaningful results. Clustering appears to be driven entirely by the sentiment axis and form vertical "layers" that reflect sentiment values alone. 
+
+This suggests that the algorithm is not detecting any significant structure in the Flesch-Kincaid axis, and as a result, the clustering lacks any interpretive value.
 
 ### FKGL vs. Time
 
@@ -291,7 +406,7 @@ We also examine the relationship between the Flesch-Kincaid Grade Level (FKGL) a
 
 ```{r}
 #| label: Flesh-Kincaid-over-time
-
+#| fig-cap: "Figure [?]: This chart displays Flesch-Kincaid over time illustrating the complexity of inaugural addresses."
 
 p <- ggplot(inaug_speeches_master, aes(x = date, y = Flesch.Kincaid,
                                        text = paste("President:", 
@@ -319,6 +434,37 @@ Possible explanations include:
 -   The first inaugural speech to a public crowd was by James Monroe in 1817.
 -   The growing emphasis on mass communication, as presidents began speaking to a broader and more diverse audience.
 -   The influence of modern media, which favors shorter, clearer messaging that resonates quickly with the public.
+
+## Understanding the relationship between: Flesch Reading Ease (FRE) & Flesch-Kincaid Grading Level (FKGL)
+
+To get a better understanding of the relationship between the Flesch Reading Ease (FRE) and the Flesch-Kincaid Grade Level (FKGL), it is helpful to plot them together on a scatterplot. 
+
+```{r}
+#| label: FKGL vs FRE
+
+ggplot(inaug_speeches_master, aes(x = Flesch, y = Flesch.Kincaid)) +
+  geom_point() +
+  geom_smooth( method = "loess", se = TRUE)+
+  scale_x_continuous(breaks = scales:: breaks_width(10), minor_breaks = NULL) +
+  labs(title = "FRE vs FKGL",
+    y = "Flesch-Kincaid Grade Level",
+       x = "Flesch Reading Ease") +
+  theme_minimal()
+
+```
+
+
+The Flesch Reading Ease (FRE) and the Flesch-Kincaid Grade Level (FKGL) have an inverse relationship because they are based on similar textual features—sentence length and word complexity—but use opposing scales to express readability.
+
+
+$$
+\text{FRE} = 206.835 - 1.015 \times \left( \frac{\text{Total Words}}{\text{Total Sentences}} \right) - 84.6 \times \left( \frac{\text{Total Syllables}}{\text{Total Words}} \right)
+$$
+$$
+\text{FKGL} = 0.39 \times \left( \frac{\text{Total Words}}{\text{Total Sentences}} \right) + 11.8 \times \left( \frac{\text{Total Syllables}}{\text{Total Words}} \right) - 15.59
+$$
+As sentence length and syllables per word increase, FRE scores decrease (the text becomes harder to read), while FKGL scores increase (the grade level rises). This opposing behavior is why they have an inverse relationship: when one goes up, the other tends to go down.
+
 
 ## Website project structure
 
