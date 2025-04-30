@@ -284,6 +284,24 @@ ggplotly(q, tooltip = "text") |>
 
 ```
 
+```{r}
+# calculating the differences from the first term to the second term of presidents in terms of both sentiment score and flesch-kincaid scores
+
+sec_terms_diff <- sec_terms_sent_fk |> 
+  mutate(
+    sentiment_diff = sent_second - sent_first,
+    fk_diff = fk_second - fk_first
+  ) |>
+  select(president, sentiment_diff, fk_diff)
+
+ 
+ # table displaying the calculated difference in sentiment scores and Flesch-Kincaid Scores
+  sec_terms_diff |>
+  kable(booktabs = TRUE, 
+        digits = 2,
+        col.names = c("President", "Sentiment Score Difference", "Flesch-Kincaid Score Difference")) |>
+  kable_styling()
+```
 
 
 
