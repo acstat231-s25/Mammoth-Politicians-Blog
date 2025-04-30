@@ -267,16 +267,20 @@ q <- ggplot(sec_terms_sent_fk, aes(x = sent_first, y = sent_second,
                                    text = paste("President:", 
                                                     president,
                                                     "<br> 1st Term Sentiment Score:",
-                                                    sent_first,
+                                                    round(sent_first, 3),
                                                 "<br> 2nd Term Sentiment Score:",
-                                                sent_second))) +
-  geom_point() + 
+                                                round(sent_second, 3) ) )) +
+  geom_point(aes(color = president)) + 
   labs(title = "Inaugural Address Sentiment Change from First to Second Term",
        x = "First Term Sentiment Avg",
        y = "Second Term Sentiment Avg") +
   theme_minimal()
 
-ggplotly(q, tooltip = "text")
+# Removing the legend 
+ggplotly(q, tooltip = "text") |>
+  layout(showlegend = FALSE)
+
+
 ```
 
 
