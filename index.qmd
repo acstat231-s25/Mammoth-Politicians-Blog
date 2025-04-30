@@ -63,9 +63,9 @@ ggplotly(p, tooltip = "text")
 #| label: fig-freq-era
 #| fig-cap: "Top Biwords in Inaugural Speeches by Era. Red bars indicate bigrams appearing in multiple eras."
 #| layout-ncol: 1
-#| fig-width: 18
+#| fig-width: 17
 #| fig-height: 10
-#| out-width: 100%
+#| out-width: 97%
 #| fig-align: center
 
 
@@ -119,12 +119,14 @@ ggplot(top_biwords_era, aes(x = biword, y = prop, fill = color)) +
   ) +
   theme_minimal() +
   theme(
-    strip.text = element_text(face = "bold", size = 18),
+    strip.text = element_text(margin = margin(t = 8, b = 8), size = 16, face = "bold"),
     axis.title.x = element_text(size = 20),
     axis.text = element_text(size = 14),
     plot.title = element_text(size = 18, face = "bold", hjust = 0.5),
-    plot.caption = element_text(size = 10, hjust = 0.5)
+    plot.caption = element_text(size = 10, hjust = 0.5),
+    plot.margin = margin(t = 40, r = 20, b = 10, l = 10)
   )
+
 
 ```
 
