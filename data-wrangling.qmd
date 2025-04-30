@@ -395,4 +395,7 @@ save(sec_terms_sent_fk,
 save(sec_terms_diff,
      file = "data/sec_terms_diff.Rdata")
 
+save(inaug_speeches_master,
+     file = "data/inaug_speeches_master")
+
 ```

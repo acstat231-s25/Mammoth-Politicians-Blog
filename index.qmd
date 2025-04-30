@@ -137,6 +137,8 @@ ggplot(top_biwords_era, aes(x = biword, y = prop, fill = color)) +
 #| label: Mean Sentence Length over time
 #| fig-cap: "Figure 4: This bar char displays the sentence mean in each president's inaugural speech over time"
 
+# loading the data
+load("data/inaug_speeches_master")
 
 ms <- ggplot(inaug_speeches_master, aes(
   x = date, y = meanSentenceLength,
