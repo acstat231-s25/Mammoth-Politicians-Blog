@@ -6,6 +6,7 @@ author:
 - "Sheryl Solorzano"
 - "Josh Balderas"
 abstract: "This blog focuses on analyzing the inaugural speeches of U.S. presidents to examine how the language, sentiment used, and readability of presidential addresses have changed over time. By calculating readability scores using the Flesch-Kincaid formula and analyzing sentiment with the AFINN lexicon, we explore whether speeches from 1789 to 2009 have become easier or harder to understand, and how their emotional tone has evolved. Please note that President Van Buren, President Buchanan, President Garfield, and President Coolidge are missing from the dataset due to unavailable transcripts."
+bibliography: bib/library.bib
 ---
 
 ```{r}
