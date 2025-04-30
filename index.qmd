@@ -155,6 +155,8 @@ These changes underscore how presidential language not only reflects shared valu
 #| label: Mean Sentence Length over time
 #| fig-cap: "Figure 4: This bar char displays the sentence mean in each president's inaugural speech over time"
 
+# loading the data
+load("data/inaug_speeches_master")
 
 load("data/inaugural_speeches_master.Rdata")
 
