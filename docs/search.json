@@ -173,5 +173,12 @@
     "title": "Sentiment Analysis of Inaugural Speeches",
     "section": "First Term Sentiment Score vs. Second Term Sentiment Score",
     "text": "First Term Sentiment Score vs. Second Term Sentiment Score"
+  },
+  {
+    "objectID": "index.html#mean-sentence-length-vs.-sentiment",
+    "href": "index.html#mean-sentence-length-vs.-sentiment",
+    "title": "Sentiment Analysis of Inaugural Speeches",
+    "section": "Mean Sentence Length vs. Sentiment",
+    "text": "Mean Sentence Length vs. Sentiment\n\n\nWarning in geom_point(aes(color = cluster_2, text = paste(\"President:\", :\nIgnoring unknown aesthetics: text\n\n\nWarning in geom_label(data = msl_cluster_centers, aes(label = cluster_2, :\nIgnoring unknown aesthetics: text\n\n\nWarning in geom2trace.default(dots[[1L]][[1L]], dots[[2L]][[1L]], dots[[3L]][[1L]]): geom_GeomLabel() has yet to be implemented in plotly.\n  If you'd like to see this geom implemented,\n  Please open an issue with your example code at\n  https://github.com/ropensci/plotly/issues"
   }
 ]

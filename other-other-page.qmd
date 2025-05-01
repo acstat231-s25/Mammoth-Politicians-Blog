@@ -136,7 +136,6 @@ msl_kmeans_results$centers
 # Cluster sizes
 msl_kmeans_results$size
 
-
 # Join cluster assignments with original dataset (requires the broom package)
 msl_clustered <- msl_kmeans_results |> 
   augment(inaug_speeches_master) |> 
@@ -155,7 +154,6 @@ ggplot(msl_clustered, aes(x = sentiment_avg, y = meanSentenceLength)) +
              size = 3) + 
   theme_classic() +
   theme(legend.position = "none") 
-
 
 
 MS_s <- ggplot(msl_clustered, aes(x = meanSentenceLength, y = sentiment_avg)) +
