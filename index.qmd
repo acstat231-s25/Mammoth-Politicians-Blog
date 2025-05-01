@@ -352,24 +352,11 @@ Sentiment Score difference:
  
 ## Mean Sentence Length vs. Sentiment
  
-```{r}
+```{r, warning = FALSE}
 #| label: Plotting Mean Sentence Length vs. Sentiment
 
-# Set seed for reproducibility
-set.seed(100)
-
-# Perform k-means clustering
-msl_kmeans_results <- inaug_speeches_master |> 
-  select(meanSentenceLength, sentiment_avg) |> 
-  kmeans(centers = 6, nstart = 10)
-
-# Manually add cluster assignments to original dataset
-msl_clustered <- inaug_speeches_master |> 
-  mutate(cluster_2 = factor(msl_kmeans_results$cluster))
-
-# Create a dataframe of cluster centroids
-msl_cluster_centers <- as_tibble(msl_kmeans_results$centers) |> 
-  mutate(cluster_2 = factor(row_number()))
+load("data/msl_cluster_centers")
+load("data/msl_clustered")
 
 
 # Interactive plot with plotly

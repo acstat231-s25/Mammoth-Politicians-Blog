@@ -375,6 +375,49 @@ sec_terms_diff <- sec_terms_sent_fk |>
 ```
 
 
+```{r}
+#| label: Plotting Mean Sentence Length vs. Sentiment
+
+# Set seed for reproducibility
+set.seed(100)
+
+# Perform k-means clustering
+msl_kmeans_results <- inaug_speeches_master |> 
+  select(meanSentenceLength, sentiment_avg) |> 
+  kmeans(centers = 6, nstart = 10)
+
+# Manually add cluster assignments to original dataset
+msl_clustered <- inaug_speeches_master |> 
+  mutate(cluster_2 = factor(msl_kmeans_results$cluster))
+
+# Create a dataframe of cluster centroids
+msl_cluster_centers <- as_tibble(msl_kmeans_results$centers) |> 
+  mutate(cluster_2 = factor(row_number()))
+
+
+# Interactive plot with plotly
+MS_s <- ggplot(msl_clustered, aes(x = meanSentenceLength, y = sentiment_avg)) +
+  geom_point(aes(color = cluster_2, 
+                 text = paste("President:", president,
+                              "<br>Sentiment:", sentiment_avg,
+                              "<br>Mean Sentence Length:", meanSentenceLength,
+                              "<br>Cluster:", cluster_2)), 
+             alpha = 0.6) +
+  geom_label(data = msl_cluster_centers, 
+             aes(label = cluster_2, 
+                 text = paste("Cluster Center:", cluster_2)), 
+             size = 3) +
+  labs(y = "Average Sentiment Score",
+       x = "Mean Sentence Length",
+       title = "Inaugural Address Analysis",
+       caption = "Average Sentiment Score vs Mean Sentence Length",
+       color = "Cluster") +
+  theme_minimal()
+
+ggplotly(MS_s, tooltip = "text")
+```
+
+
 
 ```{r}
 
@@ -397,5 +440,11 @@ save(sec_terms_diff,
 
 save(inaug_speeches_master,
      file = "data/inaug_speeches_master")
+
+save(msl_clustered,
+     file = "data/msl_clustered")
+
+save(msl_cluster_centers,
+     file = "data/msl_cluster_centers")
 
 ```
