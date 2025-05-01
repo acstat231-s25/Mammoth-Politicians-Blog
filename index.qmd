@@ -354,6 +354,7 @@ Sentiment Score difference:
  
 ```{r, warning = FALSE}
 #| label: Plotting Mean Sentence Length vs. Sentiment
+#| Fig-cap: "..."
 
 load("data/msl_cluster_centers")
 load("data/msl_clustered")
@@ -383,12 +384,9 @@ ggplotly(MS_s, tooltip = "text")
 
 ```
  
+ [summary]
  
- 
- 
- 
- 
- 
+
  
 
 # Readability Analysis
