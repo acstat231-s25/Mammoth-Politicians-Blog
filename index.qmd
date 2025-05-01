@@ -449,7 +449,7 @@ The Flesch score measures how easy a text is to read, while the sentiment score 
 
 ```{r}
 #| label: Plotting-Flesch_Sentiment
-#| fig-cap: "Figure [?]: This chart displays Flesch reading ease and sentiment scores of president speech values."
+#| fig-cap: "Figure 8: Flesch Reading Ease vs. Sentiment Scores from inaugural speech."
 p <- ggplot(inaug_speeches_master, aes(y = Flesch, 
                                        x = sentiment, 
                                        text = paste("President:", 
@@ -510,7 +510,7 @@ In addition to examining readability through the Flesch score, we also analyze t
 
 ```{r}
 #| label: Plotting-Flesch-Kincaid-vs-Sentiment
-#| fig-cap: "Figure [?]: This chart displays Flesch-Kincaid and sentiment scores of president speech values."
+#| fig-cap: "Figure 9: This chart displays Flesch-Kincaid and sentiment scores of president speech values."
 
 p <- ggplot(inaug_speeches_master, aes(y = Flesch.Kincaid, x = sentiment,
                                         text = paste("President:", 
@@ -544,18 +544,11 @@ We also examine the relationship between the Flesch-Kincaid Grade Level (FKGL) a
 
 ```{r}
 #| label: Flesh-Kincaid-over-time
-#| fig-cap: "Figure [?]: This chart displays Flesch-Kincaid over time illustrating the complexity of inaugural addresses."
+#| fig-cap: "Figure 10: This chart displays Flesch-Kincaid over time illustrating the complexity of inaugural addresses."
 
-p <- ggplot(inaug_speeches_master, aes(x = date, y = Flesch.Kincaid,
-                                       text = paste("President:", 
-                                                    president,
-                                                    "<br>Year:", 
-                                                    date,
-                                                    "<br>FK Score:",
-                                                    Flesch.Kincaid))
-            ) +
+p <- ggplot(inaug_speeches_master, aes(x = date, y = Flesch.Kincaid))+
   geom_point() +
-  geom_smooth( method = "loess", se = TRUE)+
+  geom_smooth( method = "loess") +
   scale_x_continuous(breaks = scales:: breaks_width(25), minor_breaks = NULL) +
   labs(title = "Inagural Speech Complexity Over Time",
     y = "Flesch-Kincaid Grade Level",
@@ -579,15 +572,19 @@ To get a better understanding of the relationship between the Flesch Reading Eas
 
 ```{r}
 #| label: FKGL vs FRE
+#| fig-cap: "Figure 11: This chart displays the inverse relationship between the Flesch-Kincaid and Flesch Reading Ease formulas."
 
-ggplot(inaug_speeches_master, aes(x = Flesch, y = Flesch.Kincaid)) +
+a <- ggplot(inaug_speeches_master, aes(x = Flesch, y = Flesch.Kincaid)) +
   geom_point() +
-  geom_smooth( method = "loess", se = TRUE)+
+  geom_smooth( method = "loess", se = TRUE) +
   scale_x_continuous(breaks = scales:: breaks_width(10), minor_breaks = NULL) +
   labs(title = "FRE vs FKGL",
     y = "Flesch-Kincaid Grade Level",
        x = "Flesch Reading Ease") +
   theme_minimal()
+
+
+ggplotly(a, tooltip = "text")
 
 ```
 
