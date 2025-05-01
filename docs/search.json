@@ -180,5 +180,12 @@
     "title": "Sentiment Analysis of Inaugural Speeches",
     "section": "Mean Sentence Length vs. Sentiment",
     "text": "Mean Sentence Length vs. Sentiment\n\n\n\n\n\n\n[summary]"
+  },
+  {
+    "objectID": "index.html#jnikoi",
+    "href": "index.html#jnikoi",
+    "title": "Sentiment Analysis of Inaugural Speeches",
+    "section": "jnikoi",
+    "text": "jnikoi\n\n\n\n\n\nPresident\nYear\nFlesch-Kincaid Score\n\n\n\n\nJohn Adams\n1797\n28.74\n\n\nGeorge Washington\n1789\n28.43\n\n\nJames Madison\n1809\n25.57\n\n\nThomas Jefferson\n1805\n24.19\n\n\nZachary Taylor\n1849\n23.77\n\n\n\n\n\n\n\n[summary] John Adams is the president with the highest Flesch-Kincaic score."
   }
 ]

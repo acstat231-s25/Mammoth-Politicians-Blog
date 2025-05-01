@@ -157,7 +157,7 @@ Because each panel shows a different historical era, bars needed to be reordered
 
 ```{r}
 #| label: Mean Sentence Length over time
-#| fig-cap: "Figure 4: Mean sentence length of each president's inaugural speech over time"
+#| fig-cap: "Figure 3: Mean sentence length of each president's inaugural speech over time"
 
 # loading the data
 load("data/inaug_speeches_master")
@@ -199,7 +199,7 @@ The first figure uses an interactive plotly chart to allow readers to explore th
 
 ```{r}
 #| label: Flesch-Kincaid Scores over time
-#| fig-cap: "Figure 5: This bar char displays the complexity of presidents' inaugural speeches with their respective Flesch-Kincaid scores over time"
+#| fig-cap: "Figure 4: Readability complexity of presidential inaugural speeches of presidents over time"
 
 
 fk <- ggplot(inaug_speeches_master, aes(
@@ -220,12 +220,10 @@ fk <- ggplot(inaug_speeches_master, aes(
 ggplotly(fk, tooltip = "text")
 ```
 
-[summary of the figure]
-
 
 ```{r}
 #| label: Top 5 presidents with lowest scores
-#| Fig-cap: "...."
+#| fig-cap: "Figure 4a: Top 5 presidents with lowest Flesch-Kincaid scores"
 
 # Loading the data
 load("data/top5_lowpress.Rdata")
@@ -241,12 +239,12 @@ load("data/top5_lowpress.Rdata")
   
 ```
 
-{summary} George Bush is the president with the lowest Flesch-Kincaid score.
 
 
 ```{r}
 #| label: Top 5 presidents with highest scores
-#| Fig-cap: "..."
+#| fig-cap: "Figure 4b: Top 5 presidents with Flesch-Kincaid highest scores"
+
 # Loading the data
 load("data/top5_highpress.Rdata")
 
@@ -259,10 +257,11 @@ load("data/top5_highpress.Rdata")
 ```
 
 
-[summary] John Adams is the president with the highest Flesch-Kincaic score.
+This interactive bar chart displays the Flesch-Kincaid score of each U.S. president's inaugural speeches that served from 1789 to 2009. By hovering over each bar, the user can view the president’s name, year of the inaugural address, and the Flesch-Kincaid score of the inaugural address.
 
+The Flesch-Kincaid Grade Level score measures the inaugural speech's readability which accounts for both the mean sentence length and the mean syllables per word. More information on the formula will be introduced later in the blog. As for now, just know that the Flesch-Kincaid Grade Level score indicates what U.S. school grade level someone needs to understand the text. For instance, an 9th grader would be able to understand a text with a Flesch-Kincaid Grade Level score of 9.0. This means that a lower score indicates an easier inaugural speech to read while a higher score indicates a more complex inaugural speech to read.
 
-
+As shown in Figure 4, we can observe on the bar chart how the Flesch-Kincaid Grade Level score decreases over time, indicating a decrease in the complexity of presidential inaugural speeches. Figure 4a displays a table ranking the five presidents with the lowest Flesch-Kincaid Grade Level scores between 1789 and 2009. Similarly, Figure 4b displays a table ranking the five presidents with the highest Flesch-Kincaid Grade Level scores.
 
 
 
