@@ -179,7 +179,7 @@
     "href": "index.html#mean-sentence-length-vs.-sentiment",
     "title": "Sentiment Analysis of Inaugural Speeches",
     "section": "Mean Sentence Length vs. Sentiment",
-    "text": "Mean Sentence Length vs. Sentiment\n\n\n\n\n\n\n[summary]"
+    "text": "Mean Sentence Length vs. Sentiment\n\n\n\n\nFigure 7: Mean sentence length vs. sentiment of presidential inaugural speeches\n\n\nFigure 7 displays an interactive clustering of presidential inaugural speeches based on the average sentiment score and the mean sentence length. By hovering over each data point, the user can view the president’s name, sentiment score, Flesch-Kincaid score and the cluster that president’s inaugural speech belongs to.\nClusters description:\nCluster 1: Presidents with moderately low mean sentence length have neutral inaugural speeches.\nCluster 2: Presidents with high mean sentence length have considerably positive inaugural speeches.\nCluster 3: Presidents with medium mean sentence length have positive inaugural speeches.\nCluster 4: Presidents with the highest mean sentence length have more positive inaugural speeches.\nCluster 5: Presidents with low mean sentence length have neutral, but leaning toward negative, inaugural speeches\nCluster 6: Presidents with the lowest mean sentence length have neutral inaugural speeches."
   },
   {
     "objectID": "index.html#jnikoi",
