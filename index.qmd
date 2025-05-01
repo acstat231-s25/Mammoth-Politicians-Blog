@@ -401,19 +401,19 @@ ggplotly(MS_s, tooltip = "text")
 Figure 7 displays an interactive clustering of presidential inaugural speeches based on the average sentiment score and the mean sentence length. By hovering over each data point, the user can view the president's name, sentiment score, Flesch-Kincaid score and the cluster that president's inaugural speech belongs to.
  
 
-Clusters description:
+**Clusters description:**
 
-*Cluster 1:* Presidents with moderately low mean sentence length have neutral inaugural speeches.
+**Cluster 1:** Presidents with moderately low mean sentence length have neutral inaugural speeches.
 
-*Cluster 2:* Presidents with high mean sentence length have considerably positive inaugural speeches. 
+**Cluster 2:** Presidents with high mean sentence length have considerably positive inaugural speeches. 
 
-*Cluster 3:* Presidents with medium mean sentence length have positive inaugural speeches. 
+**Cluster 3:** Presidents with medium mean sentence length have positive inaugural speeches. 
 
-*Cluster 4:* Presidents with the highest mean sentence length have more positive inaugural speeches.
+**Cluster 4:** Presidents with the highest mean sentence length have more positive inaugural speeches.
 
-*Cluster 5:* Presidents with low mean sentence length have neutral, but leaning toward negative, inaugural speeches
+**Cluster 5:** Presidents with low mean sentence length have neutral, but leaning toward negative, inaugural speeches
 
-*Cluster 6:* Presidents with the lowest mean sentence length have neutral inaugural speeches. 
+**Cluster 6:** Presidents with the lowest mean sentence length have neutral inaugural speeches. 
 
 
 
