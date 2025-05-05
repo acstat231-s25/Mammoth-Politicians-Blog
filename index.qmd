@@ -233,7 +233,16 @@ load("data/top5_lowpress.Rdata")
   kable(booktabs = TRUE, 
         digits = 2,
         col.names = c("President", "Year", "Flesch-Kincaid Score")) |>
-  kable_styling()
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    position = "center"
+  ) |>
+  row_spec(0, bold = TRUE, color = "white", background = "#000080") |>
+  column_spec(2, color = "black", background = "#ffffff") |>
+  column_spec(3, color = "black", background = "#ffffff") |>
+  add_header_above(c("Top Five Presidents with Lowest \n Flesch-Kincaid Scores" = 3),
+                   background = "#CD2626", color = "white", bold = TRUE)
  
   
 ```
@@ -252,7 +261,16 @@ load("data/top5_highpress.Rdata")
   kable(booktabs = TRUE, 
         digits = 2,
         col.names = c("President", "Year", "Flesch-Kincaid Score")) |>
-  kable_styling()
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    position = "center"
+  ) |>
+  row_spec(0, bold = TRUE, color = "white", background = "#000080") |>
+  column_spec(2, color = "black", background = "#ffffff") |>
+  column_spec(3, color = "black", background = "#ffffff") |>
+  add_header_above(c("Top Five Presidents with Highest \n Flesch-Kincaid Scores" = 3),
+                   background = "#CD2626", color = "white", bold = TRUE)
 ```
 
 
