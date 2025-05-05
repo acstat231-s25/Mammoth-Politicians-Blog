@@ -322,8 +322,10 @@ ggplotly(q, tooltip = "text") |>
 
 ```{r}
 #| fig-cap: "Figure 6: Sentiment score and Flesch-Kincaid Scores change across different terms of presidents that served two terms"
+
 # loading the data
 load("data/sec_terms_diff.Rdata")
+
 
 # calculating the differences from the first term to the second term of presidents in terms of both sentiment score and flesch-kincaid scores
 
@@ -340,7 +342,16 @@ sec_terms_diff <- sec_terms_sent_fk |>
   kable(booktabs = TRUE, 
         digits = 2,
         col.names = c("President", "Sentiment Score Difference", "Flesch-Kincaid Score Difference")) |>
-  kable_styling()
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    position = "center"
+  ) |>
+  row_spec(0, bold = TRUE, color = "white", background = "#000080") |>
+  column_spec(2, color = "black", background = "#ffffff") |>
+  column_spec(3, color = "black", background = "#ffffff") |>
+  add_header_above(c("Differences Between Terms" = 3),
+                   background = "#CD2626", color = "white", bold = TRUE)
 ```
 
 Figure 5 displays an interactive scatter plot showing presidents', who served two terms, first term sentiment score and second term score. Similarly, Figure 6 shows presidents' first term Flesch-Kincaid score and second term Flesch-Kincaid score. By hovering over each data point, the user can view the president's name as well as their respective scores. Each president is colored differently.
@@ -376,12 +387,14 @@ load("data/msl_clustered")
 
 # Interactive plot with plotly
 MS_s <- ggplot(msl_clustered, aes(x = meanSentenceLength, y = sentiment_avg)) +
+    scale_color_manual(values = c("red", "blue", "green", "purple", "orange", "pink")) +
   geom_point(aes(color = cluster_2, 
                  text = paste("President:", president,
                               "<br>Sentiment:", sentiment_avg,
                               "<br>Mean Sentence Length:", meanSentenceLength,
                               "<br>Cluster:", cluster_2)), 
              alpha = 0.6) +
+  scale_x_continuous(breaks = scales:: breaks_width(5), minor_breaks = NULL) +
   geom_label(data = msl_cluster_centers, 
              aes(label = cluster_2, 
                  text = paste("Cluster Center:", cluster_2)), 
