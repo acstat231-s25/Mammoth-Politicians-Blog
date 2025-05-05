@@ -171,7 +171,7 @@ ms <- ggplot(inaug_speeches_master, aes(
                "<br>Mean Sentence Length:", round(meanSentenceLength, 3)),
   fill = meanSentenceLength)) +
   geom_col(show.legend = FALSE) +
-  scale_fill_gradient2(low = "#d61106", mid = "#d6d6d6", high = "#05853c", midpoint = 0) + 
+scale_fill_gradient2(low = "#B22234", mid = "#d6d6d6", high = "steelblue", midpoint = 0) + 
   labs(
     title = "Mean Sentence Length of Inaugural Speeches",
     x = "Year",
@@ -209,7 +209,7 @@ fk <- ggplot(inaug_speeches_master, aes(
                "<br>Flesch.Kincaid:", round(Flesch.Kincaid, 3)),
   fill = Flesch.Kincaid)) +
   geom_col(show.legend = FALSE) +
-  scale_fill_gradient2(low = "#d61106", mid = "#d6d6d6", high = "#05853c", midpoint = 0) + 
+scale_fill_gradient2(low = "#B22234", mid = "#d6d6d6", high = "steelblue", midpoint = 0) + 
   labs(
     title = "Flesch-Kincaid Score of Inaugural Speeches",
     x = "Year",
@@ -364,7 +364,7 @@ Sentiment Score difference:
  - **Zero or close to Zero Difference Value**: The complexity of the inaugural speech remained pretty consistent.
  
  
-## Mean Sentence Length vs. Sentiment
+# Mean Sentence Length vs. Sentiment
  
 ```{r, warning = FALSE}
 #| label: Plotting Mean Sentence Length vs. Sentiment
