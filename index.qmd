@@ -1,6 +1,6 @@
 ---
-title: "Sentiment Analysis of Inaugural Speeches"
-subtitle: "Comparing the Sentiment of Presidential Speeches Over Time"
+title: "Analysis of the language, sentiment, and readability of Presidential Inaugural Speeches, 1789-2009"
+subtitle: "Comparing the language Use, Sentiment and Readability Scores of Presidential Speeches Over Time"
 author: 
 - "Rachel Hubley"
 - "Sheryl Solorzano"
