@@ -249,7 +249,7 @@ ggplotly(q, tooltip = "text") |>
 ## Difference Score
 
 ```{r}
-#| fig-cap: "Figure 6: Sentiment score and Flesch-Kincaid Scores change across different terms of presidents that served two terms"
+#| fig-cap: "Figure 7: Sentiment score and Flesch-Kincaid Scores change across different terms of presidents that served two terms"
 
 # loading the data
 load("data/sec_terms_diff.Rdata")
@@ -307,7 +307,7 @@ Sentiment Score difference:
  
 ```{r, warning = FALSE}
 #| label: Plotting Mean Sentence Length vs. Sentiment
-#| fig-cap: "Figure 7: Mean sentence length vs. sentiment of presidential inaugural speeches"
+#| fig-cap: "Figure 8: Mean sentence length vs. sentiment of presidential inaugural speeches"
 
 load("data/msl_cluster_centers")
 load("data/msl_clustered")
@@ -339,7 +339,7 @@ ggplotly(MS_s, tooltip = "text")
 
 ```
  
-Figure 7 displays an interactive clustering of presidential inaugural speeches based on the average sentiment score and the mean sentence length. By hovering over each data point, the user can view the president's name, sentiment score, Flesch-Kincaid score and the cluster that president's inaugural speech belongs to.
+Figure 8 displays an interactive clustering of presidential inaugural speeches based on the average sentiment score and the mean sentence length. By hovering over each data point, the user can view the president's name, sentiment score, Flesch-Kincaid score and the cluster that president's inaugural speech belongs to.
  
 
 **Clusters description:**
@@ -390,7 +390,7 @@ The Flesch score measures how easy a text is to read, while the sentiment score 
 
 ```{r}
 #| label: Plotting-Flesch_Sentiment
-#| fig-cap: "Figure 8: Flesch Reading Ease vs. Sentiment Scores from inaugural speech."
+#| fig-cap: "Figure 9: Flesch Reading Ease vs. Sentiment Scores from inaugural speech."
 p <- ggplot(inaug_speeches_master, aes(y = Flesch, 
                                        x = sentiment, 
                                        text = paste("President:", 
@@ -451,7 +451,7 @@ In addition to examining readability through the Flesch score, we also analyze t
 
 ```{r}
 #| label: Plotting-Flesch-Kincaid-vs-Sentiment
-#| fig-cap: "Figure 9: This chart displays Flesch-Kincaid and sentiment scores of president speech values."
+#| fig-cap: "Figure 10: This chart displays Flesch-Kincaid and sentiment scores of president speech values."
 
 p <- ggplot(inaug_speeches_master, aes(y = Flesch.Kincaid, x = sentiment,
                                         text = paste("President:", 
@@ -485,7 +485,7 @@ We also examine the relationship between the Flesch-Kincaid Grade Level (FKGL) a
 
 ```{r}
 #| label: Flesh-Kincaid-over-time
-#| fig-cap: "Figure 10: This chart displays Flesch-Kincaid over time illustrating the complexity of inaugural addresses."
+#| fig-cap: "Figure 11: This chart displays Flesch-Kincaid over time illustrating the complexity of inaugural addresses."
 
 p <- ggplot(inaug_speeches_master, aes(x = date, y = Flesch.Kincaid))+
   geom_point() +
@@ -510,7 +510,7 @@ Possible explanations include:
 
 ```{r}
 #| label: Top 5 presidents with lowest scores
-#| fig-cap: "Figure 10a: Top 5 presidents with lowest Flesch-Kincaid scores"
+#| fig-cap: "Figure 11a: Top 5 presidents with lowest Flesch-Kincaid scores"
 
 # Loading the data
 load("data/top5_lowpress.Rdata")
@@ -537,7 +537,7 @@ load("data/top5_lowpress.Rdata")
 
 ```{r}
 #| label: Top 5 presidents with highest scores
-#| fig-cap: "Figure 10b: Top 5 presidents with the highest Flesch-Kincaid scores"
+#| fig-cap: "Figure 11b: Top 5 presidents with the highest Flesch-Kincaid scores"
 
 # Loading the data
 load("data/top5_highpress.Rdata")
@@ -567,7 +567,7 @@ To get a better understanding of the relationship between the Flesch Reading Eas
 
 ```{r}
 #| label: FKGL vs FRE
-#| fig-cap: "Figure 11: This chart displays the inverse relationship between the Flesch-Kincaid and Flesch Reading Ease formulas."
+#| fig-cap: "Figure 12: This chart displays the inverse relationship between the Flesch-Kincaid and Flesch Reading Ease formulas."
 
 a <- ggplot(inaug_speeches_master, aes(x = Flesch, y = Flesch.Kincaid)) +
   geom_point() +
