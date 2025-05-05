@@ -54,7 +54,7 @@ ggplotly(p, tooltip = "text")
 
 ```
 
-This interactive bar chart displays the average AFINN sentiment score of each U.S. presidential inaugural address over time. Bars are color-coded by sentiment strength, with greener bars indicating more positive language and blue tones indicating more negative sentiment. Hovering over each bar reveals additional details, including the president’s name, year of the address, and exact sentiment score. 
+This interactive bar chart displays the average AFINN sentiment score of each U.S. presidential inaugural address over time. Bars are color-coded by sentiment strength, with bluer bars indicating more positive language and red tones indicating more negative sentiment. Hovering over each bar reveals additional details, including the president’s name, year of the address, and exact sentiment score. 
 
 While sentiment has remained mostly positive throughout history, we observe notably lower average sentiment during the mid-19th century, especially surrounding the Civil War era under Abraham Lincoln. A brief dip also appears in the early 20th century. More recently, sentiment peaked with George H. W. Bush’s 1989 inaugural address, which had the highest score in the dataset. Since then, average sentiment scores have gradually declined across subsequent presidencies, suggesting a rhetorical shift toward more neutral or somber tones in modern speeches.
 
@@ -136,7 +136,6 @@ ggplot(top_biwords_era, aes(x = biword, y = prop, fill = color)) +
 This faceted bar chart highlights the most frequently used bigrams (two-word phrases) in inaugural speeches across six major historical eras. Frequencies are normalized to account for differences in era length and speech length, so bars represent the proportion of all bigrams within that era. Red bars indicate bigrams that appear in multiple eras, suggesting persistent rhetorical themes (such as "federal government" or "foreign nations").
 
 A key trend revealed here is how certain bigrams like “federal government” and “foreign nations” recur across multiple eras, showing the enduring importance of governance and international relations. However, top bigrams also shift to reflect evolving national concerns: for example, “united nations” emerges as the most dominant phrase during the Postwar & Civil Rights era (1946–1969), while “god bless” and “vice president” gain prominence in the Post-Watergate to Obama era (1970–2009). This suggests a rhetorical turn toward both global institutions and more personal or moral language in the modern period.
-
 
 A key trend revealed here is how certain bigrams like “federal government” and “foreign nations” recur across multiple eras, showing the enduring importance of governance and international relations. However, the top bigrams also shift to reflect evolving national concerns:
 
