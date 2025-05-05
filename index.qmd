@@ -193,96 +193,7 @@ As shown on the bar chart, the mean sentence length of presidential inaugural sp
 The first figure uses an interactive plotly chart to allow readers to explore the mean sentence length by hovering over each bar [@plotly]. The color gradient, different shades of green, was created using scale_fill_gradient2() in ggplot2 [@ggplot2gradient].
 
 
-
-# Flesch-Kincaid Scores over Time
-
-```{r}
-#| label: Flesch-Kincaid Scores over time
-#| fig-cap: "Figure 4: Readability complexity of presidential inaugural speeches of presidents over time"
-
-
-fk <- ggplot(inaug_speeches_master, aes(
-  x = date, y = Flesch.Kincaid,
-  text = paste("President:", president,
-               "<br>Year:", date,
-               "<br>Flesch.Kincaid:", round(Flesch.Kincaid, 3)),
-  fill = Flesch.Kincaid)) +
-  geom_col(show.legend = FALSE) +
-scale_fill_gradient2(low = "#B22234", mid = "#d6d6d6", high = "steelblue", midpoint = 0) + 
-  labs(
-    title = "Flesch-Kincaid Score of Inaugural Speeches",
-    x = "Year",
-    y = "Flesch-Kincaid Score"
-  ) +
-  theme_minimal()
-
-ggplotly(fk, tooltip = "text")
-```
-
-
-```{r}
-#| label: Top 5 presidents with lowest scores
-#| fig-cap: "Figure 4a: Top 5 presidents with lowest Flesch-Kincaid scores"
-
-# Loading the data
-load("data/top5_lowpress.Rdata")
-
-
-# table displaying the top 5 presidents with the highest Flesch-Kincaid score 
- top5_lowpress |>
-  kable(booktabs = TRUE, 
-        digits = 2,
-        col.names = c("President", "Year", "Flesch-Kincaid Score")) |>
-  kable_styling(
-    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
-    full_width = FALSE,
-    position = "center"
-  ) |>
-  row_spec(0, bold = TRUE, color = "white", background = "#000080") |>
-  column_spec(2, color = "black", background = "#ffffff") |>
-  column_spec(3, color = "black", background = "#ffffff") |>
-  add_header_above(c("Top Five Presidents with Lowest \n Flesch-Kincaid Scores" = 3),
-                   background = "#CD2626", color = "white", bold = TRUE)
- 
-  
-```
-
-
-
-```{r}
-#| label: Top 5 presidents with highest scores
-#| fig-cap: "Figure 4b: Top 5 presidents with the highest Flesch-Kincaid scores"
-
-# Loading the data
-load("data/top5_highpress.Rdata")
-
-# table displaying the top 5 presidents with the lowest Flesch-Kincaid scores 
-  top5_highpress |>
-  kable(booktabs = TRUE, 
-        digits = 2,
-        col.names = c("President", "Year", "Flesch-Kincaid Score")) |>
-  kable_styling(
-    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
-    full_width = FALSE,
-    position = "center"
-  ) |>
-  row_spec(0, bold = TRUE, color = "white", background = "#000080") |>
-  column_spec(2, color = "black", background = "#ffffff") |>
-  column_spec(3, color = "black", background = "#ffffff") |>
-  add_header_above(c("Top Five Presidents with Highest \n Flesch-Kincaid Scores" = 3),
-                   background = "#CD2626", color = "white", bold = TRUE)
-```
-
-
-This interactive bar chart displays the Flesch-Kincaid score of each U.S. president's inaugural speeches that served from 1789 to 2009. By hovering over each bar, the user can view the president’s name, year of the inaugural address, and the Flesch-Kincaid score of the inaugural address.
-
-The Flesch-Kincaid Grade Level score measures the inaugural speech's readability which accounts for both the mean sentence length and the mean syllables per word. More information on the formula will be introduced later in the blog. As for now, just know that the Flesch-Kincaid Grade Level score indicates what U.S. school grade level someone needs to understand the text. For instance, an 9th grader would be able to understand a text with a Flesch-Kincaid Grade Level score of 9.0. This means that a lower score indicates an easier inaugural speech to read while a higher score indicates a more complex inaugural speech to read.
-
-As shown in Figure 4, we can observe on the bar chart how the Flesch-Kincaid Grade Level score decreases over time, indicating a decrease in the complexity of presidential inaugural speeches. Figure 4a displays a table ranking the five presidents with the lowest Flesch-Kincaid Grade Level scores between 1789 and 2009. Similarly, Figure 4b displays a table ranking the five presidents with the highest Flesch-Kincaid Grade Level scores. By looking at the years, we can see how the highest scores correspond to the presidents in the first two centuries while the lowest scores correspond to the presidents in the more recent centuries. This indicates that the language used in inaugural speeches has become simpler and more accessible over time.
-
-
-
-# Sentiment Scores and Flesch-Kincaid Scores Change among Presidents that Served Two Terms
+# Sentiment and Flesch-Kincaid Scores Change among Presidents that Served Two Terms
 
 
 ```{r}
@@ -595,6 +506,60 @@ Possible explanations include:
 -   The first inaugural speech to a public crowd was by James Monroe in 1817.
 -   The growing emphasis on mass communication, as presidents began speaking to a broader and more diverse audience.
 -   The influence of modern media, which favors shorter, clearer messaging that resonates quickly with the public.
+
+
+```{r}
+#| label: Top 5 presidents with lowest scores
+#| fig-cap: "Figure 10a: Top 5 presidents with lowest Flesch-Kincaid scores"
+
+# Loading the data
+load("data/top5_lowpress.Rdata")
+
+
+# table displaying the top 5 presidents with the highest Flesch-Kincaid score 
+ top5_lowpress |>
+  kable(booktabs = TRUE, 
+        digits = 2,
+        col.names = c("President", "Year", "Flesch-Kincaid Score")) |>
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    position = "center"
+  ) |>
+  row_spec(0, bold = TRUE, color = "white", background = "#000080") |>
+  column_spec(2, color = "black", background = "#ffffff") |>
+  column_spec(3, color = "black", background = "#ffffff") |>
+  add_header_above(c("Top Five Presidents with Lowest \n Flesch-Kincaid Scores" = 3),
+                   background = "#CD2626", color = "white", bold = TRUE)
+ 
+```
+
+
+```{r}
+#| label: Top 5 presidents with highest scores
+#| fig-cap: "Figure 10b: Top 5 presidents with the highest Flesch-Kincaid scores"
+
+# Loading the data
+load("data/top5_highpress.Rdata")
+
+# table displaying the top 5 presidents with the lowest Flesch-Kincaid scores 
+  top5_highpress |>
+  kable(booktabs = TRUE, 
+        digits = 2,
+        col.names = c("President", "Year", "Flesch-Kincaid Score")) |>
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    position = "center"
+  ) |>
+  row_spec(0, bold = TRUE, color = "white", background = "#000080") |>
+  column_spec(2, color = "black", background = "#ffffff") |>
+  column_spec(3, color = "black", background = "#ffffff") |>
+  add_header_above(c("Top Five Presidents with Highest \n Flesch-Kincaid Scores" = 3),
+                   background = "#CD2626", color = "white", bold = TRUE)
+```
+
+Figure 10a displays a table ranking the five presidents with the lowest Flesch-Kincaid Grade Level scores between 1789 and 2009. Similarly, Figure 10b displays a table ranking the five presidents with the highest Flesch-Kincaid Grade Level scores. By looking at the years, we can see how the highest scores correspond to the presidents in the first two centuries while the lowest scores correspond to the presidents in the more recent centuries. This indicates that the language used in inaugural speeches has become simpler and more accessible over time. 
 
 ## Understanding the relationship between: Flesch Reading Ease (FRE) & Flesch-Kincaid Grading Level (FKGL)
 
