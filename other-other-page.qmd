@@ -1,27 +1,28 @@
 ---
-title: "other-other-page"
-format: html
+title: "Mean Sentence Length and Flesch-Kincaid Score"
+author: "Sheryl Solorzano"
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r}
 library(ggplot2)
 library(tidyverse)
 library(plotly)
+library(kableExtra)
 ```
 
-## Plotting mean sentence length over time plot with a bar chart
+
+# Mean Sentence Length over time 
 
 ```{r}
-# ggplot(inaug_speeches_master, aes(x = date, y = meanSentenceLength, fill = meanSentenceLength)) +
-#   geom_col(show.legend = FALSE) +
-#   scale_fill_gradient2(low = "#d61106", mid = "#d6d6d6", high = "#05853c", midpoint = 0) + 
-#   labs(
-#     title = "Mean Sentence Length of Inaugural Speeches",
-#     x = "Year",
-#     y = "Mean Sentence Length"
-#   ) +
-#   theme_minimal()
+#| label: Mean Sentence Length over time
+#| fig-cap: "Figure 3: Mean sentence length of each president's inaugural speech over time"
 
+# loading the data
+load("data/inaug_speeches_master")
+
+load("data/inaugural_speeches_master.Rdata")
 
 ms <- ggplot(inaug_speeches_master, aes(
   x = date, y = meanSentenceLength,
@@ -40,18 +41,25 @@ ms <- ggplot(inaug_speeches_master, aes(
 
 ggplotly(ms, tooltip = "text")
 
+```
 
-## Plotting readability/Flesh-Kincaid over time plot with a bar chart
 
-# ggplot(inaug_speeches_master, aes(x = date, y = Flesch.Kincaid, fill = Flesch.Kincaid)) +
-#   geom_col(show.legend = FALSE) +
-#   scale_fill_gradient2(low = "#d61106", mid = "#d6d6d6", high = "#05853c", midpoint = 0) + 
-#   labs(
-#     title = "Flesh-Kincaid score of Inaugural Speeches",
-#     x = "Year",
-#     y = "Flesh-Kincaid score"
-#   ) +
-#   theme_minimal()
+This interactive bar chart displays the mean sentence length of the presidential inaugural speeches of U.S presidents that served from 1789 to 2009. By hovering over each bar, the user can view the president’s name, year of the inaugural address, and the mean sentence length of the inaugural address. The bars are color-coded by different shades of green, which vary depending on the mean sentence length.
+
+The mean sentence length measures the average number of words per sentence in a presidential inaugural speech. By measuring the mean sentence length of an speech, we can get a rough idea of how complex the speech's sentences are. For instance, if the mean sentence length is long, it may indicate a more complex and harder to understand sentence while a shorter mean sentence length may indicate otherwise. It is important to note that the mean sentence length measures the complexity of the sentence structure based on its length, but it doesn't measure the complexity of each individual word. 
+
+
+As shown on the bar chart, the mean sentence length of presidential inaugural speeches seem to fluctuate slightly. However, we can observe an overall trend: the mean sentence length decreases over time. This shows that the sentence structure of U.S. presidents' inaugural speeches have become less complex over time. This may be due wanting to make inaugural speeches more accessible to the public (Liberman 2011)
+
+The first figure uses an interactive plotly chart to allow readers to explore the mean sentence length by hovering over each bar [@plotly]. The color gradient, different shades of green, was created using scale_fill_gradient2() in ggplot2 [@ggplot2gradient].
+
+
+
+# Flesch-Kincaid Scores over Time
+
+```{r}
+#| label: Flesch-Kincaid Scores over time
+#| fig-cap: "Figure 4: Readability complexity of presidential inaugural speeches of presidents over time"
 
 
 fk <- ggplot(inaug_speeches_master, aes(
@@ -63,204 +71,70 @@ fk <- ggplot(inaug_speeches_master, aes(
   geom_col(show.legend = FALSE) +
   scale_fill_gradient2(low = "#d61106", mid = "#d6d6d6", high = "#05853c", midpoint = 0) + 
   labs(
-    title = "Flesch-Kincaid score of Inaugural Speeches",
+    title = "Flesch-Kincaid Score of Inaugural Speeches",
     x = "Year",
-    y = "Flesch-Kincaid score"
+    y = "Flesch-Kincaid Score"
   ) +
   theme_minimal()
 
 ggplotly(fk, tooltip = "text")
+```
 
 
+```{r}
+#| label: Top 5 presidents with lowest scores
+#| fig-cap: "Figure 4a: Top 5 presidents with lowest Flesch-Kincaid scores"
 
-# Top 5 presidents with the hardest inaugural speech (highest Flesch-Kincaid score)
- 
- top5_highpress <- inaug_speeches_master |>
-  arrange(desc(Flesch.Kincaid)) |>
-  select(president, date, Flesch.Kincaid) |>
-  slice_head(n = 5)
-top5_highpress
- 
- 
-# Top 5 Presidents with the easiest inaugural speech (lowest Flesch-Kincaid score)
- top5_lowpress <- inaug_speeches_master |>
-  arrange(Flesch.Kincaid) |>
-  select(president, date, Flesch.Kincaid) |>
-  slice_head(n = 5)
-top5_lowpress
+# Loading the data
+load("data/top5_lowpress.Rdata")
 
-top5_press <- full_join(top5_highpress, top5_lowpress)
 
- 
- # table displaying the top 5 presidents with the highest Flesch-Kincaid score 
-
+# table displaying the top 5 presidents with the highest Flesch-Kincaid score 
  top5_lowpress |>
   kable(booktabs = TRUE, 
         digits = 2,
         col.names = c("President", "Year", "Flesch-Kincaid Score")) |>
   kable_styling()
+ 
+  
+```
 
- 
-  # table displaying the top 5 presidents with the lowest Flesch-Kincaid scores 
- 
+
+
+```{r}
+#| label: Top 5 presidents with highest scores
+#| fig-cap: "Figure 4b: Top 5 presidents with the highest Flesch-Kincaid scores"
+
+# Loading the data
+load("data/top5_highpress.Rdata")
+
+# table displaying the top 5 presidents with the lowest Flesch-Kincaid scores 
   top5_highpress |>
   kable(booktabs = TRUE, 
         digits = 2,
         col.names = c("President", "Year", "Flesch-Kincaid Score")) |>
   kable_styling()
-  
-  
 ```
 
 
-```{r}
-# Mean Sentence Length vs. Sentiment
+This interactive bar chart displays the Flesch-Kincaid score of each U.S. president's inaugural speeches that served from 1789 to 2009. By hovering over each bar, the user can view the president’s name, year of the inaugural address, and the Flesch-Kincaid score of the inaugural address.
 
-#| label: Plotting-Flesch-Kincaid-vs-Sentiment
+The Flesch-Kincaid Grade Level score measures the inaugural speech's readability which accounts for both the mean sentence length and the mean syllables per word. More information on the formula will be introduced later in the blog. As for now, just know that the Flesch-Kincaid Grade Level score indicates what U.S. school grade level someone needs to understand the text. For instance, an 9th grader would be able to understand a text with a Flesch-Kincaid Grade Level score of 9.0. This means that a lower score indicates an easier inaugural speech to read while a higher score indicates a more complex inaugural speech to read.
 
-
-# Make sure to set seed for reproducibility!
-set.seed(100)
-
-msl_kmeans_results <- inaug_speeches_master |> 
-  # Can only include numeric variables that we are clustering by
-  select(meanSentenceLength, sentiment_avg) |> 
-  kmeans(centers = 6, nstart = 10) 
-
-# Check named elements of object
-names(msl_kmeans_results)
-
-# Centroids
-msl_kmeans_results$centers
-
-# Cluster sizes
-msl_kmeans_results$size
-
-# Join cluster assignments with original dataset (requires the broom package)
-msl_clustered <- msl_kmeans_results |> 
-  augment(inaug_speeches_master) |> 
-  mutate(cluster_2 = factor(.cluster))
-
-# Make dataframe out of estimated cluster centroids
-msl_cluster_centers <- msl_kmeans_results$centers |>
-  as_tibble() |> 
-  mutate(cluster_2 = factor(row_number()))
-
-# Plot cluster assignments and centroids
-ggplot(msl_clustered, aes(x = sentiment_avg, y = meanSentenceLength)) +
-  geom_point(aes(color = cluster_2), alpha = 0.6)  + 
-  geom_label(data = msl_cluster_centers, 
-             aes(label = cluster_2), 
-             size = 3) + 
-  theme_classic() +
-  theme(legend.position = "none") 
+As shown in Figure 4, we can observe on the bar chart how the Flesch-Kincaid Grade Level score decreases over time, indicating a decrease in the complexity of presidential inaugural speeches. Figure 4a displays a table ranking the five presidents with the lowest Flesch-Kincaid Grade Level scores between 1789 and 2009. Similarly, Figure 4b displays a table ranking the five presidents with the highest Flesch-Kincaid Grade Level scores. By looking at the years, we can see how the highest scores correspond to the presidents in the first two centuries while the lowest scores correspond to the presidents in the more recent centuries. This indicates that the language used in inaugural speeches has become simpler and more accessible over time.
 
 
-MS_s <- ggplot(msl_clustered, aes(x = meanSentenceLength, y = sentiment_avg)) +
-  geom_point(aes(color = cluster_2, 
-                 text = paste( "President", president,
-                              "<br>Sentiment:", sentiment_avg,
-                              "<br>Mean Sentence Length:", meanSentenceLength,
-                              "<br>Cluster:", cluster_2)), 
-             alpha = 0.6) +
-  geom_label(data = msl_cluster_centers, 
-             aes(label = cluster_2, 
-                 text = paste("Cluster Center:", cluster_2)), 
-             size = 3) +
-  labs(y = "Average Sentiment Score",
-       x = "Mean Sentence Length",
-        title = "Inaugural Address Analysis",
-       caption = "Average Sentiment Score vs Mean Sentence Length",
-       color = "Cluster") +
-  theme_minimal()
 
-ggplotly(MS_s, tooltip = "text")
-
-
-```
-
-```{r}
-#| label: Mean Sentence Length-vs-Year
- 
-msle <- ggplot(inaug_speeches_master, aes(x = date, y = meanSentenceLength,
-                                       text = paste("President:", 
-                                                    president,
-                                                    "<br>Year:", 
-                                                    date,
-                                                    "<br> Mean Sentence Length:",
-                                                    meanSentenceLength))
-            ) +
-  geom_point() +
-  geom_smooth( method = "loess", se = TRUE)+
-  scale_x_continuous(breaks = scales:: breaks_width(25), minor_breaks = NULL) +
-  labs(title = "Inagural Speech Complexity Over Time",
-    y = "Mean Sentence Length",
-       x = "Year") +
-  theme_minimal()
-
-ggplotly(msle, tooltip = "text")
-```
+# Sentiment Scores and Flesch-Kincaid Scores Change among Presidents that Served Two Terms
 
 
 ```{r}
-# pivoting the data to obtain the presidents that served two terms
-sec_terms <- inaug_speeches_master |>
-  select(president, term, sentiment_avg) |>
-  pivot_wider(names_from = term, 
-              values_from = sentiment_avg, 
-              names_prefix = "") |>
-  rename(first_term = `1st Term`,
-         second_term = `2nd Term`,
-         third_term = `3rd Term`,
-         fourth_term = `4th Term`) |>
-  select(-third_term, -fourth_term) |>
-  rename(sent_first = `first_term`,
-         sent_second = `second_term`) |>
-  filter(!is.na(sent_second))
+#| fig-cap: "Figure 5: Sentiment score change from a president's first term to their second term"
+
+#loading the data
+load("data/sec_terms_sent_fk.Rdata")
 
 
-sec_terms2 <- inaug_speeches_master |>
-  select(president, term, Flesch.Kincaid) |>
-  pivot_wider(names_from = term, 
-              values_from = Flesch.Kincaid, 
-              names_prefix = "") |>
-  rename(first_term = `1st Term`,
-         second_term = `2nd Term`,
-         third_term = `3rd Term`,
-         fourth_term = `4th Term`) |>
-  select(-third_term, -fourth_term) |>
-    rename(fk_first = `first_term`,
-         fk_second = `second_term`) |>
-  filter(!is.na(fk_second))
-
-# joining both datasets
-
-sec_terms_sent_fk <- left_join(sec_terms, sec_terms2, by = "president")
-
-```
-
-
-
-```{r}
-# Inaugural Address Complexity Change from First to Second Term for presidents that served two terms
-q <- ggplot(sec_terms_sent_fk, aes(x = fk_first, y = fk_second,
-                                   text = paste("President:", 
-                                                    president,
-                                                    "<br> 1st Term FK Score:",
-                                                    fk_first,
-                                                "<br> 2nd Term FK Score:",
-                                                fk_second))) +
-  geom_point(aes(color = president, size = 0.1)) + 
-  labs(title = "Inaugural Address Complexity Change from First to Second Term",
-       x = "First Term Flesch-Kincaid Score",
-       y = "Second Term Flesch-Kincaid Score") +
-  theme_minimal()
-
-ggplotly(q, tooltip = "text") |>
-  layout(showlegend = FALSE)
-```
-
-```{r}
 # Inaugural Address Complexity Change from First to Second Term for presidents that served two terms
 q <- ggplot(sec_terms_sent_fk, aes(x = sent_first, y = sent_second,
                                    text = paste("President:", 
@@ -270,7 +144,7 @@ q <- ggplot(sec_terms_sent_fk, aes(x = sent_first, y = sent_second,
                                                 "<br> 2nd Term Sentiment Score:",
                                                 round(sent_second, 3) ) )) +
   geom_point(aes(color = president, size = 0.1)) + 
-  labs(title = "Inaugural Address Sentiment Change from First to Second Term",
+  labs(title = "Inaugural Address Sentiment Score: First Term vs. Second Term",
        x = "First Term Sentiment Avg",
        y = "Second Term Sentiment Avg") +
   theme_minimal()
@@ -279,10 +153,38 @@ q <- ggplot(sec_terms_sent_fk, aes(x = sent_first, y = sent_second,
 ggplotly(q, tooltip = "text") |>
   layout(showlegend = FALSE)
 
+```
+
+
+```{r}
+#| fig-cap: "Figure 6: Flesch-Kincaid score change from a president's first term to their second term"
+# Inaugural Address Complexity Change from First to Second Term for presidents that served two terms
+q <- ggplot(sec_terms_sent_fk, aes(x = fk_first, y = fk_second,
+                                   text = paste("President:", 
+                                                    president,
+                                                    "<br> 1st Term FK Score:",
+                                                    fk_first,
+                                                "<br> 2nd Term FK Score:",
+                                                fk_second))) +
+  geom_point(aes(color = president, size = 0.1)) + 
+  labs(title = "Inaugural Address Complexity: First Term vs. Second Term",
+       x = "First Term Flesch-Kincaid Score",
+       y = "Second Term Flesch-Kincaid Score") +
+  theme_minimal()
+
+# Removing the legend
+ggplotly(q, tooltip = "text") |>
+  layout(showlegend = FALSE)
 
 ```
 
+## Difference Score
+
 ```{r}
+#| fig-cap: "Figure 6: Sentiment score and Flesch-Kincaid Scores change across different terms of presidents that served two terms"
+# loading the data
+load("data/sec_terms_diff.Rdata")
+
 # calculating the differences from the first term to the second term of presidents in terms of both sentiment score and flesch-kincaid scores
 
 sec_terms_diff <- sec_terms_sent_fk |> 
@@ -301,6 +203,77 @@ sec_terms_diff <- sec_terms_sent_fk |>
   kable_styling()
 ```
 
+Figure 5 displays an interactive scatter plot showing presidents', who served two terms, first term sentiment score and second term score. Similarly, Figure 6 shows presidents' first term Flesch-Kincaid score and second term Flesch-Kincaid score. By hovering over each data point, the user can view the president's name as well as their respective scores. Each president is colored differently.
+
+By examining the sentiment and Flesch-Kincaid scores across different terms, we can explore how presidential leadership and political rhetoric evolve after serving a first term. This is important because it may reveal a correlation between a president’s experience and changes in language complexity or emotional tone
+
+
+To see this more clearly, Figure 6 displays a table showing the changes in sentiment scores and Flesch-Kincaid scores for all presidents that served two terms. This will facilitate determining whether their tone became more positive or negative and whether their language became more complex or simpler across different terms.
+
+Sentiment Score difference:
+
+ - **Positive Difference Value**: The second-term inaugural speech was more postive than their first term inaugural speech.
+ - **Negative Difference Value**: The second-term inaugural speech was less postive or more negative than the first term inaugural speech.
+ - **Zero or close to Zero Difference Value**: The sentiment/tone of the inaugural speech remained pretty consistent.
+ 
+ 
+ Flesch-Kincaid Score Difference:
+ 
+ - **Positive Difference Value**: The second-term inaugural speech was more complex than the first term inaugural speech.
+ - **Negative Difference Value**: The second-term inaugural speech was simpler and easier to understand than the first term inaugural speech.
+ - **Zero or close to Zero Difference Value**: The complexity of the inaugural speech remained pretty consistent.
+ 
+ 
+## Mean Sentence Length vs. Sentiment
+ 
+```{r, warning = FALSE}
+#| label: Plotting Mean Sentence Length vs. Sentiment
+#| fig-cap: "Figure 7: Mean sentence length vs. sentiment of presidential inaugural speeches"
+
+load("data/msl_cluster_centers")
+load("data/msl_clustered")
+
+
+# Interactive plot with plotly
+MS_s <- ggplot(msl_clustered, aes(x = meanSentenceLength, y = sentiment_avg)) +
+  geom_point(aes(color = cluster_2, 
+                 text = paste("President:", president,
+                              "<br>Sentiment:", sentiment_avg,
+                              "<br>Mean Sentence Length:", meanSentenceLength,
+                              "<br>Cluster:", cluster_2)), 
+             alpha = 0.6) +
+  geom_label(data = msl_cluster_centers, 
+             aes(label = cluster_2, 
+                 text = paste("Cluster Center:", cluster_2)), 
+             size = 3) +
+  labs(y = "Average Sentiment Score",
+       x = "Mean Sentence Length",
+       title = "Mean Sentence Length vs. Sentiment",
+       caption = "Average Sentiment Score vs Mean Sentence Length",
+       color = "Cluster") +
+  theme_minimal()
+
+ggplotly(MS_s, tooltip = "text")
+
+
+```
+ 
+Figure 7 displays an interactive clustering of presidential inaugural speeches based on the average sentiment score and the mean sentence length. By hovering over each data point, the user can view the president's name, sentiment score, Flesch-Kincaid score and the cluster that president's inaugural speech belongs to.
+ 
+
+**Clusters description:**
+
+**Cluster 1:** Presidents with moderately low mean sentence length have neutral inaugural speeches.
+
+**Cluster 2:** Presidents with high mean sentence length have considerably positive inaugural speeches. 
+
+**Cluster 3:** Presidents with medium mean sentence length have positive inaugural speeches. 
+
+**Cluster 4:** Presidents with the highest mean sentence length have more positive inaugural speeches.
+
+**Cluster 5:** Presidents with low mean sentence length have neutral, but leaning toward negative, inaugural speeches
+
+**Cluster 6:** Presidents with the lowest mean sentence length have neutral inaugural speeches. 
 
 
 
