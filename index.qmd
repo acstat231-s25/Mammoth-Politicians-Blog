@@ -33,11 +33,11 @@ library(tidytext)
 #| fig-align: "center"
 
 
-include_graphics("images/flag.png")
+include_graphics("docs/images/inaugural_speech.png")
 
 ```
 
-*Image source: [Pixabay](https://pixabay.com/vectors/american-flag-usa-flag-symbol-2144392/)*
+*Image source: [The New Yorker](https://www.newyorker.com/magazine/2009/01/12/the-speech)*
 
 # Introduction
 
