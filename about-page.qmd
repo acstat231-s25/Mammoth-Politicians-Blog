@@ -39,15 +39,15 @@ The cleaned data were then tokenized and organized into tidy data containing wor
 ## Tools
 We conducted our analysis in R using several key packages:
 
-- tidyverse for data wrangling and plotting [@tidyverse]
+- **tidyverse** for data wrangling and plotting [@tidyverse]
 
-- tidytext for tokenizing text and extracting bigrams [@tidytext]
+- **tidytext** for tokenizing text and extracting bigrams [@tidytext]
 
-- ggplot2 for static visualizations [@ggplot2]
+- **ggplot2** for static visualizations [@ggplot2]
 
-- plotly for interactive visualizations [@plotly]
+- **plotly** for interactive visualizations [@plotly]
 
-- kableExtra for rendering styled tables [@kableExtra]
+- **kableExtra** for rendering styled tables [@kableExtra]
 
 These packages enabled us to clean, analyze, and visualize the data in an efficient and reproducible manner.
 
