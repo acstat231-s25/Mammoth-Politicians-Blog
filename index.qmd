@@ -318,8 +318,6 @@ p <- ggplot(inaug_speeches_master, aes(y = Flesch,
   scale_x_continuous(breaks = scales:: breaks_width(25), minor_breaks = NULL) +
   labs(y = "Flesch Reading Level",
        x = "Sentiment Score",
-       title = "Inaugural Address Analysis",
-       subtitle = "Flesch Reading Level vs Sentiment Score",
        color = "Cluster") +
   theme_minimal()
 
@@ -378,8 +376,6 @@ p <- ggplot(inaug_speeches_master, aes(y = Flesch.Kincaid, x = sentiment,
   scale_x_continuous(breaks = scales:: breaks_width(25), minor_breaks = NULL) +
   labs(y = "Flesch-Kincaid Grade Level",
        x = "Sentiment Score",
-        title = "Inaguaral Address Analysis",
-       subtitle = "Flesch-Kincaid Grade Level vs Sentiment Score",
        color = "Cluster") +
   theme_minimal()
 
@@ -402,8 +398,7 @@ p <- ggplot(inaug_speeches_master, aes(x = date, y = Flesch.Kincaid))+
   geom_point() +
   geom_smooth( method = "loess") +
   scale_x_continuous(breaks = scales:: breaks_width(25), minor_breaks = NULL) +
-  labs(title = "Inagural Speech Complexity Over Time",
-    y = "Flesch-Kincaid Grade Level",
+  labs(y = "Flesch-Kincaid Grade Level",
        x = "Year") +
   theme_minimal()
 
