@@ -101,7 +101,7 @@ filter(top_biwords_era, era == "1789–1815\nRevolution & Early Republic" ) |>
   scale_x_reordered() +
   labs(
     y = "Proportion of All Bigrams",
-    x = "bigram"
+    x = "Bigram"
   ) +
   theme_minimal() +
   theme(
@@ -125,7 +125,7 @@ filter(top_biwords_era, era == "1816–1865\nExpansion, Reform & Civil War") |>
   scale_x_reordered() +
   labs(
     y = "Proportion of All Bigrams",
-    x = NULL
+    x = "Bigram"
   ) +
   theme_minimal() +
   theme(
@@ -148,7 +148,7 @@ filter(top_biwords_era, era == "1866–1919\nReconstruction to WWI") |>
   scale_x_reordered() +
   labs(
     y = "Proportion of All Bigrams",
-    x = NULL
+    x = "Bigram"
   ) +
   theme_minimal() +
   theme(
@@ -172,7 +172,7 @@ filter(top_biwords_era, era == "1920–1945\nInterwar & WWII") |>
   scale_x_reordered() +
   labs(
     y = "Proportion of All Bigrams",
-    x = NULL
+    x = "Bigram"
   ) +
   theme_minimal() +
   theme(
@@ -195,7 +195,7 @@ filter(top_biwords_era, era == "1946–1969\nPostwar & Civil Rights") |>
   scale_x_reordered() +
   labs(
     y = "Proportion of All Bigrams",
-    x = NULL
+    x = "Bigram"
   ) +
   theme_minimal() +
   theme(
@@ -219,7 +219,7 @@ filter(top_biwords_era, era == "1970–2009\nPost-Watergate to Obama") |>
   scale_x_reordered() +
   labs(
     y = "Proportion of All Bigrams",
-    x = NULL
+    x = "Bigram"
   ) +
   theme_minimal() +
   theme(
@@ -234,7 +234,7 @@ filter(top_biwords_era, era == "1970–2009\nPost-Watergate to Obama") |>
 
 *Bigrams marked with an asterisk appear in more than one era.*
 
-This interactive tabset highlights the most frequently used **bigrams** (two-word phrases) in inaugural speeches across six major historical eras. Users can click through the tabs to view the top bigrams for each era. Frequencies are normalized to account for differences in era and speech length, so bars represent the proportion of all bigrams within that era. For more information on data wrangling, please see the [About page](about-page.qmd).
+This interactive tabset highlights the most frequently used **bigrams** (two-word phrases) in inaugural speeches across six major historical eras. Users can click through the tabs to view the top bigrams for each era. Frequencies are normalized to account for era and speech length, so each bar reflects that bigram’s share of all bigrams within its era. For more information on data wrangling, please see the [About page](about-page.qmd).
 
 Bigrams that appear in multiple eras (marked with an asterisk) suggest recurring rhetorical themes like **“federal government”** or **“foreign nations,"** underscoring the lasting importance of governance and international relations in presidential rhetoric.
 
