@@ -278,5 +278,19 @@
     "title": "About",
     "section": "",
     "text": "Future research could expand the dataset to include more recent inaugural addresses and improve sentiment analysis by incorporating lexicons better suited to political language. Topic modeling could also offer deeper insights into thematic structure. Finally, extending the analysis to other forms of presidential communication, such as State of the Union addresses or campaign speeches, could provide a more comprehensive view of rhetorical trends over time."
+  },
+  {
+    "objectID": "about-page.html",
+    "href": "about-page.html",
+    "title": "About",
+    "section": "",
+    "text": "This blog analyzes U.S. presidential inaugural speeches to track changes in language, sentiment, and readability over time. Using the AFINN sentiment lexicon, Flesch Reading Ease formula, and Flesch-Kincaid formula, we examine how emotional tone and speech complexity have shifted from 1789 to 2009."
+  },
+  {
+    "objectID": "about-page.html#data-collection-wrangling-description",
+    "href": "about-page.html#data-collection-wrangling-description",
+    "title": "About",
+    "section": "Data Collection & Wrangling Description",
+    "text": "Data Collection & Wrangling Description\nThe inaugural speeches were scraped from Avalon Project at Yale Law School.\nAfter scraping, we removed stop words, as well as “fellow”, “citizens”, and “people” due to repetition.\nAdditionally, President Van Buren, President Buchanan, President Garfield, and President Coolidge are missing from the dataset due to unavailable transcripts.\n\nSentiment Analysis\nFor the Sentiment Analysis Over Time, we found the total sentiment score of each speech using the AFINN lexicon. The AFINN Lexicon assigns identified words with a value from -5 to 5, with negative scores representing negative sentiment and positive scores representing positive sentiment. We then calculated average sentiment score = (total sentiment) / (number of words recognized by AFINN). This is the average sentiment score (per word) for each speech, and it accounts for length of speech and allows for fair comparisons across speeches.\nFor the Normalized Bigram Frequency by Era, we defined six eras: “Revolution & Early Republic,” “Expansion, Reform & Civil War,” “Reconstruction to WWI,” “Interwar & WWII,” “Postwar & Civil Rights,” and “Post-Watergate to Obama.” Then, we got the got the top 8 biwords/bigrams by era with total count greater than 2. Finally, we “normalized” the counts by total bigrams per era, to allow for fair comparisons across eras, since not all eras contain the same number of bigrams.\n\n\nReadability Analysis"
   }
 ]
