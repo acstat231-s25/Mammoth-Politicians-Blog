@@ -102,11 +102,10 @@ load("data/top_biwords_era.Rdata")
 
 
 ### Tab 1: 1789–1815 Revolution & Early Republic
-
 ```{r}
 
-filter(top_biwords_era, era == "1789–1815: Early Republic") |>
-  ggplot(aes(x = biword, y = prop, fill = color)) +
+filter(top_biwords_era, era == "1789–1815\nRevolution & Early Republic" ) |>
+  ggplot(aes(x = clean_biword, y = prop, fill = color)) +
   geom_col(show.legend = FALSE) +
   coord_flip() +
   scale_x_reordered() +
@@ -121,11 +120,10 @@ filter(top_biwords_era, era == "1789–1815: Early Republic") |>
 
 
 ### Tab 2: 1816–1865 Expansion, Reform & Civil War
-
 ```{r}
 
-filter(top_biwords_era, era == "1816–1865: Expansion, Reform & Civil War") |>
-  ggplot(aes(x = biword, y = prop, fill = color)) +
+filter(top_biwords_era, era == "1816–1865\nExpansion, Reform & Civil War") |>
+  ggplot(aes(x = clean_biword, y = prop, fill = color)) +
   geom_col(show.legend = FALSE) +
   coord_flip() +
   scale_x_reordered() +
@@ -138,12 +136,12 @@ filter(top_biwords_era, era == "1816–1865: Expansion, Reform & Civil War") |>
 
 ```
 
-### Tab 3: 1866–1919 Reconstruction to WWI
 
+### Tab 3: 1866–1919 Reconstruction to WWI
 ```{r}
 
-filter(top_biwords_era, era == "1866–1919: Reconstruction to WWI") |>
-  ggplot(aes(x = biword, y = prop, fill = color)) +
+filter(top_biwords_era, era == "1866–1919\nReconstruction to WWI") |>
+  ggplot(aes(x = clean_biword, y = prop, fill = color)) +
   geom_col(show.legend = FALSE) +
   coord_flip() +
   scale_x_reordered() +
@@ -159,11 +157,10 @@ filter(top_biwords_era, era == "1866–1919: Reconstruction to WWI") |>
 
 
 ### Tab 4: 1920–1945 Interwar & WWII
-
 ```{r}
 
-filter(top_biwords_era, era == "1920–1945: Interwar & WWII") |>
-  ggplot(aes(x = biword, y = prop, fill = color)) +
+filter(top_biwords_era, era == "1920–1945\nInterwar & WWII") |>
+  ggplot(aes(x = clean_biword, y = prop, fill = color)) +
   geom_col(show.legend = FALSE) +
   coord_flip() +
   scale_x_reordered() +
@@ -178,11 +175,10 @@ filter(top_biwords_era, era == "1920–1945: Interwar & WWII") |>
 
 
 ### Tab 5: 1946–1969 Postwar & Civil Rights
-
 ```{r}
 
-filter(top_biwords_era, era == "1946–1969: Postwar & Civil Rights") |>
-  ggplot(aes(x = biword, y = prop, fill = color)) +
+filter(top_biwords_era, era == "1946–1969\nPostwar & Civil Rights") |>
+  ggplot(aes(x = clean_biword, y = prop, fill = color)) +
   geom_col(show.legend = FALSE) +
   coord_flip() +
   scale_x_reordered() +
@@ -199,8 +195,8 @@ filter(top_biwords_era, era == "1946–1969: Postwar & Civil Rights") |>
 ### Tab 6: 1970–2009 Post-Watergate to Obama
 ```{r}
 
-filter(top_biwords_era, era == "1970–2009: Post-Watergate to Obama") |>
-  ggplot(aes(x = biword, y = prop, fill = color)) +
+filter(top_biwords_era, era == "1970–2009\nPost-Watergate to Obama") |>
+  ggplot(aes(x = clean_biword, y = prop, fill = color)) +
   geom_col(show.legend = FALSE) +
   coord_flip() +
   scale_x_reordered() +
