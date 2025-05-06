@@ -25,11 +25,11 @@ This blog analyzes U.S. presidential inaugural speeches to track changes in lang
 # Methodology
 
 ## Data Collection & Wrangling Description
-The president speeches were scraped from [Avalon Project at Yale Law School](https://avalon.law.yale.edu/subject_menus/inaug.asp). 
+The inaugural speeches were scraped from [Avalon Project at Yale Law School](https://avalon.law.yale.edu/subject_menus/inaug.asp). 
 
 After scraping, we removed stop words, as well as "fellow", "citizens", and "people" due to repetition.
 
-Addition, President Van Buren, President Buchanan, President Garfield, and President Coolidge are missing from the dataset due to unavailable transcripts.
+Additionally, President Van Buren, President Buchanan, President Garfield, and President Coolidge are missing from the dataset due to unavailable transcripts.
 
 ### Sentiment Analysis
 For the **Sentiment Analysis Over Time**, we found the total sentiment score of each speech using the AFINN lexicon. The AFINN Lexicon assigns identified words with a value from -5 to 5, with negative scores representing negative sentiment and positive scores representing positive sentiment. We then calculated average sentiment score = (total sentiment) / (number of words recognized by AFINN). This is the *average sentiment score* (per word) for each speech, and it accounts for length of speech and allows for fair comparisons across speeches. 
