@@ -5,7 +5,7 @@ author:
 - "Rachel Hubley"
 - "Sheryl Solorzano"
 - "Josh Balderas"
-abstract: "Analyzing political rhetoric in inagural addresses made by U.S. presidents from Washington to Obama. Specific methods of analysis include tone, word choice, and readability and how their values have shifted over time."
+abstract: "Analyzing political rhetoric in inaugural addresses made by U.S. presidents from Washington to Obama. Specific methods of analysis include tone, word choice, and readability and how their values have shifted over time."
 bibliography: bib/library.bib
 ---
 
