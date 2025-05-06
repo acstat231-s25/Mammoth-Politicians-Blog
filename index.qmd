@@ -82,7 +82,7 @@ While sentiment has remained **mostly positive** throughout history, we observe 
 
 > Note: Lincoln’s relatively low sentiment score isn’t a reflection of the purpose or urgency of his speech, but likely a result of the AFINN lexicon assigning negative values to many war-related terms. For more detail on how AFINN works and why this matters, see our [About page](about-page.qmd).
 
-While sentiment helps us understand the emotional tone of inaugural speeches, it doesn’t tell us what presidents were actually talking about. To dive deeper into the substance of presidential rhetoric, we analyzed the most common two-word phrases, or bigrams, used across six major historical eras.
+While sentiment helps us understand the emotional tone of inaugural speeches, it doesn’t tell us *what* presidents were actually talking about. To dive deeper into the substance of presidential rhetoric, we analyzed the most common two-word phrases, or bigrams, used across six major historical eras.
 
 # Normalized Bigram Frequency by Era
 ::: {.panel-tabset}
