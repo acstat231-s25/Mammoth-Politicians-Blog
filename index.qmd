@@ -101,7 +101,7 @@ filter(top_biwords_era, era == "1789–1815\nRevolution & Early Republic" ) |>
   scale_x_reordered() +
   labs(
     y = "Proportion of All Bigrams",
-    x = NULL
+    x = "bigram"
   ) +
   theme_minimal() +
   theme(
