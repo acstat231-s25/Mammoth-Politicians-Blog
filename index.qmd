@@ -469,7 +469,7 @@ load("data/top5_highpress.Rdata")
                    background = "#CD2626", color = "white", bold = TRUE)
 ```
 
-Figure 10a displays a table ranking the five presidents with the lowest Flesch-Kincaid Grade Level scores between 1789 and 2009. Similarly, Figure 10b displays a table ranking the five presidents with the highest Flesch-Kincaid Grade Level scores. By looking at the years, we can see how the highest scores correspond to the presidents in the first two centuries while the lowest scores correspond to the presidents in the more recent centuries. This indicates that the language used in inaugural speeches has become simpler and more accessible over time. The tables' feature and other attributes were accomplished from the `kabbleExtra` package by following the documentation provided by CRAN [@kableTable].
+Figure 10a displays a table ranking the five presidents with the lowest Flesch-Kincaid Grade Level scores between 1789 and 2009. Similarly, Figure 10b displays a table ranking the five presidents with the highest Flesch-Kincaid Grade Level scores. By looking at the years, we can see how the highest scores correspond to the presidents in the first two centuries while the lowest scores correspond to the presidents in the more recent centuries. This indicates that the language used in inaugural speeches has become simpler and more accessible over time [@Liberman]. The tables' features were accomplished from the `kabbleExtra` package by following the documentation provided by CRAN [@kableTable] and the colors were taken from the hex color codes documentation [@hexColor]
 
 
 # Sentiment and Flesch-Kincaid Scores Change among Presidents that Served Two Terms
