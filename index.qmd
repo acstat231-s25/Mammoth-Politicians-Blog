@@ -363,7 +363,7 @@ $$
 \text{FKGL} = 0.39 \times \left( \frac{\text{Total Words}}{\text{Total Sentences}} \right) + 11.8 \times \left( \frac{\text{Total Syllables}}{\text{Total Words}} \right) - 15.59
 $$
 
-This score estimates the U.S. school grade level needed to understand the text and corresponds with a U.S. grade level. Due to this formulas construction, the score does not have an upper bound. 
+This score estimates the U.S. school grade level needed to understand the text. Due to this formulas construction, the score does not have an upper bound. 
 
 For example:
 

@@ -37,7 +37,31 @@ For the **Sentiment Analysis Over Time**, we found the total sentiment score of 
 For the **Normalized Bigram Frequency by Era**, we defined six eras: "Revolution & Early Republic," "Expansion, Reform & Civil War," "Reconstruction to WWI," "Interwar & WWII," "Postwar & Civil Rights," and "Post-Watergate to Obama." Then, we got the got the top 8 biwords/bigrams by era with total count greater than 2. Finally, we "normalized" the counts by total bigrams per era, to allow for fair comparisons across eras, since not all eras contain the same number of bigrams.
 
 ### Readability Analysis
+Two measures of readability were used: Flesch Reading Ease (FRE) and the Flesch-Kincaid Grade Level (FKGL)
 
+The FRE measures the "readability" of a text and assigns a score that correlates to a specific level.
+$$
+\text{FRE} = 206.835 - 1.015 \times \left( \frac{\text{Total Words}}{\text{Total Sentences}} \right) - 84.6 \times \left( \frac{\text{Total Syllables}}{\text{Total Words}} \right)
+$$
+
+- **100 - 90**: 5th Grade
+- **90 - 80**: 6th Grade 
+- **80 - 70**: 7th Grade 
+- **70 - 60**: 8th & 9th Grade 
+- **60 - 50**: 10th to 12th Grade 
+- **50 - 30**: College
+- **30 - 10**: College Graduate
+- **10 - 0**: Professional
+
+
+The FKGL measures the U.S. reading level of a text.
+$$
+\text{FKGL} = 0.39 \times \left( \frac{\text{Total Words}}{\text{Total Sentences}} \right) + 11.8 \times \left( \frac{\text{Total Syllables}}{\text{Total Words}} \right) - 15.59
+$$
+For example:
+
+-   A score of **8.0** means the average 8th grader should be able to understand it.
+-   A score of **12.0** suggests it matches a high school senior's reading level.
 
 # Limitations
 This analysis is limited by the availability and consistency of data. Four presidents (Van Buren, Buchanan, Garfield, Coolidge) were excluded due to missing transcripts. Additionally, sentiment analysis using the AFINN lexicon captures only surface-level emotional tone and may not fully reflect rhetorical nuance. Readability metrics like Flesch-Kincaid and FRE focus on sentence structure and word complexity, but not on conceptual difficulty, historical context, or rhetorical devices. Lastly, clustering results may vary depending on the selected number of clusters and do not always yield interpretable groupings.
