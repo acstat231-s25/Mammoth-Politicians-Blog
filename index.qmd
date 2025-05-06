@@ -105,7 +105,7 @@ load("data/top_biwords_era.Rdata")
 ```{r}
 
 filter(top_biwords_era, era == "1789–1815\nRevolution & Early Republic" ) |>
-  ggplot(aes(x = clean_biword, y = prop, fill = color)) +
+  ggplot(aes(x = reorder(clean_biword, prop), y = prop, fill = color)) +
   geom_col(show.legend = FALSE) +
   coord_flip() +
   scale_x_reordered() +
@@ -123,7 +123,7 @@ filter(top_biwords_era, era == "1789–1815\nRevolution & Early Republic" ) |>
 ```{r}
 
 filter(top_biwords_era, era == "1816–1865\nExpansion, Reform & Civil War") |>
-  ggplot(aes(x = clean_biword, y = prop, fill = color)) +
+  ggplot(aes(x = reorder(clean_biword, prop), y = prop, fill = color)) +
   geom_col(show.legend = FALSE) +
   coord_flip() +
   scale_x_reordered() +
@@ -141,7 +141,7 @@ filter(top_biwords_era, era == "1816–1865\nExpansion, Reform & Civil War") |>
 ```{r}
 
 filter(top_biwords_era, era == "1866–1919\nReconstruction to WWI") |>
-  ggplot(aes(x = clean_biword, y = prop, fill = color)) +
+  ggplot(aes(x = reorder(clean_biword, prop), y = prop, fill = color)) +
   geom_col(show.legend = FALSE) +
   coord_flip() +
   scale_x_reordered() +
@@ -160,7 +160,7 @@ filter(top_biwords_era, era == "1866–1919\nReconstruction to WWI") |>
 ```{r}
 
 filter(top_biwords_era, era == "1920–1945\nInterwar & WWII") |>
-  ggplot(aes(x = clean_biword, y = prop, fill = color)) +
+  ggplot(aes(x = reorder(clean_biword, prop), y = prop, fill = color)) +
   geom_col(show.legend = FALSE) +
   coord_flip() +
   scale_x_reordered() +
@@ -178,7 +178,7 @@ filter(top_biwords_era, era == "1920–1945\nInterwar & WWII") |>
 ```{r}
 
 filter(top_biwords_era, era == "1946–1969\nPostwar & Civil Rights") |>
-  ggplot(aes(x = clean_biword, y = prop, fill = color)) +
+  ggplot(aes(x = reorder(clean_biword, prop), y = prop, fill = color)) +
   geom_col(show.legend = FALSE) +
   coord_flip() +
   scale_x_reordered() +
@@ -196,7 +196,7 @@ filter(top_biwords_era, era == "1946–1969\nPostwar & Civil Rights") |>
 ```{r}
 
 filter(top_biwords_era, era == "1970–2009\nPost-Watergate to Obama") |>
-  ggplot(aes(x = clean_biword, y = prop, fill = color)) +
+  ggplot(aes(x = reorder(clean_biword, prop), y = prop, fill = color)) +
   geom_col(show.legend = FALSE) +
   coord_flip() +
   scale_x_reordered() +
