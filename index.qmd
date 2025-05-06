@@ -527,6 +527,10 @@ ggplotly(q, tooltip = "text") |>
 
 ```
 
+Figure 13 displays an interactive scatter plot showing the sentiment scores of U.S. presidents’ first and second inaugural addresses for those who served two terms. Similarly, Figure 6 shows presidents' first term Flesch-Kincaid scores and second term Flesch-Kincaid scores. By hovering over each data point, the user can view the president's name as well as their respective scores. Each president is colored differently.
+
+By examining the sentiment and Flesch-Kincaid scores across different terms, we can explore how presidential leadership and political rhetoric evolve after serving a first term. This is important because it may reveal a correlation between a president’s experience and changes in language complexity or emotional tone
+
 ## Difference Score
 
 ```{r}
@@ -564,9 +568,6 @@ sec_terms_diff <- sec_terms_sent_fk |>
                    background = "#CD2626", color = "white", bold = TRUE)
 ```
 
-Figure 13 displays an interactive scatter plot showing the sentiment scores of U.S. presidents’ first and second inaugural addresses for those who served two terms. Similarly, Figure 6 shows presidents' first term Flesch-Kincaid scores and second term Flesch-Kincaid scores. By hovering over each data point, the user can view the president's name as well as their respective scores. Each president is colored differently.
-
-By examining the sentiment and Flesch-Kincaid scores across different terms, we can explore how presidential leadership and political rhetoric evolve after serving a first term. This is important because it may reveal a correlation between a president’s experience and changes in language complexity or emotional tone
 
 To see this more clearly, Figure 13a displays a table showing the changes in sentiment scores and Flesch-Kincaid scores for all presidents that served two terms. This will facilitate determining whether their tone became more positive or negative and whether their language became more complex or simpler across different terms.
 
