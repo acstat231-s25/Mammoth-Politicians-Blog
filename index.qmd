@@ -64,6 +64,7 @@ While sentiment has remained mostly positive throughout history, we observe nota
 
 
 # Normalized Bigram Frequency by Era
+::: {.panel-tabset}
 
 ```{r}
 #| label: fig-freq-era
@@ -77,28 +78,117 @@ While sentiment has remained mostly positive throughout history, we observe nota
 
 load("data/top_biwords_era.Rdata")
 
-ggplot(top_biwords_era, aes(x = biword, y = prop, fill = color)) +
-  geom_col(show.legend = FALSE) +
-  coord_flip() +
-  facet_wrap(~ era, scales = "free_y") +
-  scale_x_reordered() +
-  scale_fill_identity() +
-  labs(
-    y = "Proportion of All Bigrams",
-    x = NULL
-  ) +
-  theme_minimal() +
-  theme(
-    strip.text = element_text(margin = margin(t = 8, b = 8), size = 16, face = "bold"),
-    axis.title.x = element_text(size = 20),
-    axis.text = element_text(size = 14),
-    plot.title = element_text(size = 18, face = "bold", hjust = 0.5),
-    plot.caption = element_text(size = 10, hjust = 0.5),
-    plot.margin = margin(t = 40, r = 20, b = 10, l = 10)
-  )
-
+# ggplot(top_biwords_era, aes(x = biword, y = prop, fill = color)) +
+#   geom_col(show.legend = FALSE) +
+#   coord_flip() +
+#   facet_wrap(~ era, scales = "free_y") +
+#   scale_x_reordered() +
+#   scale_fill_identity() +
+#   labs(
+#     y = "Proportion of All Bigrams",
+#     x = NULL
+#   ) +
+#   theme_minimal() +
+#   theme(
+#     strip.text = element_text(margin = margin(t = 8, b = 8), size = 16, face = "bold"),
+#     axis.title.x = element_text(size = 20),
+#     axis.text = element_text(size = 16),
+#     plot.title = element_text(size = 18, face = "bold", hjust = 0.5),
+#     plot.caption = element_text(size = 10, hjust = 0.5),
+#     plot.margin = margin(t = 40, r = 20, b = 10, l = 10)
+#   )
 
 ```
+
+
+### Tab 1: 1789–1815 Revolution & Early Republic
+
+```{r}
+
+ggplot(filter(top_biwords_era, era == "1789–1815\nRevolution & Early Republic"),
+       aes(x = reorder(biword, prop), y = prop, fill = color)) +
+  geom_col(show.legend = FALSE) +
+  coord_flip() +
+  scale_fill_identity() +
+  labs(x = NULL, y = "Proportion of All Bigrams") +
+  theme_minimal(base_size = 14)
+
+```
+
+
+### Tab 2: 1816–1865 Expansion, Reform & Civil War
+
+```{r}
+
+ggplot(filter(top_biwords_era, era == "1816–1865\nExpansion, Reform & Civil War"),
+       aes(x = reorder(biword, prop), y = prop, fill = color)) +
+  geom_col(show.legend = FALSE) +
+  coord_flip() +
+  scale_fill_identity() +
+  labs(x = NULL, y = "Proportion of All Bigrams") +
+  theme_minimal(base_size = 14)
+
+```
+
+### Tab 3: 1866–1919 Reconstruction to WWI
+
+```{r}
+
+ggplot(filter(top_biwords_era, era == "1866–1919\nReconstruction to WWI"),
+       aes(x = reorder(biword, prop), y = prop, fill = color)) +
+  geom_col(show.legend = FALSE) +
+  coord_flip() +
+  scale_fill_identity() +
+  labs(x = NULL, y = "Proportion of All Bigrams") +
+  theme_minimal(base_size = 14)
+
+```
+
+
+### Tab 4: 1920–1945 Interwar & WWII
+
+```{r}
+
+ggplot(filter(top_biwords_era, era == "1920–1945\nInterwar & WWII"),
+       aes(x = reorder(biword, prop), y = prop, fill = color)) +
+  geom_col(show.legend = FALSE) +
+  coord_flip() +
+  scale_fill_identity() +
+  labs(x = NULL, y = "Proportion of All Bigrams") +
+  theme_minimal(base_size = 14)
+
+```
+
+
+### Tab 5: 1946–1969 Postwar & Civil Rights
+
+```{r}
+
+ggplot(filter(top_biwords_era, era == "1946–1969\nPostwar & Civil Rights"),
+       aes(x = reorder(biword, prop), y = prop, fill = color)) +
+  geom_col(show.legend = FALSE) +
+  coord_flip() +
+  scale_fill_identity() +
+  labs(x = NULL, y = "Proportion of All Bigrams") +
+  theme_minimal(base_size = 14)
+
+```
+
+
+### Tab 6: 1970–2009 Post-Watergate to Obama
+```{r}
+
+ggplot(filter(top_biwords_era, era == "1970–2009\nPost-Watergate to Obama"),
+       aes(x = reorder(biword, prop), y = prop, fill = color)) +
+  geom_col(show.legend = FALSE) +
+  coord_flip() +
+  scale_fill_identity() +
+  labs(x = NULL, y = "Proportion of All Bigrams") +
+  theme_minimal(base_size = 14)
+
+```
+
+:::
 
 This faceted bar chart highlights the most frequently used bigrams (two-word phrases) in inaugural speeches across six major historical eras. Frequencies are normalized to account for differences in era length and speech length, so bars represent the proportion of all bigrams within that era. Red bars indicate bigrams that appear in multiple eras, suggesting persistent rhetorical themes (such as "federal government" or "foreign nations").
 
