@@ -220,7 +220,7 @@ filter(top_biwords_era, era == "1970–2009\nPost-Watergate to Obama") |>
 
 *Bigrams marked with an asterisk (*) appear in more than one era.
 
-This section highlights the most frequently used bigrams (two-word phrases) in inaugural speeches across six major historical eras. Frequencies are normalized to account for differences in era and speech length, so bars represent the proportion of all bigrams within that era. Bigrams that appear in multiple eras (marked with an asterisk) suggest recurring rhetorical themes like “federal government” or “foreign nations," underscoring the lasting importance of governance and international relations in presidential rhetoric.
+This interactive tabset highlights the most frequently used bigrams (two-word phrases) in inaugural speeches across six major historical eras. Users can click through the tabs to view the top bigrams for each era. Frequencies are normalized to account for differences in era and speech length, so bars represent the proportion of all bigrams within that era. Bigrams that appear in multiple eras (marked with an asterisk) suggest recurring rhetorical themes like “federal government” or “foreign nations," underscoring the lasting importance of governance and international relations in presidential rhetoric.
 
 While some language remains consistent over time, the top bigrams also shift to reflect the issues and values most relevant to each era:
 
