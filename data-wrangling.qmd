@@ -51,39 +51,6 @@ load("raw-data/president-names.Rdata")
 save(inaug_words_sentiment, 
      file = "data/inaug_words_sentiment.Rdata")
 
-# Biword frequency by era
-# Add historical eras
-# bigram_count <- bigram_count |> 
-#   mutate(era = case_when(
-#     date <= 1829 ~ "1789–1829\nEarly Republic",
-#     date <= 1869 ~ "1830–1869\nAntebellum & Civil War",
-#     date <= 1919 ~ "1870–1919\nReconstruction to WWI",
-#     date <= 1969 ~ "1920–1969\nInterwar to Civil Rights",
-#     TRUE         ~ "1970–2009\nPost-Watergate to Obama"
-#   ))
-
-# bigram_count <- bigram_count |> 
-#   mutate(era = case_when(
-#      date <= 1815 ~ "1789–1815\nAmerican Revolution and Early Republic",
-#      date <= 1861 ~ "1816–1861\nExpansion and Reform",
-#      date <= 1877 ~ "1862–1877\nCivil War and Reconstruction",
-#      date <= 1914 ~ "1878–1914\nGilded Age and Progressive Era",
-#      date <= 1929 ~ "1915–1929\nProgressive Era to New Era",
-#      date <= 1945 ~ "1930–1945\nGreat Depression and WWII",
-#      date <= 1968 ~ "1946–1968\nPost War United States"
-#      TRUE         ~ "1969–2009\nPost-Watergate to Obama"
-#    ))
-
-# bigram_count <- bigram_count |> 
-#   mutate(era = case_when(
-#     date <= 1815 ~ "1789–1815\nRevolution & Early Republic",
-#     date <= 1865 ~ "1816–1865\nExpansion, Reform & Civil War",
-#     date <= 1900 ~ "1866–1900\nGilded Age & Progressive Beginnings",
-#     date <= 1945 ~ "1901–1945\nProgressivism, Depression & WWII",
-#     date <= 1969 ~ "1946–1969\nPostwar & Civil Rights",
-#     TRUE         ~ "1970–2009\nPost-Watergate to Obama"
-#   ))
-
 
 bigram_count <- bigram_count |> 
   mutate(era = case_when(
@@ -136,8 +103,6 @@ save(top_biwords_era,
 
 
 ```
-
-
 
 
 
