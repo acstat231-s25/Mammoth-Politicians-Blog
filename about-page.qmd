@@ -36,6 +36,21 @@ The cleaned data were then tokenized and organized into tidy data containing wor
 
 > A full list of references can be found at the end of this blog.
 
+## Tools
+We conducted our analysis in R using several key packages:
+
+- tidyverse for data wrangling and plotting [@tidyverse]
+
+- tidytext for tokenizing text and extracting bigrams [@tidytext]
+
+- ggplot2 for static visualizations [@ggplot2]
+
+- plotly for interactive visualizations [@plotly]
+
+- kableExtra for rendering styled tables [@kableExtra]
+
+These packages enabled us to clean, analyze, and visualize the data in an efficient and reproducible manner.
+
 ### Sentiment Analysis
 For the **Sentiment Analysis Over Time**, we found the total sentiment score of each speech using the AFINN lexicon. The AFINN Lexicon assigns identified words with a value from -5 to 5, with negative scores representing negative sentiment and positive scores representing positive sentiment. We then calculated average sentiment score = (total sentiment) / (number of words recognized by AFINN). This is the *average sentiment score* (per word) for each speech, and it accounts for length of speech and allows for fair comparisons across speeches. 
 
