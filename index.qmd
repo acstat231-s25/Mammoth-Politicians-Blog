@@ -44,7 +44,6 @@ p <- ggplot(inaug_words_sentiment, aes(
   geom_col(show.legend = FALSE) +
   scale_fill_gradient2(low = "#B22234", mid = "#d6d6d6", high = "steelblue", midpoint = 0) + 
   labs(
-    title = "AFINN Sentiment Scores of Inaugural Speeches",
     x = "Year",
     y = "Average Sentiment"
   ) +
@@ -85,7 +84,8 @@ filter(top_biwords_era, era == "1789–1815\nRevolution & Early Republic" ) |>
   ) +
   theme_minimal() +
   theme(
-    axis.text.y = element_text(size = 14)
+    axis.text.y = element_text(size = 14),
+    axis.text.x = element_text(size = 10)
   )
 
 ```
@@ -108,7 +108,8 @@ filter(top_biwords_era, era == "1816–1865\nExpansion, Reform & Civil War") |>
   ) +
   theme_minimal() +
   theme(
-    axis.text.y = element_text(size = 14)
+    axis.text.y = element_text(size = 14),
+    axis.text.x = element_text(size = 10)
   )
 
 ```
@@ -130,7 +131,8 @@ filter(top_biwords_era, era == "1866–1919\nReconstruction to WWI") |>
   ) +
   theme_minimal() +
   theme(
-    axis.text.y = element_text(size = 14)
+    axis.text.y = element_text(size = 14),
+    axis.text.x = element_text(size = 10)
   )
 
 
@@ -153,7 +155,8 @@ filter(top_biwords_era, era == "1920–1945\nInterwar & WWII") |>
   ) +
   theme_minimal() +
   theme(
-    axis.text.y = element_text(size = 14)
+    axis.text.y = element_text(size = 14),
+    axis.text.x = element_text(size = 10)
   )
 
 ```
@@ -175,7 +178,8 @@ filter(top_biwords_era, era == "1946–1969\nPostwar & Civil Rights") |>
   ) +
   theme_minimal() +
   theme(
-    axis.text.y = element_text(size = 14)
+    axis.text.y = element_text(size = 14),
+    axis.text.x = element_text(size = 10)
   )
 
 ```
@@ -198,7 +202,8 @@ filter(top_biwords_era, era == "1970–2009\nPost-Watergate to Obama") |>
   ) +
   theme_minimal() +
   theme(
-    axis.text.y = element_text(size = 14)
+    axis.text.y = element_text(size = 14),
+    axis.text.x = element_text(size = 10)
   )
 
 
