@@ -74,7 +74,9 @@ Figure 13a, **Differences Between Terms**, displays a table showing the calculat
 
 ### Mean Sentence Length
 
-For **Mean Sentence Length over time**, we calculate the number of words per sentence throughout the entire presidential inaugural speech to obtain the mean sentence length. By measuring the mean sentence length of an speech, we can get a rough idea of how complex the speech's sentences are. It is important to note that the mean sentence length measures the complexity of the sentence structure based on its length, but it doesn't measure the complexity of each individual word. Similarly, for **Mean Sentence Length vs. Sentiment**, the mean sentence length was calculated the sentence length of a speech and the sentiment score of each speech was calculated using the AFINN lexicon, as aforementioned.
+For **Mean Sentence Length over time**, we calculate the number of words per sentence throughout the entire presidential inaugural speech to obtain the mean sentence length. By measuring the mean sentence length of an speech, we can get a rough idea of how complex the speech's sentences are. It is important to note that the mean sentence length measures the complexity of the sentence structure based on its length, but it doesn't measure the complexity of each individual word. For **Mean Sentence Length vs. Sentiment**, K-means clustering was used to identify distinct groupings of presidential inaugural speeches based on sentence structure complexity (mean sentence length) and emotional tone (average sentiment score), making it easier to spot patterns in speech style and emotion.
+
+> Note: We didn't include these two plots involing mean sentence length on the main page because it didn't seem as relevant. However, we still thought to show them in the appendix to provide additional insight.  
 
 
 # Limitations
