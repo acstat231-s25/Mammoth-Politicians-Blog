@@ -85,7 +85,7 @@ repeated_biwords <- top_biwords_era |>
 top_biwords_era <- top_biwords_era |> 
   mutate(
     shared = clean_biword %in% repeated_biwords,
-    color = ifelse(shared, "#B22234", "steelblue")
+    clean_biword = ifelse(shared, paste0(clean_biword, "*"), clean_biword)
   )
 
 # 3. Normalize counts by total bigrams per era

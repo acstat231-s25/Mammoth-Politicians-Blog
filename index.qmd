@@ -105,16 +105,18 @@ load("data/top_biwords_era.Rdata")
 ```{r}
 
 filter(top_biwords_era, era == "1789–1815\nRevolution & Early Republic" ) |>
-  ggplot(aes(x = reorder(clean_biword, prop), y = prop, fill = color)) +
-  geom_col(show.legend = FALSE) +
+  ggplot(aes(x = reorder(clean_biword, prop), y = prop)) +
+  geom_col(fill = "steelblue") +
   coord_flip() +
   scale_x_reordered() +
-  scale_fill_identity() +
   labs(
     y = "Proportion of All Bigrams",
     x = NULL
   ) +
-  theme_minimal()
+  theme_minimal() +
+  theme(
+    axis.text.y = element_text(size = 14)
+  )
 
 ```
 
@@ -123,16 +125,18 @@ filter(top_biwords_era, era == "1789–1815\nRevolution & Early Republic" ) |>
 ```{r}
 
 filter(top_biwords_era, era == "1816–1865\nExpansion, Reform & Civil War") |>
-  ggplot(aes(x = reorder(clean_biword, prop), y = prop, fill = color)) +
-  geom_col(show.legend = FALSE) +
+  ggplot(aes(x = reorder(clean_biword, prop), y = prop)) +
+  geom_col(fill = "steelblue") +
   coord_flip() +
   scale_x_reordered() +
-  scale_fill_identity() +
   labs(
     y = "Proportion of All Bigrams",
     x = NULL
   ) +
-  theme_minimal()
+  theme_minimal() +
+  theme(
+    axis.text.y = element_text(size = 14)
+  )
 
 ```
 
@@ -141,16 +145,18 @@ filter(top_biwords_era, era == "1816–1865\nExpansion, Reform & Civil War") |>
 ```{r}
 
 filter(top_biwords_era, era == "1866–1919\nReconstruction to WWI") |>
-  ggplot(aes(x = reorder(clean_biword, prop), y = prop, fill = color)) +
-  geom_col(show.legend = FALSE) +
+  ggplot(aes(x = reorder(clean_biword, prop), y = prop)) +
+  geom_col(fill = "steelblue") +
   coord_flip() +
   scale_x_reordered() +
-  scale_fill_identity() +
   labs(
     y = "Proportion of All Bigrams",
     x = NULL
   ) +
-  theme_minimal()
+  theme_minimal() +
+  theme(
+    axis.text.y = element_text(size = 14)
+  )
 
 
 ```
@@ -160,16 +166,18 @@ filter(top_biwords_era, era == "1866–1919\nReconstruction to WWI") |>
 ```{r}
 
 filter(top_biwords_era, era == "1920–1945\nInterwar & WWII") |>
-  ggplot(aes(x = reorder(clean_biword, prop), y = prop, fill = color)) +
-  geom_col(show.legend = FALSE) +
+  ggplot(aes(x = reorder(clean_biword, prop), y = prop)) +
+  geom_col(fill = "steelblue") +
   coord_flip() +
   scale_x_reordered() +
-  scale_fill_identity() +
   labs(
     y = "Proportion of All Bigrams",
     x = NULL
   ) +
-  theme_minimal()
+  theme_minimal() +
+  theme(
+    axis.text.y = element_text(size = 14)
+  )
 
 ```
 
@@ -178,16 +186,18 @@ filter(top_biwords_era, era == "1920–1945\nInterwar & WWII") |>
 ```{r}
 
 filter(top_biwords_era, era == "1946–1969\nPostwar & Civil Rights") |>
-  ggplot(aes(x = reorder(clean_biword, prop), y = prop, fill = color)) +
-  geom_col(show.legend = FALSE) +
+  ggplot(aes(x = reorder(clean_biword, prop), y = prop)) +
+  geom_col(fill = "steelblue") +
   coord_flip() +
   scale_x_reordered() +
-  scale_fill_identity() +
   labs(
     y = "Proportion of All Bigrams",
     x = NULL
   ) +
-  theme_minimal()
+  theme_minimal() +
+  theme(
+    axis.text.y = element_text(size = 14)
+  )
 
 ```
 
@@ -196,21 +206,25 @@ filter(top_biwords_era, era == "1946–1969\nPostwar & Civil Rights") |>
 ```{r}
 
 filter(top_biwords_era, era == "1970–2009\nPost-Watergate to Obama") |>
-  ggplot(aes(x = reorder(clean_biword, prop), y = prop, fill = color)) +
-  geom_col(show.legend = FALSE) +
+  ggplot(aes(x = reorder(clean_biword, prop), y = prop)) +
+  geom_col(fill = "steelblue") +
   coord_flip() +
   scale_x_reordered() +
-  scale_fill_identity() +
   labs(
     y = "Proportion of All Bigrams",
     x = NULL
   ) +
-  theme_minimal()
+  theme_minimal() +
+  theme(
+    axis.text.y = element_text(size = 14)
+  )
 
 
 ```
 
 :::
+
+*Bigrams marked with an asterisk (*) appear in more than one era.
 
 This faceted bar chart highlights the most frequently used bigrams (two-word phrases) in inaugural speeches across six major historical eras. Frequencies are normalized to account for differences in era length and speech length, so bars represent the proportion of all bigrams within that era. Red bars indicate bigrams that appear in multiple eras, suggesting persistent rhetorical themes (such as "federal government" or "foreign nations").
 
