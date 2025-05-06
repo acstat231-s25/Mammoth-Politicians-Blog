@@ -105,13 +105,17 @@ load("data/top_biwords_era.Rdata")
 
 ```{r}
 
-ggplot(filter(top_biwords_era, era == "1789–1815\nRevolution & Early Republic"),
-       aes(x = reorder(biword, prop), y = prop, fill = color)) +
+filter(top_biwords_era, era == "1789–1815: Early Republic") |>
+  ggplot(aes(x = biword, y = prop, fill = color)) +
   geom_col(show.legend = FALSE) +
   coord_flip() +
+  scale_x_reordered() +
   scale_fill_identity() +
-  labs(x = NULL, y = "Proportion of All Bigrams") +
-  theme_minimal(base_size = 14)
+  labs(
+    y = "Proportion of All Bigrams",
+    x = NULL
+  ) +
+  theme_minimal()
 
 ```
 
@@ -120,13 +124,17 @@ ggplot(filter(top_biwords_era, era == "1789–1815\nRevolution & Early Republic"
 
 ```{r}
 
-ggplot(filter(top_biwords_era, era == "1816–1865\nExpansion, Reform & Civil War"),
-       aes(x = reorder(biword, prop), y = prop, fill = color)) +
+filter(top_biwords_era, era == "1816–1865: Expansion, Reform & Civil War") |>
+  ggplot(aes(x = biword, y = prop, fill = color)) +
   geom_col(show.legend = FALSE) +
   coord_flip() +
+  scale_x_reordered() +
   scale_fill_identity() +
-  labs(x = NULL, y = "Proportion of All Bigrams") +
-  theme_minimal(base_size = 14)
+  labs(
+    y = "Proportion of All Bigrams",
+    x = NULL
+  ) +
+  theme_minimal()
 
 ```
 
@@ -134,13 +142,18 @@ ggplot(filter(top_biwords_era, era == "1816–1865\nExpansion, Reform & Civil Wa
 
 ```{r}
 
-ggplot(filter(top_biwords_era, era == "1866–1919\nReconstruction to WWI"),
-       aes(x = reorder(biword, prop), y = prop, fill = color)) +
+filter(top_biwords_era, era == "1866–1919: Reconstruction to WWI") |>
+  ggplot(aes(x = biword, y = prop, fill = color)) +
   geom_col(show.legend = FALSE) +
   coord_flip() +
+  scale_x_reordered() +
   scale_fill_identity() +
-  labs(x = NULL, y = "Proportion of All Bigrams") +
-  theme_minimal(base_size = 14)
+  labs(
+    y = "Proportion of All Bigrams",
+    x = NULL
+  ) +
+  theme_minimal()
+
 
 ```
 
@@ -149,13 +162,17 @@ ggplot(filter(top_biwords_era, era == "1866–1919\nReconstruction to WWI"),
 
 ```{r}
 
-ggplot(filter(top_biwords_era, era == "1920–1945\nInterwar & WWII"),
-       aes(x = reorder(biword, prop), y = prop, fill = color)) +
+filter(top_biwords_era, era == "1920–1945: Interwar & WWII") |>
+  ggplot(aes(x = biword, y = prop, fill = color)) +
   geom_col(show.legend = FALSE) +
   coord_flip() +
+  scale_x_reordered() +
   scale_fill_identity() +
-  labs(x = NULL, y = "Proportion of All Bigrams") +
-  theme_minimal(base_size = 14)
+  labs(
+    y = "Proportion of All Bigrams",
+    x = NULL
+  ) +
+  theme_minimal()
 
 ```
 
@@ -164,13 +181,17 @@ ggplot(filter(top_biwords_era, era == "1920–1945\nInterwar & WWII"),
 
 ```{r}
 
-ggplot(filter(top_biwords_era, era == "1946–1969\nPostwar & Civil Rights"),
-       aes(x = reorder(biword, prop), y = prop, fill = color)) +
+filter(top_biwords_era, era == "1946–1969: Postwar & Civil Rights") |>
+  ggplot(aes(x = biword, y = prop, fill = color)) +
   geom_col(show.legend = FALSE) +
   coord_flip() +
+  scale_x_reordered() +
   scale_fill_identity() +
-  labs(x = NULL, y = "Proportion of All Bigrams") +
-  theme_minimal(base_size = 14)
+  labs(
+    y = "Proportion of All Bigrams",
+    x = NULL
+  ) +
+  theme_minimal()
 
 ```
 
@@ -178,13 +199,18 @@ ggplot(filter(top_biwords_era, era == "1946–1969\nPostwar & Civil Rights"),
 ### Tab 6: 1970–2009 Post-Watergate to Obama
 ```{r}
 
-ggplot(filter(top_biwords_era, era == "1970–2009\nPost-Watergate to Obama"),
-       aes(x = reorder(biword, prop), y = prop, fill = color)) +
+filter(top_biwords_era, era == "1970–2009: Post-Watergate to Obama") |>
+  ggplot(aes(x = biword, y = prop, fill = color)) +
   geom_col(show.legend = FALSE) +
   coord_flip() +
+  scale_x_reordered() +
   scale_fill_identity() +
-  labs(x = NULL, y = "Proportion of All Bigrams") +
-  theme_minimal(base_size = 14)
+  labs(
+    y = "Proportion of All Bigrams",
+    x = NULL
+  ) +
+  theme_minimal()
+
 
 ```
 
