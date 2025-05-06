@@ -72,7 +72,7 @@ For example:
 
 In the **Sentiment and Flesch-Kincaid Scores Change among Presidents that Served Two Terms** section, Figure 14 compares sentiment scores between first and second term speeches and Figure 15 compares the Flesch-Kincaid scores between first and second term.
 
-Figure 13a, **Differences Between Terms**, displays a table showing the calculated differences of both sentiment scores and Flesch-Kincaid scores, allowing for easier comparison across presidents. Positive and negative differences are interpreted to assess whether emotional tone became more positive, negative or neutral and language complexity increased, decreased, or stayed consistent
+Figure 16, **Differences Between Terms**, displays a table showing the calculated differences of both sentiment scores and Flesch-Kincaid scores, allowing for easier comparison across presidents. Positive and negative differences are interpreted to assess whether emotional tone became more positive, negative or neutral and language complexity increased, decreased, or stayed consistent
 
 ### Mean Sentence Length
 
