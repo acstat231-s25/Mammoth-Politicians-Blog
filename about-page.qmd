@@ -28,7 +28,7 @@ This blog analyzes U.S. presidential inaugural speeches to track changes in lang
 # Methodology
 
 ## Data Collection & Wrangling
-This project analyzes the full text of U.S. presidential inaugural addresses from 1789 to 2009. The speeches were collected from the [Avalon Project at Yale Law School](https://avalon.law.yale.edu/subject_menus/inaug.asp), a publicly accessible site of historical, legal, and political documents. We scraped the website in March 2025 as part of a previous group project. The Avalon Project does not indicate when each transcript was digitized, but it is maintained by Yale Law School as an educational resource.
+This project analyzes the full text of U.S. presidential inaugural addresses from 1789 to 2009. The speeches were collected from the [Avalon Project at Yale Law School](https://avalon.law.yale.edu/subject_menus/inaug.asp), a publicly accessible site of historical, legal, and political documents [@Avalon]. We scraped the website in March 2025 as part of a previous group project. The Avalon Project does not indicate when each transcript was digitized, but it is maintained by Yale Law School as an educational resource.
 
 Each speech was stored as plain text and processed into a tidy format for text analysis. We removed standard stop words (e.g., "the", "and", "is") using the stop_words list from the tidytext package. We also removed highly repetitive words like "fellow", "citizens", and "people", which appeared across nearly all speeches and contributed little variation to sentiment or bigram frequency.
 
