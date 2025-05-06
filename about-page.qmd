@@ -65,6 +65,11 @@ For example:
 
 ###Sentiment and Flesch-Kincaid Scores Difference among Presidents that Served Two Terms
 
+For Figure 12 and Figure 13 in the **Sentiment and Flesch-Kincaid Scores Change among Presidents that Served Two Terms** section, 
+
+
+Figure 13a, **Differences Between Terms**, displays a table showing the calculated differences of both sentiment scores and Flesch-Kincaid scores, allowing for easier comparison across presidents. Positive and negative differences are interpreted to assess whether sentiment and language complexity increased, decreased, or stayed consistent
+
 
 # Limitations
 This analysis is limited by the availability and consistency of data. Four presidents (Van Buren, Buchanan, Garfield, Coolidge) were excluded due to missing transcripts. Additionally, sentiment analysis using the AFINN lexicon captures only surface-level emotional tone and may not fully reflect rhetorical nuance. Readability metrics like Flesch-Kincaid and FRE focus on sentence structure and word complexity, but not on conceptual difficulty, historical context, or rhetorical devices. Lastly, clustering results may vary depending on the selected number of clusters and do not always yield interpretable groupings.
