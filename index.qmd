@@ -245,6 +245,7 @@ To get a better understanding of the relationship between the Flesch Reading Eas
 #| label: FKGL vs FRE
 #| fig-cap: "Figure 12: This chart displays the inverse relationship between the Flesch-Kincaid and Flesch Reading Ease formulas."
 
+load("data/inaugural_speeches_master.Rdata")
 a <- ggplot(inaug_speeches_master, aes(x = Flesch, y = Flesch.Kincaid)) +
   geom_point() +
   geom_smooth( method = "loess", se = TRUE) +
