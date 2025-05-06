@@ -25,6 +25,7 @@ library(plotly)
 library(tidytext)
 
 ```
+
 # Introduction
 
 From calls for unity to speeches delivered in times of crisis, presidential inaugural addresses show how leaders shape their language to reflect the moment. In this project, we explore how tone, word choice, and readability have shifted from Washington to Obama using sentiment analysis (AFINN) and readability tools like Flesch-Kincaid. We're interested in the patterns — how presidential speeches and political rhetoric have changed over time, and what that says about leadership, politics, and the public they’re speaking to. 
