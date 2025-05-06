@@ -62,6 +62,7 @@ While sentiment has remained mostly positive throughout history, we observe nota
 
 > Note: Lincoln’s relatively low sentiment score isn’t a reflection of the purpose or urgency of his speech, but likely a result of the AFINN lexicon assigning negative values to many war-related terms. For more detail on how AFINN works and why this matters, see our [About page](about-page.qmd).
 
+While sentiment helps us understand the emotional tone of inaugural speeches, it doesn’t tell us what presidents were actually talking about. To dive deeper into the substance of presidential rhetoric, we analyzed the most common two-word phrases, or bigrams, used across six major historical eras.
 
 # Normalized Bigram Frequency by Era
 ::: {.panel-tabset}
@@ -103,6 +104,8 @@ load("data/top_biwords_era.Rdata")
 
 ### Tab 1: 1789–1815 Revolution & Early Republic
 ```{r}
+#| label: fig-freq-era-1
+#| fig-cap: "Figure 2a: Top Bigrams in 1789-1815 Inaugural Speeches."
 
 filter(top_biwords_era, era == "1789–1815\nRevolution & Early Republic" ) |>
   ggplot(aes(x = reorder(clean_biword, prop), y = prop)) +
@@ -123,6 +126,9 @@ filter(top_biwords_era, era == "1789–1815\nRevolution & Early Republic" ) |>
 
 ### Tab 2: 1816–1865 Expansion, Reform & Civil War
 ```{r}
+#| label: fig-freq-era-2
+#| fig-cap: "Figure 2b: Top Bigrams in 1816–1865 Inaugural Speeches."
+
 
 filter(top_biwords_era, era == "1816–1865\nExpansion, Reform & Civil War") |>
   ggplot(aes(x = reorder(clean_biword, prop), y = prop)) +
@@ -143,6 +149,8 @@ filter(top_biwords_era, era == "1816–1865\nExpansion, Reform & Civil War") |>
 
 ### Tab 3: 1866–1919 Reconstruction to WWI
 ```{r}
+#| label: fig-freq-era-3
+#| fig-cap: "Figure 2c: Top Bigrams in 1866-1919 Inaugural Speeches."
 
 filter(top_biwords_era, era == "1866–1919\nReconstruction to WWI") |>
   ggplot(aes(x = reorder(clean_biword, prop), y = prop)) +
@@ -164,6 +172,8 @@ filter(top_biwords_era, era == "1866–1919\nReconstruction to WWI") |>
 
 ### Tab 4: 1920–1945 Interwar & WWII
 ```{r}
+#| label: fig-freq-era-4
+#| fig-cap: "Figure 2d: Top Bigrams in 1920-1945 Inaugural Speeches."
 
 filter(top_biwords_era, era == "1920–1945\nInterwar & WWII") |>
   ggplot(aes(x = reorder(clean_biword, prop), y = prop)) +
@@ -184,6 +194,8 @@ filter(top_biwords_era, era == "1920–1945\nInterwar & WWII") |>
 
 ### Tab 5: 1946–1969 Postwar & Civil Rights
 ```{r}
+#| label: fig-freq-era-5
+#| fig-cap: "Figure 2e: Top Bigrams in 1946-1969 Inaugural Speeches."
 
 filter(top_biwords_era, era == "1946–1969\nPostwar & Civil Rights") |>
   ggplot(aes(x = reorder(clean_biword, prop), y = prop)) +
@@ -204,6 +216,9 @@ filter(top_biwords_era, era == "1946–1969\nPostwar & Civil Rights") |>
 
 ### Tab 6: 1970–2009 Post-Watergate to Obama
 ```{r}
+#| label: fig-freq-era-6
+#| fig-cap: "Figure 2f: Top Bigrams in 1970-2009 Inaugural Speeches."
+
 
 filter(top_biwords_era, era == "1970–2009\nPost-Watergate to Obama") |>
   ggplot(aes(x = reorder(clean_biword, prop), y = prop)) +
