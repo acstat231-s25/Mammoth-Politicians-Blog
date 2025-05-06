@@ -229,7 +229,7 @@ A key trend revealed here is how certain bigrams like “federal government” a
 
 These changes underscore how presidential language not only reflects shared values, but also adapts to shifting historical and political priorities.
 
-Because each panel shows a different historical era, bars needed to be reordered within each facet. This was accomplished using reorder_within() from the tidytext package, following the solution described by Julia Silge [@reorderwithin]. Facet label formatting was adapted using advice from Kassambara [@facetlabels], and the scales = "free_y" setting was enabled to allow y-axes to scale independently [@free_scales].
+Because each panel shows a different historical era, bars needed to be reordered within each facet. This was accomplished using reorder_within() from the `tidytext` package, following the solution described by Julia Silge [@reorderwithin]. Facet label formatting was adapted using advice from Kassambara [@facetlabels], and the scales = "free_y" setting was enabled to allow y-axes to scale independently [@free_scales].
 
 
 # Readability Analysis
