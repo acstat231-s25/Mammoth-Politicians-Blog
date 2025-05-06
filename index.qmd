@@ -234,8 +234,6 @@ Because each panel shows a different historical era, bars needed to be reordered
 
 # Readability Analysis
 
-## Introduction
-
 Readability analysis helps us understand how easy (or difficult) a text is to read. Two common measures are the Flesch Reading Ease (FRE) and Flesch-Kincaid Grade Level (FKGL)
 
 ## Understanding the relationship: Flesch Reading Ease (FRE) & Flesch-Kincaid Grading Level (FKGL)
