@@ -253,6 +253,42 @@ Figure 8 displays an interactive clustering of presidential inaugural speeches b
 
 Readability analysis helps us understand how easy (or difficult) a text is to read. Two common measures are the Flesch Reading Ease (FRE) and Flesch-Kincaid Grade Level (FKGL)
 
+## Understanding the relationship: Flesch Reading Ease (FRE) & Flesch-Kincaid Grading Level (FKGL)
+
+To get a better understanding of the relationship between the Flesch Reading Ease (FRE) and the Flesch-Kincaid Grade Level (FKGL), it is helpful to plot them together on a scatterplot. 
+
+```{r}
+#| label: FKGL vs FRE
+#| fig-cap: "Figure 12: This chart displays the inverse relationship between the Flesch-Kincaid and Flesch Reading Ease formulas."
+
+a <- ggplot(inaug_speeches_master, aes(x = Flesch, y = Flesch.Kincaid)) +
+  geom_point() +
+  geom_smooth( method = "loess", se = TRUE) +
+  scale_x_continuous(breaks = scales:: breaks_width(10), minor_breaks = NULL) +
+  labs(title = "FRE vs FKGL",
+    y = "Flesch-Kincaid Grade Level",
+       x = "Flesch Reading Ease") +
+  theme_minimal()
+
+
+ggplotly(a, tooltip = "text")
+
+```
+
+
+The FRE and the FKGL have an inverse relationship because they are based on similar textual features—sentence length and word complexity—but use opposing scales to express readability.
+
+
+$$
+\text{FRE} = 206.835 - 1.015 \times \left( \frac{\text{Total Words}}{\text{Total Sentences}} \right) - 84.6 \times \left( \frac{\text{Total Syllables}}{\text{Total Words}} \right)
+$$
+$$
+\text{FKGL} = 0.39 \times \left( \frac{\text{Total Words}}{\text{Total Sentences}} \right) + 11.8 \times \left( \frac{\text{Total Syllables}}{\text{Total Words}} \right) - 15.59
+$$
+
+As sentence length and syllables per word increase, FRE scores decrease (the text becomes harder to read), while FKGL scores increase (the grade level rises). This opposing behavior is why they have an inverse relationship: when one goes up, the other tends to go down.
+
+
 ## Flesch Reading Ease (FRE)
 
 $$
@@ -273,9 +309,9 @@ This score rates text on a 0 to 100 scale. A higher score means the text is easi
 
 ### FRE vs. Sentiment
 
-To better understand the relationship between writing style and emotional tone in the presidential inaugural addresses, we compare the Flesch Reading Ease scores with sentiment scores calculated for each speech.
+To better understand the relationship between writing style and emotional tone in the presidential inaugural addresses, we compare the FRE scores with sentiment scores calculated for each speech.
 
-The Flesch score measures how easy a text is to read, while the sentiment score captures the overall positivity or negativity of the language. By analyzing these two metrics together, we can apply clustering techniques to group speeches with similar readability and sentiment profiles. These clusters help us identify distinct subgroups of inaugural addresses --- for example, groups of speeches that are both highly readable and optimistic, or more complex and somber --- offering new insights into how presidents have tailored their language to the moment in history.
+The FRE measures how easy a text is to read, while the sentiment score captures the overall positivity or negativity of the language. By analyzing these two metrics together, we can apply clustering techniques to group speeches with similar readability and sentiment profiles. These clusters help us identify distinct subgroups of inaugural addresses --- for example, groups of speeches that are both highly readable and optimistic, or more complex and somber --- offering new insights into how presidents have tailored their language to the moment in history.
 
 ```{r}
 #| label: Plotting-Flesch_Sentiment
@@ -336,7 +372,7 @@ For example:
 
 ### FKGL vs. Sentiment
 
-In addition to examining readability through the Flesch score, we also analyze the Flesch-Kincaid Grade Level (FKGL) in relation to sentiment scores for each inaugural address. The FKGL estimates the U.S. school grade level required to understand a speech, providing a direct measure of textual complexity. By comparing FKGL to sentiment scores, we explore how the sophistication of presidential language interacts with the emotional tone conveyed. Using clustering methods to group speeches based on their grade level and sentiment characteristic offering a nuanced view of how different presidents have communicated their visions to the nation.
+In addition to examining readability through the Flesch score, we also analyze the FKGL in relation to sentiment scores for each inaugural address. The FKGL estimates the U.S. school grade level required to understand a speech, providing a direct measure of textual complexity. By comparing FKGL to sentiment scores, we explore how the sophistication of presidential language interacts with the emotional tone conveyed. Using clustering methods to group speeches based on their grade level and sentiment characteristic offering a nuanced view of how different presidents have communicated their visions to the nation.
 
 ```{r}
 #| label: Plotting-Flesch-Kincaid-vs-Sentiment
@@ -364,13 +400,13 @@ p <- ggplot(inaug_speeches_master, aes(y = Flesch.Kincaid, x = sentiment,
 ggplotly(p, tooltip = "text")
 ```
 
-In this example, clustering analysis using Flesch-Kincaid vs Sentiment values does not yeild any meaningful results. Clustering appears to be driven entirely by the sentiment axis and form vertical "layers" that reflect sentiment values alone. 
+In this example, clustering analysis using FKGL vs Sentiment values does not yield any meaningful results. Clustering appears to be driven entirely by the sentiment axis and form vertical "layers" that reflect sentiment values alone. 
 
 This suggests that the algorithm is not detecting any significant structure in the Flesch-Kincaid axis, and as a result, the clustering lacks any interpretive value.
 
 ### FKGL vs. Time
 
-We also examine the relationship between the Flesch-Kincaid Grade Level (FKGL) and time to track how the complexity of presidential inaugural speeches has changed. Overall, we find a clear trend that speech complexity has decreased over time, with more recent presidents using simpler, more accessible language compared to earlier eras.
+We also examine the relationship between the FKGL and time to track how the complexity of presidential inaugural speeches has changed. Overall, we find a clear trend that speech complexity has decreased over time, with more recent presidents using simpler, more accessible language compared to earlier eras.
 
 ```{r}
 #| label: Flesh-Kincaid-over-time
@@ -392,7 +428,6 @@ ggplotly(p, tooltip = "text")
 Possible explanations include:
 
 -   Initially, the audience of the inaugural speech was composed of congressional leaders.
--   The first inaugural speech to a public crowd was by James Monroe in 1817.
 -   The growing emphasis on mass communication, as presidents began speaking to a broader and more diverse audience.
 -   The influence of modern media, which favors shorter, clearer messaging that resonates quickly with the public.
 
@@ -449,40 +484,6 @@ load("data/top5_highpress.Rdata")
 ```
 
 Figure 10a displays a table ranking the five presidents with the lowest Flesch-Kincaid Grade Level scores between 1789 and 2009. Similarly, Figure 10b displays a table ranking the five presidents with the highest Flesch-Kincaid Grade Level scores. By looking at the years, we can see how the highest scores correspond to the presidents in the first two centuries while the lowest scores correspond to the presidents in the more recent centuries. This indicates that the language used in inaugural speeches has become simpler and more accessible over time. 
-
-## Understanding the relationship between: Flesch Reading Ease (FRE) & Flesch-Kincaid Grading Level (FKGL)
-
-To get a better understanding of the relationship between the Flesch Reading Ease (FRE) and the Flesch-Kincaid Grade Level (FKGL), it is helpful to plot them together on a scatterplot. 
-
-```{r}
-#| label: FKGL vs FRE
-#| fig-cap: "Figure 12: This chart displays the inverse relationship between the Flesch-Kincaid and Flesch Reading Ease formulas."
-
-a <- ggplot(inaug_speeches_master, aes(x = Flesch, y = Flesch.Kincaid)) +
-  geom_point() +
-  geom_smooth( method = "loess", se = TRUE) +
-  scale_x_continuous(breaks = scales:: breaks_width(10), minor_breaks = NULL) +
-  labs(title = "FRE vs FKGL",
-    y = "Flesch-Kincaid Grade Level",
-       x = "Flesch Reading Ease") +
-  theme_minimal()
-
-
-ggplotly(a, tooltip = "text")
-
-```
-
-
-The Flesch Reading Ease (FRE) and the Flesch-Kincaid Grade Level (FKGL) have an inverse relationship because they are based on similar textual features—sentence length and word complexity—but use opposing scales to express readability.
-
-
-$$
-\text{FRE} = 206.835 - 1.015 \times \left( \frac{\text{Total Words}}{\text{Total Sentences}} \right) - 84.6 \times \left( \frac{\text{Total Syllables}}{\text{Total Words}} \right)
-$$
-$$
-\text{FKGL} = 0.39 \times \left( \frac{\text{Total Words}}{\text{Total Sentences}} \right) + 11.8 \times \left( \frac{\text{Total Syllables}}{\text{Total Words}} \right) - 15.59
-$$
-As sentence length and syllables per word increase, FRE scores decrease (the text becomes harder to read), while FKGL scores increase (the grade level rises). This opposing behavior is why they have an inverse relationship: when one goes up, the other tends to go down.
 
 
 # Sentiment and Flesch-Kincaid Scores Change among Presidents that Served Two Terms
