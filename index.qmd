@@ -67,7 +67,7 @@ While sentiment has remained mostly positive throughout history, we observe nota
 
 ```{r}
 #| label: fig-freq-era
-#| fig-cap: "Top Biwords in Inaugural Speeches by Era."
+#| fig-cap: "Top Bigrams in Inaugural Speeches by Era."
 #| layout-ncol: 1
 #| fig-width: 17
 #| fig-height: 10
