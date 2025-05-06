@@ -78,7 +78,7 @@ To assess how inaugural speeches have changed over time, we first looked at aver
 
 Bars are color-coded by sentiment strength, with blue tones representing more positive language and red tones more negative sentiment. This helps visualize how the emotional tone of inaugural speeches has shifted over time.
 
-While sentiment has remained **mostly positive** throughout history, we observe notably *lower* average sentiment during the mid-19th century, especially surrounding the Civil War era under Abraham Lincoln. A brief dip also appears in the early 20th century. More recently, sentiment *peaked* with *George H. W. Bush’s 1989* inaugural address — the highest score in the dataset. Since then, sentiment scores have **generally declined**, suggesting a rhetorical **shift toward more neutral or somber tones in modern speeches.**
+While sentiment has remained **mostly positive** throughout history, we observe notably *lower* average sentiment during the mid-19th century, especially surrounding the Civil War era under Abraham Lincoln. A brief dip also appears in the early 20th century. More recently, sentiment *peaked* with *George H. W. Bush’s 1989* inaugural address — the highest score in the dataset. Since then, sentiment scores have **generally declined**, suggesting a rhetorical *shift toward more neutral or somber tones in modern speeches.*
 
 > Note: Lincoln’s relatively low sentiment score isn’t a reflection of the purpose or urgency of his speech, but likely a result of the AFINN lexicon assigning negative values to many war-related terms. For more detail on how AFINN works and why this matters, see our [About page](about-page.qmd).
 
@@ -234,13 +234,11 @@ filter(top_biwords_era, era == "1970–2009\nPost-Watergate to Obama") |>
 
 *Bigrams marked with an asterisk appear in more than one era.*
 
-This interactive tabset highlights the most frequently used bigrams (two-word phrases) in inaugural speeches across six major historical eras. Users can click through the tabs to view the top bigrams for each era. Frequencies are normalized to account for differences in era and speech length, so bars represent the proportion of all bigrams within that era. For more information on data wrangling, please see the [About page](about-page.qmd).
+This interactive tabset highlights the most frequently used **bigrams** (two-word phrases) in inaugural speeches across six major historical eras. Users can click through the tabs to view the top bigrams for each era. Frequencies are normalized to account for differences in era and speech length, so bars represent the proportion of all bigrams within that era. For more information on data wrangling, please see the [About page](about-page.qmd).
 
 Bigrams that appear in multiple eras (marked with an asterisk) suggest recurring rhetorical themes like **“federal government”** or **“foreign nations,"** underscoring the lasting importance of governance and international relations in presidential rhetoric.
 
 While *some language remains consistent* over time, the top bigrams also *shift* to reflect the issues and values most relevant to each era:
-
-> Key Insight: While some themes persist, each era’s top bigrams reveal shifting national concerns, from Enlightenment ideals to Cold War tensions and modern appeals to faith.
 
 - In the **Revolution & Early Republic era (1789–1815)**, frequent bigrams like "foreign nations" and "public opinion" reflect the new republic’s focus on *diplomacy* and *democratic legitimacy*. The appearance of "human nature" and "human mind" reflect *Enlightenment ideals*, emphasizing reason, morality, and the philosophical foundations of governance.
 
@@ -255,6 +253,8 @@ While *some language remains consistent* over time, the top bigrams also *shift*
 - During the **Post-Watergate to Obama era (1970–2009)**, bigrams like "nuclear weapons", "god bless", and "vice president" suggest a shift toward *national security concerns*, as well with *moral and religious appeals* in presidential rhetoric.
 
 These changes underscore how presidential language not only reflects shared values, but also adapts to shifting historical and political priorities.
+
+> TL;DR: While some themes persist, each era’s top bigrams reveal shifting national concerns, from Enlightenment ideals to Cold War tensions and modern appeals to faith.
 
 
 # Readability Analysis
