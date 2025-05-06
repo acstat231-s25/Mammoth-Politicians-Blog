@@ -91,8 +91,8 @@ Future research could expand the dataset to include more recent inaugural addres
 # Mean Sentence Length over time 
 
 ```{r}
-#| label: Mean Sentence Length over time
-#| fig-cap: "Figure 14: Mean sentence length of each president's inaugural speech over time"
+#| label: fig-Mean-Sentence-Length-over-time
+#| fig-cap: "Mean sentence length of each president's inaugural speech over time"
 
 # loading the data
 load("data/inaug_speeches_master")
@@ -129,8 +129,8 @@ The first figure uses an interactive plotly chart to allow readers to explore th
 # Mean Sentence Length vs. Sentiment
  
 ```{r, warning = FALSE}
-#| label: Plotting Mean Sentence Length vs. Sentiment
-#| fig-cap: "Figure 15: Mean sentence length vs. sentiment of presidential inaugural speeches"
+#| label: fig-Mean-Sentence-Length-vs.-Sentiment
+#| fig-cap: "Mean sentence length vs. sentiment of presidential inaugural speeches"
 
 load("data/msl_cluster_centers")
 load("data/msl_clustered")
@@ -178,14 +178,5 @@ Figure 15 displays an interactive clustering of presidential inaugural speeches 
 **Cluster 5:** Presidents with low mean sentence length have neutral, but leaning toward negative, inaugural speeches
 
 **Cluster 6:** Presidents with the lowest mean sentence length have neutral inaugural speeches. 
-
-
-
-
-```{r}
-#| label: fig-sentiment
-#| fig-cap: "AFINN Sentiment Scores of Inaugural Speeches"
-
-```
 
 

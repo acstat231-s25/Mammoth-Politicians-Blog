@@ -67,45 +67,12 @@ While sentiment helps us understand the emotional tone of inaugural speeches, it
 # Normalized Bigram Frequency by Era
 ::: {.panel-tabset}
 
-```{r}
-#| label: fig-freq-era
-#| fig-cap: "Top Bigrams in Inaugural Speeches by Era."
-#| layout-ncol: 1
-#| fig-width: 17
-#| fig-height: 10
-#| out-width: 97%
-#| fig-align: center
-
-
-load("data/top_biwords_era.Rdata")
-
-# ggplot(top_biwords_era, aes(x = biword, y = prop, fill = color)) +
-#   geom_col(show.legend = FALSE) +
-#   coord_flip() +
-#   facet_wrap(~ era, scales = "free_y") +
-#   scale_x_reordered() +
-#   scale_fill_identity() +
-#   labs(
-#     y = "Proportion of All Bigrams",
-#     x = NULL
-#   ) +
-#   theme_minimal() +
-#   theme(
-#     strip.text = element_text(margin = margin(t = 8, b = 8), size = 16, face = "bold"),
-#     axis.title.x = element_text(size = 20),
-#     axis.text = element_text(size = 16),
-#     plot.title = element_text(size = 18, face = "bold", hjust = 0.5),
-#     plot.caption = element_text(size = 10, hjust = 0.5),
-#     plot.margin = margin(t = 40, r = 20, b = 10, l = 10)
-#   )
-
-```
-
-
 ### Tab 1: 1789–1815 Revolution & Early Republic
 ```{r}
 #| label: fig-freq-era-1
-#| fig-cap: "Figure 2a: Top Bigrams in 1789-1815 Inaugural Speeches."
+#| fig-cap: "Top Bigrams in 1789-1815 Inaugural Speeches."
+
+load("data/top_biwords_era.Rdata")
 
 filter(top_biwords_era, era == "1789–1815\nRevolution & Early Republic" ) |>
   ggplot(aes(x = reorder(clean_biword, prop), y = prop)) +
@@ -127,7 +94,7 @@ filter(top_biwords_era, era == "1789–1815\nRevolution & Early Republic" ) |>
 ### Tab 2: 1816–1865 Expansion, Reform & Civil War
 ```{r}
 #| label: fig-freq-era-2
-#| fig-cap: "Figure 2b: Top Bigrams in 1816–1865 Inaugural Speeches."
+#| fig-cap: "Top Bigrams in 1816–1865 Inaugural Speeches."
 
 
 filter(top_biwords_era, era == "1816–1865\nExpansion, Reform & Civil War") |>
@@ -150,7 +117,7 @@ filter(top_biwords_era, era == "1816–1865\nExpansion, Reform & Civil War") |>
 ### Tab 3: 1866–1919 Reconstruction to WWI
 ```{r}
 #| label: fig-freq-era-3
-#| fig-cap: "Figure 2c: Top Bigrams in 1866-1919 Inaugural Speeches."
+#| fig-cap: "Top Bigrams in 1866-1919 Inaugural Speeches."
 
 filter(top_biwords_era, era == "1866–1919\nReconstruction to WWI") |>
   ggplot(aes(x = reorder(clean_biword, prop), y = prop)) +
@@ -173,7 +140,7 @@ filter(top_biwords_era, era == "1866–1919\nReconstruction to WWI") |>
 ### Tab 4: 1920–1945 Interwar & WWII
 ```{r}
 #| label: fig-freq-era-4
-#| fig-cap: "Figure 2d: Top Bigrams in 1920-1945 Inaugural Speeches."
+#| fig-cap: "Top Bigrams in 1920-1945 Inaugural Speeches."
 
 filter(top_biwords_era, era == "1920–1945\nInterwar & WWII") |>
   ggplot(aes(x = reorder(clean_biword, prop), y = prop)) +
@@ -195,7 +162,7 @@ filter(top_biwords_era, era == "1920–1945\nInterwar & WWII") |>
 ### Tab 5: 1946–1969 Postwar & Civil Rights
 ```{r}
 #| label: fig-freq-era-5
-#| fig-cap: "Figure 2e: Top Bigrams in 1946-1969 Inaugural Speeches."
+#| fig-cap: "Top Bigrams in 1946-1969 Inaugural Speeches."
 
 filter(top_biwords_era, era == "1946–1969\nPostwar & Civil Rights") |>
   ggplot(aes(x = reorder(clean_biword, prop), y = prop)) +
@@ -217,7 +184,7 @@ filter(top_biwords_era, era == "1946–1969\nPostwar & Civil Rights") |>
 ### Tab 6: 1970–2009 Post-Watergate to Obama
 ```{r}
 #| label: fig-freq-era-6
-#| fig-cap: "Figure 2f: Top Bigrams in 1970-2009 Inaugural Speeches."
+#| fig-cap: "Top Bigrams in 1970-2009 Inaugural Speeches."
 
 
 filter(top_biwords_era, era == "1970–2009\nPost-Watergate to Obama") |>
@@ -271,8 +238,8 @@ Readability analysis helps us understand how easy (or difficult) a text is to re
 To get a better understanding of the relationship between the Flesch Reading Ease (FRE) and the Flesch-Kincaid Grade Level (FKGL), it is helpful to plot them together on a scatterplot. 
 
 ```{r}
-#| label: FKGL vs FRE
-#| fig-cap: "Figure 12: This chart displays the inverse relationship between the Flesch-Kincaid and Flesch Reading Ease formulas."
+#| label: fig-FKGL-vs-FRE
+#| fig-cap: "This chart displays the inverse relationship between the Flesch-Kincaid and Flesch Reading Ease formulas."
 
 load("data/inaugural_speeches_master.Rdata")
 a <- ggplot(inaug_speeches_master, aes(x = Flesch, y = Flesch.Kincaid)) +
@@ -328,8 +295,8 @@ To better understand the relationship between writing style and emotional tone i
 The FRE measures how easy a text is to read, while the sentiment score captures the overall positivity or negativity of the language. By analyzing these two metrics together, we can apply clustering techniques to group speeches with similar readability and sentiment profiles.
 
 ```{r}
-#| label: Plotting-Flesch_Sentiment
-#| fig-cap: "Figure 9: Flesch Reading Ease vs. Sentiment Scores from inaugural speech."
+#| label: fig-Flesch_Sentiment
+#| fig-cap: "Flesch Reading Ease vs. Sentiment Scores from inaugural speech."
 p <- ggplot(inaug_speeches_master, aes(y = Flesch, 
                                        x = sentiment, 
                                        text = paste("President:", 
@@ -389,8 +356,8 @@ For example:
 In addition to examining readability through the Flesch score, we also analyze the FKGL in relation to sentiment scores for each inaugural address. By comparing FKGL to sentiment scores, we explore how the sophistication of presidential language interacts with the emotional tone conveyed while using clustering methods.
 
 ```{r}
-#| label: Plotting-Flesch-Kincaid-vs-Sentiment
-#| fig-cap: "Figure 10: This chart displays Flesch-Kincaid and sentiment scores of president speech values."
+#| label: fig-Flesch-Kincaid-vs-Sentiment
+#| fig-cap: "This chart displays Flesch-Kincaid and sentiment scores of president speech values."
 
 p <- ggplot(inaug_speeches_master, aes(y = Flesch.Kincaid, x = sentiment,
                                         text = paste("President:", 
@@ -423,8 +390,8 @@ This suggests that the algorithm is not detecting any significant structure in t
 We also examine the relationship between the FKGL and time to track how the complexity of presidential inaugural speeches has changed. Overall, we find a clear trend that speech complexity has decreased over time, with more recent presidents using simpler, more accessible language compared to earlier eras.
 
 ```{r}
-#| label: Flesh-Kincaid-over-time
-#| fig-cap: "Figure 11: This chart displays Flesch-Kincaid over time illustrating the complexity of inaugural addresses."
+#| label: fig-Flesh-Kincaid-over-time
+#| fig-cap: "This chart displays Flesch-Kincaid over time illustrating the complexity of inaugural addresses."
 
 p <- ggplot(inaug_speeches_master, aes(x = date, y = Flesch.Kincaid))+
   geom_point() +
@@ -447,8 +414,8 @@ Possible explanations include:
 
 
 ```{r}
-#| label: Top 5 presidents with lowest scores
-#| fig-cap: "Figure 11a: Top 5 presidents with lowest Flesch-Kincaid scores"
+#| label: fig-Top-5-presidents-with-lowest-scores
+#| fig-cap: "Top 5 presidents with lowest Flesch-Kincaid scores"
 
 # Loading the data
 load("data/top5_lowpress.Rdata")
@@ -474,8 +441,8 @@ load("data/top5_lowpress.Rdata")
 
 
 ```{r}
-#| label: Top 5 presidents with highest scores
-#| fig-cap: "Figure 11b: Top 5 presidents with the highest Flesch-Kincaid scores"
+#| label: fig-Top-5-presidents-with-highest-scores
+#| fig-cap: "Top 5 presidents with the highest Flesch-Kincaid scores"
 
 # Loading the data
 load("data/top5_highpress.Rdata")
@@ -504,7 +471,8 @@ Figure 10a displays a table ranking the five presidents with the lowest Flesch-K
 
 
 ```{r}
-#| fig-cap: "Figure 12: Sentiment score change from a president's first term to their second term"
+#| label: fig-sentiment-two-terms
+#| fig-cap: "Sentiment score change from a president's first term to their second term"
 
 #loading the data
 load("data/sec_terms_sent_fk.Rdata")
@@ -532,7 +500,8 @@ ggplotly(q, tooltip = "text") |>
 
 
 ```{r}
-#| fig-cap: "Figure 13: Flesch-Kincaid score change from a president's first term to their second term"
+#| label: fig-FK-two-terms-
+#| fig-cap: "Flesch-Kincaid score change from a president's first term to their second term"
 # Inaugural Address Complexity Change from First to Second Term for presidents that served two terms
 q <- ggplot(sec_terms_sent_fk, aes(x = fk_first, y = fk_second,
                                    text = paste("President:", 
@@ -556,7 +525,8 @@ ggplotly(q, tooltip = "text") |>
 ## Difference Score
 
 ```{r}
-#| fig-cap: "Figure 13a: Sentiment score and Flesch-Kincaid Scores change across different terms of presidents that served two terms"
+#| label: fig-sentiment-FK-across-terms
+#| fig-cap: "Sentiment score and Flesch-Kincaid Scores change across different terms of presidents that served two terms"
 
 # loading the data
 load("data/sec_terms_diff.Rdata")
