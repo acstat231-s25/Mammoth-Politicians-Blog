@@ -54,11 +54,14 @@ ggplotly(p, tooltip = "text")
 
 ```
 
-This interactive bar chart displays the average AFINN sentiment score of each U.S. presidential inaugural address over time. Bars are color-coded by sentiment strength, with bluer bars indicating more positive language and red tones indicating more negative sentiment. Hovering over each bar reveals additional details, including the president’s name, year of the address, and exact sentiment score. 
+This interactive bar chart displays the average AFINN sentiment score of each U.S. presidential inaugural address from 1789 to 2009. The chart was created using ggplot2 with a custom blue–gray–red gradient (scale_fill_gradient2()) and made interactive using plotly, allowing readers to hover over each bar for details like president name, year, and sentiment score [@ggplot2gradient; @plotly]. 
 
-While sentiment has remained mostly positive throughout history, we observe notably lower average sentiment during the mid-19th century, especially surrounding the Civil War era under Abraham Lincoln. A brief dip also appears in the early 20th century. More recently, sentiment peaked with George H. W. Bush’s 1989 inaugural address, which had the highest score in the dataset. Since then, average sentiment scores have gradually declined across subsequent presidencies, suggesting a rhetorical shift toward more neutral or somber tones in modern speeches.
+Bars are color-coded by sentiment strength, with blue tones representing more positive language and red tones more negative sentiment. This helps visualize how the emotional tone of inaugural speeches has shifted over time.
 
-The first figure uses an interactive plotly chart to allow readers to explore sentiment scores by hovering over each bar [@plotly]. The color gradient, from blue to gray to red, was created using scale_fill_gradient2() in ggplot2 [@ggplot2gradient].
+While sentiment has remained mostly positive throughout history, we observe notably lower average sentiment during the mid-19th century, especially surrounding the Civil War era under Abraham Lincoln. A brief dip also appears in the early 20th century. More recently, sentiment peaked with George H. W. Bush’s 1989 inaugural address — the highest score in the dataset. Since then, sentiment scores have gradually declined, suggesting a rhetorical shift toward more neutral or somber tones in modern speeches.
+
+> Note: Lincoln’s relatively low sentiment score is not a reflection of public approval, but a limitation of the AFINN lexicon, which assigns negative values to many war-related words. For more detail on how AFINN works and why this matters, see our [About page](about_page.qmd).
+
 
 # Normalized Bigram Frequency by Era
 
