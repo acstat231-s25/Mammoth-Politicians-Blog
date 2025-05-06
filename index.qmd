@@ -74,7 +74,7 @@ ggplotly(p, tooltip = "text")
 
 ```
 
-This interactive bar chart displays the average AFINN sentiment score of each U.S. presidential inaugural address from 1789 to 2009 [@AFINN]. The chart was created using ggplot2 with a custom blue–gray–red gradient and made interactive using plotly, allowing readers to hover over each bar for details like president name, year, and sentiment score [@ggplot2gradient; @plotly]. 
+To assess how inaugural speeches have changed over time, we first looked at average sentiment over time. This interactive bar chart displays the **average AFINN sentiment score** of each U.S. presidential inaugural address from 1789 to 2009 [@AFINN]. The chart was created using ggplot2 with a custom blue–gray–red gradient and made interactive using plotly, allowing readers to hover over each bar for details like president name, year, and sentiment score [@ggplot2gradient; @plotly]. Please see the [About page](about-page.qmd) for more information on methodology and why we used *average AFINN sentiment score*.
 
 Bars are color-coded by sentiment strength, with blue tones representing more positive language and red tones more negative sentiment. This helps visualize how the emotional tone of inaugural speeches has shifted over time.
 
