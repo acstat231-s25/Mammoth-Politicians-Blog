@@ -51,7 +51,7 @@ The inaugural speeches were scraped from [Avalon Project at Yale Law School](htt
 
 ```{r}
 #| label: fig-sentiment
-#| fig-cap: "AFINN Sentiment Scores of Inaugural Speeches Over Time."
+#| fig-cap: "Average AFINN sentiment scores for U.S. inaugural speeches from 1789 to 2009, showing changes in emotional tone over time."
 
 load("data/inaug_words_sentiment.Rdata")
 
@@ -90,7 +90,7 @@ While sentiment helps us understand the emotional tone of inaugural speeches, it
 ### Tab 1: 1789–1815 Revolution & Early Republic
 ```{r}
 #| label: fig-freq-era-1
-#| fig-cap: "Top Bigrams in 1789-1815 Inaugural Speeches."
+#| fig-cap: "Most frequent bigrams in inaugural speeches from 1789–1815, shown as a proportion of all bigrams in that era."
 
 load("data/top_biwords_era.Rdata")
 
@@ -115,7 +115,7 @@ filter(top_biwords_era, era == "1789–1815\nRevolution & Early Republic" ) |>
 ### Tab 2: 1816–1865 Expansion, Reform & Civil War
 ```{r}
 #| label: fig-freq-era-2
-#| fig-cap: "Top Bigrams in 1816–1865 Inaugural Speeches."
+#| fig-cap: "Most frequent bigrams in inaugural speeches from 1816–1865, shown as a proportion of all bigrams in that era."
 
 
 filter(top_biwords_era, era == "1816–1865\nExpansion, Reform & Civil War") |>
@@ -139,7 +139,7 @@ filter(top_biwords_era, era == "1816–1865\nExpansion, Reform & Civil War") |>
 ### Tab 3: 1866–1919 Reconstruction to WWI
 ```{r}
 #| label: fig-freq-era-3
-#| fig-cap: "Top Bigrams in 1866-1919 Inaugural Speeches."
+#| fig-cap: "Most frequent bigrams in inaugural speeches from 1866–1919, shown as a proportion of all bigrams in that era."
 
 filter(top_biwords_era, era == "1866–1919\nReconstruction to WWI") |>
   ggplot(aes(x = reorder(clean_biword, prop), y = prop)) +
@@ -163,7 +163,7 @@ filter(top_biwords_era, era == "1866–1919\nReconstruction to WWI") |>
 ### Tab 4: 1920–1945 Interwar & WWII
 ```{r}
 #| label: fig-freq-era-4
-#| fig-cap: "Top Bigrams in 1920-1945 Inaugural Speeches."
+#| fig-cap: "Most frequent bigrams in inaugural speeches from 1920–1945, shown as a proportion of all bigrams in that era."
 
 filter(top_biwords_era, era == "1920–1945\nInterwar & WWII") |>
   ggplot(aes(x = reorder(clean_biword, prop), y = prop)) +
@@ -186,7 +186,7 @@ filter(top_biwords_era, era == "1920–1945\nInterwar & WWII") |>
 ### Tab 5: 1946–1969 Postwar & Civil Rights
 ```{r}
 #| label: fig-freq-era-5
-#| fig-cap: "Top Bigrams in 1946-1969 Inaugural Speeches."
+#| fig-cap: "Most frequent bigrams in inaugural speeches from 1946–1969, shown as a proportion of all bigrams in that era."
 
 filter(top_biwords_era, era == "1946–1969\nPostwar & Civil Rights") |>
   ggplot(aes(x = reorder(clean_biword, prop), y = prop)) +
@@ -209,7 +209,7 @@ filter(top_biwords_era, era == "1946–1969\nPostwar & Civil Rights") |>
 ### Tab 6: 1970–2009 Post-Watergate to Obama
 ```{r}
 #| label: fig-freq-era-6
-#| fig-cap: "Top Bigrams in 1970-2009 Inaugural Speeches."
+#| fig-cap: "Most frequent bigrams in inaugural speeches from 1970–2009, shown as a proportion of all bigrams in that era."
 
 
 filter(top_biwords_era, era == "1970–2009\nPost-Watergate to Obama") |>
