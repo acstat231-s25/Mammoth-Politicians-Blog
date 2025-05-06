@@ -32,12 +32,55 @@ After scraping, we removed stop words, as well as "fellow", "citizens", and "peo
 
 Addition, President Van Buren, President Buchanan, President Garfield, and President Coolidge are missing from the dataset due to unavailable transcripts.
 
-For the *Sentiment Analysis*, we calculated the average sentiment of each speech to account for length of speech and to allow for fair comparisons across speeches/
+### Sentiment Analysis
+For the **Sentiment Analysis Over Time**, we calculated the *average sentiment score* (per word) for each speech to account for length of speech and to allow for fair comparisons across speeches. Average sentiment score = (total sentiment) / (number of words recognized by AFINN). The AFINN Lexicon used in this sentiment analysis assigns identified words with a value from -5 to 5, with negative scores representing negative sentiment and positive scores representing positive sentiment. For the *bigrams by era
+
+For the **Normalized Bigram Frequency by Era**, we defined six eras: "Revolution & Early Republic," "Expansion, Reform & Civil War," "Reconstruction to WWI," "Interwar & WWII," "Postwar & Civil Rights," and "Post-Watergate to Obama." Then,
 
 
-The AFINN Lexicon: This Lexicon assigns identified words with a value from -5 to 5, with negative scores representing negative sentiment and positive scores representing positive sentiment.
 
-Average Sentiment: To account for length of speech, presidents are compared by their average sentiment score (total sentiment / number of words recognized by AFINN).
+
+# 1. Get top 8 biwords per era with total count > 2
+top_biwords_era <- bigram_count |> 
+  group_by(era, word1, word2) |> 
+  summarize(total = sum(n), .groups = "drop") |> 
+  filter(total > 2) |> 
+  group_by(era) |> 
+  slice_max(total, n = 8, with_ties = FALSE) |> 
+  ungroup() |> 
+  mutate(
+    clean_biword = paste(word1, word2),
+    biword = reorder_within(clean_biword, total, era)
+  )
+
+# 2. Mark biwords that appear in more than one era
+repeated_biwords <- top_biwords_era |> 
+  count(clean_biword) |> 
+  filter(n > 1) |> 
+  pull(clean_biword)
+
+top_biwords_era <- top_biwords_era |> 
+  mutate(
+    shared = clean_biword %in% repeated_biwords,
+    color = ifelse(shared, "#B22234", "steelblue")
+  )
+
+# 3. Normalize counts by total bigrams per era
+total_bigrams_per_era <- bigram_count |> 
+  group_by(era) |> 
+  summarize(era_total = sum(n), .groups = "drop")
+
+top_biwords_era <- top_biwords_era |> 
+  left_join(total_bigrams_per_era, by = "era") |> 
+  mutate(prop = total / era_total)
+
+save(top_biwords_era, 
+     file = "data/top_biwords_era.Rdata")
+
+
+```
+
+
 
 
 ## Limitations
