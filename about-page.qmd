@@ -27,12 +27,12 @@ This blog analyzes U.S. presidential inaugural speeches to track changes in lang
 
 # Methodology
 
-## Data Collection & Wrangling Description
-The inaugural speeches were scraped from [Avalon Project at Yale Law School](https://avalon.law.yale.edu/subject_menus/inaug.asp). 
+## Data Collection & Wrangling
+This project analyzes the full text of U.S. presidential inaugural addresses from 1789 to 2009. The speeches were collected from the [Avalon Project at Yale Law School](https://avalon.law.yale.edu/subject_menus/inaug.asp), a publicly accessible site of historical, legal, and political documents. We scraped the website in March 2025 as part of a previous group project. The Avalon Project does not indicate when each transcript was digitized, but it is maintained by Yale Law School as an educational resource.
 
-After scraping, we removed stop words, as well as "fellow", "citizens", and "people" due to repetition.
+Each speech was stored as plain text and processed into a tidy format for text analysis. We removed standard stop words (e.g., "the", "and", "is") using the stop_words list from the tidytext package. We also removed highly repetitive words like "fellow", "citizens", and "people", which appeared across nearly all speeches and contributed little variation to sentiment or bigram frequency.
 
-Additionally, President Van Buren, President Buchanan, President Garfield, and President Coolidge are missing from the dataset due to unavailable transcripts.
+The cleaned data were then tokenized and organized into tidy data containing word-level, bigram, and sentence-level information, enabling the calculation of sentiment scores, readability metrics, and word frequency patterns. While most presidents were included, Van Buren, Buchanan, Garfield, and Coolidge were excluded due to missing transcripts on the Avalon website.
 
 ### Sentiment Analysis
 For the **Sentiment Analysis Over Time**, we found the total sentiment score of each speech using the AFINN lexicon. The AFINN Lexicon assigns identified words with a value from -5 to 5, with negative scores representing negative sentiment and positive scores representing positive sentiment. We then calculated average sentiment score = (total sentiment) / (number of words recognized by AFINN). This is the *average sentiment score* (per word) for each speech, and it accounts for length of speech and allows for fair comparisons across speeches. 
