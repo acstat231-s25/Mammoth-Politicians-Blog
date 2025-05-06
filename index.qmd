@@ -498,10 +498,11 @@ q <- ggplot(sec_terms_sent_fk, aes(x = sent_first, y = sent_second,
   theme_minimal()
 
 # Removing the legend 
-ggplotly(q, tooltip = "text") |>
+qq <- ggplotly(q, tooltip = "text") |>
   layout(showlegend = FALSE)
 
 ```
+
 
 
 ```{r}
