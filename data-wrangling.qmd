@@ -72,8 +72,7 @@ top_biwords_era <- bigram_count |>
   slice_max(total, n = 8, with_ties = FALSE) |> 
   ungroup() |> 
   mutate(
-    clean_biword = paste(word1, word2),
-    biword = reorder_within(clean_biword, total, era)
+    clean_biword = paste(word1, word2)
   )
 
 # 2. Mark biwords that appear in more than one era
