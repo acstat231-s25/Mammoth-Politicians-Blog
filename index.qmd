@@ -1,11 +1,11 @@
 ---
-title: "Analysis of the Sentiment, Language, and Readability of Presidential Inaugural Speeches, 1789-2009"
-subtitle: "Comparing the Sentiment, Language Use, and Readability Scores of Presidential Speeches Over Time"
+title: "From Washington to Obama: The Evolution of Presidential Speech"
+subtitle: "Comparing the Sentiment, Language Use, and Readability of Presidential Inaugural Speeches Over Time"
 author: 
 - "Rachel Hubley"
 - "Sheryl Solorzano"
 - "Josh Balderas"
-abstract: "This blog focuses on analyzing the inaugural speeches of U.S. presidents to examine how the language, sentiment used, and readability of presidential addresses have changed over time. By calculating readability scores using the Flesch-Kincaid formula and analyzing sentiment with the AFINN lexicon, we explore whether speeches from 1789 to 2009 have become easier or harder to understand, and how their emotional tone has evolved. Please note that President Van Buren, President Buchanan, President Garfield, and President Coolidge are missing from the dataset due to unavailable transcripts."
+abstract: "From calls for unity to speeches delivered in times of crisis, presidential inaugural addresses show how leaders shape their language to reflect the moment. In this project, we explore how tone, word choice, and readability have shifted from Washington to Obama using sentiment analysis (AFINN) and readability tools like Flesch-Kincaid. We're interested in the patterns — how presidential speech has changed over time, and what that says about leadership, politics, and the public they’re speaking to."
 bibliography: bib/library.bib
 ---
 
