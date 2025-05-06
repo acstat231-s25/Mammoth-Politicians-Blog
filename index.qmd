@@ -492,7 +492,7 @@ q <- ggplot(sec_terms_sent_fk, aes(x = sent_first, y = sent_second,
                                                 "<br> 2nd Term Sentiment Score:",
                                                 round(sent_second, 3) ) )) +
   geom_point(aes(color = president, size = 0.1)) + 
-  labs(title = "Inaugural Address Sentiment Score: First Term vs. Second Term",
+  labs(title = "Inaugural Address Sentiment Across Terms",
        x = "First Term Sentiment Avg",
        y = "Second Term Sentiment Avg") +
   theme_minimal()
@@ -516,7 +516,7 @@ q <- ggplot(sec_terms_sent_fk, aes(x = fk_first, y = fk_second,
                                                 "<br> 2nd Term FK Score:",
                                                 fk_second))) +
   geom_point(aes(color = president, size = 0.1)) + 
-  labs(title = "Inaugural Address Complexity: First Term vs. Second Term",
+  labs(title = "Inaugural Address Complexity Across Terms",
        x = "First Term Flesch-Kincaid Score",
        y = "Second Term Flesch-Kincaid Score") +
   theme_minimal()
