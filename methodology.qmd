@@ -33,59 +33,18 @@ After scraping, we removed stop words, as well as "fellow", "citizens", and "peo
 Addition, President Van Buren, President Buchanan, President Garfield, and President Coolidge are missing from the dataset due to unavailable transcripts.
 
 ### Sentiment Analysis
-For the **Sentiment Analysis Over Time**, we calculated the *average sentiment score* (per word) for each speech to account for length of speech and to allow for fair comparisons across speeches. Average sentiment score = (total sentiment) / (number of words recognized by AFINN). The AFINN Lexicon used in this sentiment analysis assigns identified words with a value from -5 to 5, with negative scores representing negative sentiment and positive scores representing positive sentiment. For the *bigrams by era
+For the **Sentiment Analysis Over Time**, we found the total sentiment score of each speech using the AFINN lexicon. The AFINN Lexicon assigns identified words with a value from -5 to 5, with negative scores representing negative sentiment and positive scores representing positive sentiment. We then calculated average sentiment score = (total sentiment) / (number of words recognized by AFINN). This is the *average sentiment score* (per word) for each speech, and it accounts for length of speech and allows for fair comparisons across speeches. 
 
-For the **Normalized Bigram Frequency by Era**, we defined six eras: "Revolution & Early Republic," "Expansion, Reform & Civil War," "Reconstruction to WWI," "Interwar & WWII," "Postwar & Civil Rights," and "Post-Watergate to Obama." Then,
+For the **Normalized Bigram Frequency by Era**, we defined six eras: "Revolution & Early Republic," "Expansion, Reform & Civil War," "Reconstruction to WWI," "Interwar & WWII," "Postwar & Civil Rights," and "Post-Watergate to Obama." Then, we got the got the top 8 biwords/bigrams by era with total count greater than 2. Finally, we "normalized" the counts by total bigrams per era, to allow for fair comparisons across eras, since not all eras contain the same number of bigrams.
 
-
-
-
-# 1. Get top 8 biwords per era with total count > 2
-top_biwords_era <- bigram_count |> 
-  group_by(era, word1, word2) |> 
-  summarize(total = sum(n), .groups = "drop") |> 
-  filter(total > 2) |> 
-  group_by(era) |> 
-  slice_max(total, n = 8, with_ties = FALSE) |> 
-  ungroup() |> 
-  mutate(
-    clean_biword = paste(word1, word2),
-    biword = reorder_within(clean_biword, total, era)
-  )
-
-# 2. Mark biwords that appear in more than one era
-repeated_biwords <- top_biwords_era |> 
-  count(clean_biword) |> 
-  filter(n > 1) |> 
-  pull(clean_biword)
-
-top_biwords_era <- top_biwords_era |> 
-  mutate(
-    shared = clean_biword %in% repeated_biwords,
-    color = ifelse(shared, "#B22234", "steelblue")
-  )
-
-# 3. Normalize counts by total bigrams per era
-total_bigrams_per_era <- bigram_count |> 
-  group_by(era) |> 
-  summarize(era_total = sum(n), .groups = "drop")
-
-top_biwords_era <- top_biwords_era |> 
-  left_join(total_bigrams_per_era, by = "era") |> 
-  mutate(prop = total / era_total)
-
-save(top_biwords_era, 
-     file = "data/top_biwords_era.Rdata")
-
-
-```
-
-
+### Readability Analysis
 
 
 ## Limitations
+This analysis is limited by the availability and consistency of data. Four presidents (Van Buren, Buchanan, Garfield, Coolidge) were excluded due to missing transcripts. Additionally, sentiment analysis using the AFINN lexicon captures only surface-level emotional tone and may not fully reflect rhetorical nuance. Readability metrics like Flesch-Kincaid and FRE focus on sentence structure and word complexity, but not on conceptual difficulty, historical context, or rhetorical devices. Lastly, clustering results may vary depending on the selected number of clusters and do not always yield interpretable groupings.
 
 ## Future Work
+Future research could expand the dataset to include more recent inaugural addresses and improve sentiment analysis by incorporating lexicons better suited to political language. Topic modeling could also offer deeper insights into thematic structure. Finally, extending the analysis to other forms of presidential communication, such as State of the Union addresses or campaign speeches, could provide a more comprehensive view of rhetorical trends over time.
 
 ## Appendix
 
