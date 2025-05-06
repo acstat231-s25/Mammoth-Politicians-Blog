@@ -311,7 +311,7 @@ This score rates text on a 0 to 100 scale. A higher score means the text is easi
 
 To better understand the relationship between writing style and emotional tone in the presidential inaugural addresses, we compare the FRE scores with sentiment scores calculated for each speech.
 
-The FRE measures how easy a text is to read, while the sentiment score captures the overall positivity or negativity of the language. By analyzing these two metrics together, we can apply clustering techniques to group speeches with similar readability and sentiment profiles. These clusters help us identify distinct subgroups of inaugural addresses --- for example, groups of speeches that are both highly readable and optimistic, or more complex and somber --- offering new insights into how presidents have tailored their language to the moment in history.
+The FRE measures how easy a text is to read, while the sentiment score captures the overall positivity or negativity of the language. By analyzing these two metrics together, we can apply clustering techniques to group speeches with similar readability and sentiment profiles.
 
 ```{r}
 #| label: Plotting-Flesch_Sentiment
@@ -372,7 +372,7 @@ For example:
 
 ### FKGL vs. Sentiment
 
-In addition to examining readability through the Flesch score, we also analyze the FKGL in relation to sentiment scores for each inaugural address. The FKGL estimates the U.S. school grade level required to understand a speech, providing a direct measure of textual complexity. By comparing FKGL to sentiment scores, we explore how the sophistication of presidential language interacts with the emotional tone conveyed. Using clustering methods to group speeches based on their grade level and sentiment characteristic offering a nuanced view of how different presidents have communicated their visions to the nation.
+In addition to examining readability through the Flesch score, we also analyze the FKGL in relation to sentiment scores for each inaugural address. By comparing FKGL to sentiment scores, we explore how the sophistication of presidential language interacts with the emotional tone conveyed while using clustering methods.
 
 ```{r}
 #| label: Plotting-Flesch-Kincaid-vs-Sentiment
