@@ -520,7 +520,7 @@ ggplotly(q, tooltip = "text") |>
 
 ```
 
-Figure 15 displays an interactive scatter plot showing the sentiment scores of U.S. presidents’ first and second inaugural addresses for those who served two terms. Similarly, Figure 6 shows presidents' first term Flesch-Kincaid scores and second term Flesch-Kincaid scores. By hovering over each data point, the user can view the president's name as well as their respective scores. Each president is colored differently.
+Figure 14 displays an interactive scatter plot showing the sentiment scores of U.S. presidents’ first and second inaugural addresses for those who served two terms. Similarly, Figure 15 shows presidents' first term Flesch-Kincaid scores and second term Flesch-Kincaid scores. By hovering over each data point, the user can view the president's name as well as their respective scores. Each president is colored differently.
 
 By examining the sentiment and Flesch-Kincaid scores across different terms, we can explore how presidential leadership and political rhetoric evolve after serving a first term. This is important because it may reveal a correlation between a president’s experience and changes in language complexity or emotional tone
 
