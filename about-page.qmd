@@ -72,6 +72,102 @@ Future research could expand the dataset to include more recent inaugural addres
 # Appendix
 
 
+# Mean Sentence Length over time 
+
+```{r}
+#| label: Mean Sentence Length over time
+#| fig-cap: "Figure 3: Mean sentence length of each president's inaugural speech over time"
+
+# loading the data
+load("data/inaug_speeches_master")
+
+load("data/inaugural_speeches_master.Rdata")
+
+ms <- ggplot(inaug_speeches_master, aes(
+  x = date, y = meanSentenceLength,
+  text = paste("President:", president,
+               "<br>Year:", date,
+               "<br>Mean Sentence Length:", round(meanSentenceLength, 3)),
+  fill = meanSentenceLength)) +
+  geom_col(show.legend = FALSE) +
+scale_fill_gradient2(low = "#B22234", mid = "#d6d6d6", high = "steelblue", midpoint = 0) + 
+  labs(
+    title = "Mean Sentence Length of Inaugural Speeches",
+    x = "Year",
+    y = "Mean Sentence Length"
+  ) +
+  theme_minimal()
+
+ggplotly(ms, tooltip = "text")
+
+```
+
+
+This interactive bar chart displays the mean sentence length of the presidential inaugural speeches of U.S presidents that served from 1789 to 2009. By hovering over each bar, the user can view the president’s name, year of the inaugural address, and the mean sentence length of the inaugural address. The bars are color-coded by different shades of blue, which vary depending on the mean sentence length.
+
+The mean sentence length measures the average number of words per sentence in a presidential inaugural speech. By measuring the mean sentence length of an speech, we can get a rough idea of how complex the speech's sentences are. For instance, if the mean sentence length is long, it may indicate a more complex and harder to understand sentence while a shorter mean sentence length may indicate otherwise. It is important to note that the mean sentence length measures the complexity of the sentence structure based on its length, but it doesn't measure the complexity of each individual word. 
+
+
+As shown on the bar chart, the mean sentence length of presidential inaugural speeches seem to fluctuate slightly. However, we can observe an overall trend: the mean sentence length decreases over time. This shows that the sentence structure of U.S. presidents' inaugural speeches have become less complex over time. This may be due wanting to make inaugural speeches more accessible to the public (Liberman 2011)
+
+The first figure uses an interactive plotly chart to allow readers to explore the mean sentence length by hovering over each bar [@plotly]. The color gradient, different shades of blue, was created using scale_fill_gradient2() in ggplot2 [@ggplot2gradient].
+
+
+# Mean Sentence Length vs. Sentiment
+ 
+```{r, warning = FALSE}
+#| label: Plotting Mean Sentence Length vs. Sentiment
+#| fig-cap: "Figure 8: Mean sentence length vs. sentiment of presidential inaugural speeches"
+
+load("data/msl_cluster_centers")
+load("data/msl_clustered")
+
+
+# Interactive plot with plotly
+MS_s <- ggplot(msl_clustered, aes(x = meanSentenceLength, y = sentiment_avg)) +
+    scale_color_manual(values = c("red", "blue", "green", "purple", "orange", "pink")) +
+  geom_point(aes(color = cluster_2, 
+                 text = paste("President:", president,
+                              "<br>Sentiment:", sentiment_avg,
+                              "<br>Mean Sentence Length:", meanSentenceLength,
+                              "<br>Cluster:", cluster_2)), 
+             alpha = 0.6) +
+  scale_x_continuous(breaks = scales:: breaks_width(5), minor_breaks = NULL) +
+  geom_label(data = msl_cluster_centers, 
+             aes(label = cluster_2, 
+                 text = paste("Cluster Center:", cluster_2)), 
+             size = 3) +
+  labs(y = "Average Sentiment Score",
+       x = "Mean Sentence Length",
+       title = "Mean Sentence Length vs. Sentiment",
+       caption = "Average Sentiment Score vs Mean Sentence Length",
+       color = "Cluster") +
+  theme_minimal()
+
+ggplotly(MS_s, tooltip = "text")
+
+
+```
+ 
+Figure 8 displays an interactive clustering of presidential inaugural speeches based on the average sentiment score and the mean sentence length. By hovering over each data point, the user can view the president's name, sentiment score, Flesch-Kincaid score and the cluster that president's inaugural speech belongs to.
+ 
+
+**Clusters description:**
+
+**Cluster 1:** Presidents with moderately low mean sentence length have neutral inaugural speeches.
+
+**Cluster 2:** Presidents with high mean sentence length have considerably positive inaugural speeches. 
+
+**Cluster 3:** Presidents with medium mean sentence length have positive inaugural speeches. 
+
+**Cluster 4:** Presidents with the highest mean sentence length have more positive inaugural speeches.
+
+**Cluster 5:** Presidents with low mean sentence length have neutral, but leaning toward negative, inaugural speeches
+
+**Cluster 6:** Presidents with the lowest mean sentence length have neutral inaugural speeches. 
+
+
+
 
 ```{r}
 #| label: fig-sentiment
