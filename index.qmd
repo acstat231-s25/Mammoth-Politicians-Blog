@@ -85,7 +85,8 @@ filter(top_biwords_era, era == "1789–1815\nRevolution & Early Republic" ) |>
   ) +
   theme_minimal() +
   theme(
-    axis.text.y = element_text(size = 14)
+    axis.text.y = element_text(size = 14),
+    axis.text.x = element_text(size = 10)
   )
 
 ```
@@ -108,7 +109,8 @@ filter(top_biwords_era, era == "1816–1865\nExpansion, Reform & Civil War") |>
   ) +
   theme_minimal() +
   theme(
-    axis.text.y = element_text(size = 14)
+    axis.text.y = element_text(size = 14),
+    axis.text.x = element_text(size = 10)
   )
 
 ```
@@ -130,7 +132,8 @@ filter(top_biwords_era, era == "1866–1919\nReconstruction to WWI") |>
   ) +
   theme_minimal() +
   theme(
-    axis.text.y = element_text(size = 14)
+    axis.text.y = element_text(size = 14),
+    axis.text.x = element_text(size = 10)
   )
 
 
@@ -153,7 +156,8 @@ filter(top_biwords_era, era == "1920–1945\nInterwar & WWII") |>
   ) +
   theme_minimal() +
   theme(
-    axis.text.y = element_text(size = 14)
+    axis.text.y = element_text(size = 14),
+    axis.text.x = element_text(size = 10)
   )
 
 ```
@@ -175,7 +179,8 @@ filter(top_biwords_era, era == "1946–1969\nPostwar & Civil Rights") |>
   ) +
   theme_minimal() +
   theme(
-    axis.text.y = element_text(size = 14)
+    axis.text.y = element_text(size = 14),
+    axis.text.x = element_text(size = 10)
   )
 
 ```
@@ -198,7 +203,8 @@ filter(top_biwords_era, era == "1970–2009\nPost-Watergate to Obama") |>
   ) +
   theme_minimal() +
   theme(
-    axis.text.y = element_text(size = 14)
+    axis.text.y = element_text(size = 14),
+    axis.text.x = element_text(size = 10)
   )
 
 
@@ -464,7 +470,7 @@ load("data/top5_highpress.Rdata")
                    background = "#CD2626", color = "white", bold = TRUE)
 ```
 
-Figure 10a displays a table ranking the five presidents with the lowest Flesch-Kincaid Grade Level scores between 1789 and 2009. Similarly, Figure 10b displays a table ranking the five presidents with the highest Flesch-Kincaid Grade Level scores. By looking at the years, we can see how the highest scores correspond to the presidents in the first two centuries while the lowest scores correspond to the presidents in the more recent centuries. This indicates that the language used in inaugural speeches has become simpler and more accessible over time. 
+Figure 10a displays a table ranking the five presidents with the lowest Flesch-Kincaid Grade Level scores between 1789 and 2009. Similarly, Figure 10b displays a table ranking the five presidents with the highest Flesch-Kincaid Grade Level scores. By looking at the years, we can see how the highest scores correspond to the presidents in the first two centuries while the lowest scores correspond to the presidents in the more recent centuries. This indicates that the language used in inaugural speeches has become simpler and more accessible over time. The tables' feature and other attributes were accomplished from the `kabbleExtra` package by following the documentation provided by CRAN [@kableTable].
 
 
 # Sentiment and Flesch-Kincaid Scores Change among Presidents that Served Two Terms

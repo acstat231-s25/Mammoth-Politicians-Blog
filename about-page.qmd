@@ -121,7 +121,7 @@ ggplotly(ms, tooltip = "text")
 
 This interactive bar chart displays the mean sentence length of the presidential inaugural speeches of U.S presidents that served from 1789 to 2009. By hovering over each bar, the user can view the president’s name, year of the inaugural address, and the mean sentence length of the inaugural address. The bars are color-coded by different shades of blue, which vary depending on the mean sentence length.
 
-As shown on the bar chart, the mean sentence length of presidential inaugural speeches seem to fluctuate slightly. However, we can observe an overall trend: the mean sentence length decreases over time. This shows that the sentence structure of U.S. presidents' inaugural speeches have become less complex over time. This may be due wanting to make inaugural speeches more accessible to the public (Liberman 2011)
+As shown on the bar chart, the mean sentence length of presidential inaugural speeches seem to fluctuate slightly. However, we can observe an overall trend: the mean sentence length decreases over time. This shows that the sentence structure of U.S. presidents' inaugural speeches have become less complex over time. This may be due wanting to make inaugural speeches more accessible to the public (@Liberman)
 
 The first figure uses an interactive plotly chart to allow readers to explore the mean sentence length by hovering over each bar [@plotly]. The color gradient, different shades of blue, was created using scale_fill_gradient2() in ggplot2 [@ggplot2gradient].
 
